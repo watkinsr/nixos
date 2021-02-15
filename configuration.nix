@@ -184,6 +184,31 @@
     zfs = {
       trim.enable = true;
     };
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+    };
+  };
+
+  systemd.services.lock-before-sleeping = {
+    restartIfChanged = false;
+    unitConfig = {
+      Description = "Helper service to bind locker to sleep.target";
+    };
+    serviceConfig = {
+      ExecStart = "${pkgs.swaylock}/bin/swaylock -i /home/pimeys/Pictures/Ve0XkQ4.jpg";
+      Type = "simple";
+      User = "pimeys";
+    };
+    before = [
+      "pre-sleep.service"
+    ];
+    wantedBy= [
+      "pre-sleep.service"
+    ];
+    environment = {
+      XDG_RUNTIME_DIR = "/run/user/1000";
+    };
   };
 
   # This value determines the NixOS release from which the default
