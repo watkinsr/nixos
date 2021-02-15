@@ -58,6 +58,12 @@
       i3status
       wev
     ];
+    extraSessionCommands = ''
+      export _JAVA_AWT_WM_NONREPARENTING=1;
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    '';
   };
 
   programs.light.enable = true;
@@ -92,8 +98,16 @@
   # Enable sound.
   sound.enable = true;
 
-  hardware.pulseaudio.enable = true;
-  hardware.opengl.driSupport = true;
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+    };
+    bluetooth.enable = true;
+    opengl = {
+      driSupport = true;
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pimeys = {
@@ -112,7 +126,7 @@
   environment.systemPackages = with pkgs; [
      wget
      neovim
-     firefox
+     firefox-wayland
      emacs
      wl-clipboard
      brightnessctl
@@ -141,9 +155,17 @@
      ripgrep
      fd
      pavucontrol
+     youtube-dl
+     tree
+     tmux
+     unzip
+     blueman
+     openjdk
+     jetbrains.datagrip
+     jetbrains.idea-community
+     google-cloud-sdk
+     qt5.qtwayland
   ];
-
-  environment.variables.MOZ_ENABLE_WAYLAND = "1";
 
   environment.pathsToLink = [ "/libexec" ];
 
