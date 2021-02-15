@@ -102,9 +102,6 @@
   hardware.pulseaudio.enable = true;
   hardware.opengl.driSupport = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pimeys = {
      isNormalUser = true;
@@ -150,6 +147,7 @@
      rust-analyzer
      ripgrep
      fd
+     pavucontrol
   ];
 
   environment.variables.MOZ_ENABLE_WAYLAND = "1";
