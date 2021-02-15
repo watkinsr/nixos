@@ -176,6 +176,7 @@
     tlp = { enable = true; };
     zfs = {
       trim.enable = true;
+      autoScrub.enable = true;
     };
     xserver = {
       enable = true;
