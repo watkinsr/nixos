@@ -174,6 +174,14 @@
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = [
+          "Inconsolata"
+        ];
+      };
+    };
     fonts = with pkgs; [
       corefonts
       inconsolata
