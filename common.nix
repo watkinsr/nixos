@@ -7,7 +7,6 @@
 {
   imports =
     [
-      ./thinkpad-t25.nix
       ./file-systems.nix
     ];
 
@@ -28,58 +27,10 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    extraPackages = with pkgs; [
-      xwayland
-      swaylock
-      swayidle
-      wl-clipboard
-      mako # notification daemon
-      alacritty # Alacritty is the default terminal in the config
-      wofi
-      waybar
-      kanshi
-      i3blocks-gaps
-      i3status
-      wev
-    ];
-    extraSessionCommands = ''
-      export _JAVA_AWT_WM_NONREPARENTING=1;
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-    '';
-  };
-
   programs.light.enable = true;
   programs.qt5ct.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [
-    (self: super: {
-      wl-clipboard-x11 = super.stdenv.mkDerivation rec {
-      pname = "wl-clipboard-x11";
-      version = "5";
-    
-      src = super.fetchFromGitHub {
-        owner = "brunelli";
-        repo = "wl-clipboard-x11";
-        rev = "v${version}";
-        sha256 = "1y7jv7rps0sdzmm859wn2l8q4pg2x35smcrm7mbfxn5vrga0bslb";
-      };
-    
-      dontBuild = true;
-      dontConfigure = true;
-      propagatedBuildInputs = [ super.wl-clipboard ];
-      makeFlags = [ "PREFIX=$(out)" ];
-      };
-    
-      xsel = self.wl-clipboard-x11;
-      xclip = self.wl-clipboard-x11;
-    })
-  ];
 
   # Enable sound.
   sound.enable = true;
@@ -112,9 +63,7 @@
   environment.systemPackages = with pkgs; [
      wget
      neovim
-     firefox-wayland
      emacs
-     wl-clipboard
      brightnessctl
      polkit_gnome
      gtk-engine-murrine
@@ -195,7 +144,6 @@
   virtualisation.docker.enable = true;
 
   services = {
-    tlp = { enable = true; };
     zfs = {
       trim.enable = true;
       autoScrub.enable = true;
@@ -203,27 +151,6 @@
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
-    };
-  };
-
-  systemd.services.lock-before-sleeping = {
-    restartIfChanged = false;
-    unitConfig = {
-      Description = "Helper service to bind locker to sleep.target";
-    };
-    serviceConfig = {
-      ExecStart = "${pkgs.swaylock}/bin/swaylock -i /home/pimeys/Pictures/Ve0XkQ4.jpg";
-      Type = "simple";
-      User = "pimeys";
-    };
-    before = [
-      "pre-sleep.service"
-    ];
-    wantedBy= [
-      "pre-sleep.service"
-    ];
-    environment = {
-      XDG_RUNTIME_DIR = "/run/user/1000";
     };
   };
 

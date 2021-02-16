@@ -5,7 +5,11 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      ./common.nix
+      ./wayland.nix
+      ./laptop.nix
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot = {
@@ -18,10 +22,6 @@
   };
 
   swapDevices = [ ];
-
-  powerManagement = {
-    enable = true;
-  };
 
   networking = {
     interfaces = {
