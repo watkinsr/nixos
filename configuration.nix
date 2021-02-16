@@ -7,7 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./thinkpad-t25.nix
+      ./file-systems.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -165,6 +166,7 @@
      jetbrains.idea-community
      google-cloud-sdk
      qt5.qtwayland
+     lm_sensors
   ];
 
   environment.pathsToLink = [ "/libexec" ];
