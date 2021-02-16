@@ -33,7 +33,7 @@
     beets = {
       enable = true;
       settings = {
-        directory = "/home/pimeys/Music/flac";
+        directory = "/mnt/music";
         library = "/home/pimeys/.config/beets/musiclibrary.blb";
         plugins = "convert replaygain fetchart";
         replaygain = {
@@ -51,7 +51,7 @@
           copy_album_art = "yes";
           embed = "yes";
           format = "opus";
-          dest = "/home/pimeys/Music/opus/";
+          dest = "/mnt/opus/";
           formats = {
             opus = {
               command = "ffmpeg -i $source -ar 48000 -ac 2 -ab 96k $dest";
@@ -124,14 +124,14 @@
   };
 
   xdg.configFile = {
-    "sway/config".source = ./sway/config;
-    "wofi/style.css".source = ./wofi/style.css;
-    "i3blocks/config".source = ./i3blocks/config;
-    "i3blocks/i3status.conf".source = ./i3blocks/i3status.conf;
-    "i3blocks/scripts/battery.sh".source = ./i3blocks/scripts/battery.sh;
-    "i3blocks/scripts/cpu.pl".source = ./i3blocks/scripts/cpu.pl;
-    "i3blocks/scripts/memory.sh".source = ./i3blocks/scripts/memory.sh;
-    "i3blocks/scripts/temperature.sh".source = ./i3blocks/scripts/temperature.sh;
-    "i3blocks/scripts/wifi.sh".source = ./i3blocks/scripts/wifi.sh;
+    "sway/config".source = ./home/sway/config;
+    "wofi/style.css".source = ./home/wofi/style.css;
+    "i3blocks/config".source = ./home/i3blocks/config;
+    "i3blocks/i3status.conf".source = ./home/i3blocks/i3status.conf;
+    "i3blocks/scripts/battery.sh".source = ./home/i3blocks/scripts/battery.sh;
+    "i3blocks/scripts/cpu.pl".source = ./home/i3blocks/scripts/cpu.pl;
+    "i3blocks/scripts/memory.sh".source = ./home/i3blocks/scripts/memory.sh;
+    "i3blocks/scripts/temperature.sh".source = ./home/i3blocks/scripts/temperature.sh;
+    "i3blocks/scripts/wifi.sh".source = ./home/i3blocks/scripts/wifi.sh;
   };
 }

@@ -6,9 +6,9 @@
 {
   imports =
     [
-      ./common.nix
-      ./wayland.nix
-      ./laptop.nix
+      ./modules/common.nix
+      ./modules/wayland.nix
+      ./modules/laptop.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
