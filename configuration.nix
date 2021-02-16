@@ -149,6 +149,7 @@
      openjdk
      jetbrains.datagrip
      jetbrains.idea-community
+     android-studio
      google-cloud-sdk
      qt5.qtwayland
      lm_sensors
