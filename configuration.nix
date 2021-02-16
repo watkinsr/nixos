@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./thinkpad-t25.nix
       ./file-systems.nix
     ];
@@ -20,9 +20,6 @@
     supportedFilesystems = [ "zfs" ];
   };
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -30,17 +27,6 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
 
   programs.sway = {
     enable = true;
@@ -95,7 +81,6 @@
     })
   ];
 
-
   # Enable sound.
   sound.enable = true;
 
@@ -119,7 +104,7 @@
        "video"
        "networkmanager"
        "docker"
-     ]; # Enable ‘sudo’ for the user.
+     ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -167,6 +152,8 @@
      google-cloud-sdk
      qt5.qtwayland
      lm_sensors
+     ffmpeg
+     flac
   ];
 
   environment.pathsToLink = [ "/libexec" ];
@@ -199,6 +186,7 @@
       dejavu_fonts
       nerdfonts
       hack-font
+      home-manager
     ];
   };
 

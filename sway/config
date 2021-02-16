@@ -1,0 +1,406 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term alacritty
+# Your preferred application launcher
+# Note: it's recommended that you pass the final command to sway
+set $menu wofi --show run
+
+set $darkred     #cc241d
+set $red         #fb4934
+set $darkgreen   #98971a
+set $green       #b8bb26
+set $darkyellow  #d79921
+set $yellow      #fabd2f
+set $darkblue    #458588
+set $blue        #83a598
+set $darkmagenta #b16286
+set $magenta     #d3869b
+set $darkcyan    #689d6a
+set $cyan        #8ec07c
+set $darkwhite   #a89984
+set $white       #ebdbb2
+set $black       #073642
+set $yellow      #af8700
+set $darkblack   #002b36
+set $transparent #00000000
+
+set $height 34
+
+set $ws1  1: 🍑
+set $ws2  2: 🍌
+set $ws3  3: 🍒
+set $ws4  4: 🍓
+set $ws5  5: 🍆
+set $ws6  6: 🍄
+set $ws7  7: 🍀
+set $ws8  8: 🍇
+set $ws9  9: 🌵
+set $ws10 10: 🌟
+
+set $default_gaps_inner 0
+set $default_gaps_outer 0
+gaps inner $default_gaps_inner
+gaps outer $default_gaps_outer
+
+set $laptop eDP-1
+
+workspace $ws1 output $laptop
+workspace $ws2 output $laptop
+workspace $ws3 output $laptop
+workspace $ws4 output $laptop
+workspace $ws5 output $laptop
+workspace $ws6 output $laptop
+workspace $ws7 output $laptop
+workspace $ws8 output $laptop
+workspace $ws9 output $laptop
+workspace $ws10 output $laptop
+
+workspace_auto_back_and_forth yes
+force_display_urgency_hint 0 ms
+focus_on_window_activation urgent
+
+floating_minimum_size -1 x -1
+floating_maximum_size -1 x -1
+
+default_border pixel
+
+font pango:Hack, FontAwesome 12
+
+#                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
+client.focused          $black      $yellow     $black      $darkblack  $darkblack
+client.unfocused        $black      $black      $white      $darkblack  $darkblack
+client.focused_inactive $black      $black      $white      $darkblack  $darkblack
+client.urgent           $darkred    $darkred    $black      $darkred    $darkred
+client.background       $black
+
+floating_modifier $mod
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
+#output * bg /home/pimeys/.config/sway/JKDsRHa.png fill
+output * bg /home/pimeys/Pictures/Ve0XkQ4.jpg fill
+
+output $monitor scale 1
+output $laptop pos 0 0 res 1920x1080
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+#exec swayidle \
+#    timeout 300 'swaylock -c 000000' \
+#    timeout 600 'swaymsg "output * dpms off"' \
+#       resume 'swaymsg "output * dpms on"' \
+#    before-sleep 'swaylock -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 600 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+input "2:14:SynPS/2_Synaptics_TouchPad" {
+    dwt disabled
+    tap disabled
+    natural_scroll disabled
+    middle_emulation disabled
+}
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+input "1:1:AT_Translated_Set_2_keyboard" {
+  xkb_layout us,fi
+  xkb_options "compose:ralt,ctrl:nocaps"
+}
+
+input "5426:534:Razer_Razer_BlackWidow_X_Chroma" {
+  xkb_layout us,fi
+  xkb_options "compose:ralt,ctrl:nocaps"
+}
+
+input "2131:256:Topre_Corporation_HHKB_Professional" {
+  xkb_layout us,fi
+  xkb_options "grp:switch"
+}
+
+set $mode_power power
+bindsym Mod1+Control+l mode "$mode_power"
+mode "$mode_power" {
+    bindsym l mode "default", exec --no-startup-id swaylock -i /home/pimeys/Pictures/Ve0XkQ4.jpg
+    bindsym e mode "default", exec --no-startup-id swaymsg exit
+    bindsym s mode "default", exec --no-startup-id systemctl suspend
+    bindsym h mode "default", exec --no-startup-id systemctl hibernate
+    bindsym r mode "default", exec --no-startup-id systemctl reboot
+    bindsym p mode "default", exec --no-startup-id systemctl poweroff
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_gaps gaps
+set $mode_gaps_outer outer gaps
+set $mode_gaps_inner inner gaps
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode "$mode_gaps" {
+    bindsym o      mode "$mode_gaps_outer"
+    bindsym i      mode "$mode_gaps_inner"
+
+    bindsym 0      mode "default", exec --no-startup-id i3-msg "gaps inner current set 0" && i3-msg "gaps outer current set 0"
+    bindsym d      mode "default", exec --no-startup-id i3-msg "gaps inner current set $default_gaps_inner" && i3-msg "gaps outer current set $default_gaps_outer"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+    bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     mode "default", gaps inner current set 0
+    bindsym d     mode "default", gaps inner current set $default_gaps_inner
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     mode "default", gaps inner all set 0
+    bindsym Shift+d     mode "default", gaps inner all set $default_gaps_inner
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     mode "default", gaps outer current set 0
+    bindsym d     mode "default", gaps outer current set $default_gaps_outer
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     mode "default", gaps outer all set 0
+    bindsym Shift+d     mode "default", gaps outer all set $default_gaps_outer
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym $mod+Return exec $term
+
+    # kill focused window
+    bindsym $mod+q kill
+
+    # start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    bindsym $mod+z exec --no-startup-id "emacs"
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # _move_ the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # switch to workspace
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws10
+    bindsym $mod+Tab workspace back_and_forth
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number $ws1
+    bindsym $mod+Shift+2 move container to workspace number $ws2
+    bindsym $mod+Shift+3 move container to workspace number $ws3
+    bindsym $mod+Shift+4 move container to workspace number $ws4
+    bindsym $mod+Shift+5 move container to workspace number $ws5
+    bindsym $mod+Shift+6 move container to workspace number $ws6
+    bindsym $mod+Shift+7 move container to workspace number $ws7
+    bindsym $mod+Shift+8 move container to workspace number $ws8
+    bindsym $mod+Shift+9 move container to workspace number $ws9
+    bindsym $mod+Shift+0 move container to workspace number $ws10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+
+    bindsym $mod+Shift+v exec --no-startup-id "killall pavucontrol; $HOME/scripts/fullscreen_wrap.sh pavucontrol -t 3"
+    bindsym $mod+Shift+b exec --no-startup-id "pulseaudio -k"
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+
+# Brightness
+bindsym XF86MonBrightnessDown exec "brightnessctl set 2%-"
+bindsym XF86MonBrightnessUp exec "brightnessctl set +2%"
+
+# Volume
+bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
+for_window [class="(?i)VirtualBox"] floating enable
+for_window [class="(?i)KeePassXC"] move scratchpad
+for_window [class="(?i)Signal Beta"] move scratchpad
+for_window [class="(?i)Nautilus"] floating enable
+for_window [class="(?i)SpeedCrunch"] floating enable
+for_window [class="(?i)blueman"] floating enable
+for_window [class="(?i)pinentry"] floating enable
+for_window [instance="__scratchpad"] floating enable
+for_window [instance="__nmtui"] floating enable
+for_window [class="(?i)recordmydesktop"] floating enable
+
+for_window [class="(?i)pavucontrol"] floating enable, move position mouse
+for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $height px
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+#    verbose yes
+    status_command i3blocks
+    position top
+    font pango:Hack, FontAwesome 11
+    strip_workspace_numbers no
+    separator_symbol "■"
+    bindsym button4 nop
+    bindsym button5 nop
+    height $height
+    colors {
+        statusline         $white
+        background         $darkblack
+        separator          $transparent
+
+#                          BORDER       BACKGROUND   TEXT
+        focused_workspace  #d33682      #d33682      $darkblack
+        inactive_workspace $darkblack   $darkblack   $white
+        active_workspace   #6c71c4      #6c71c4      $darkblack
+        urgent_workspace   $darkred     $darkred     $transparent
+        binding_mode       $darkred     $darkred     $transparent
+    }
+}
+
+include /usr/local/etc/sway/config.d/*
+
+exec --no-startup-id nm-applet &
+exec --no-startup-id mako &

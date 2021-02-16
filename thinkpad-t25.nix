@@ -19,7 +19,9 @@
 
   swapDevices = [ ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement = {
+    enable = true;
+  };
 
   networking = {
     interfaces = {
@@ -35,6 +37,7 @@
       wifi.backend = "iwd";
     };
     hostId = "CC221B11";
+    hostName = "muspus";
   };
 
   hardware = {
