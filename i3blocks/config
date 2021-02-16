@@ -1,0 +1,37 @@
+separator=false
+separator_block_width=5
+border_top=0
+border_left=0
+border_right=0
+border_bottom=4
+
+[cpu]
+label= 📛
+command=$HOME/.config/i3blocks/scripts/cpu.pl
+interval=5
+border=#b58900
+
+[memory]
+label= 📟
+command=$HOME/.config/i3blocks/scripts/memory.sh
+interval=5
+border=#cb4b16
+
+[battery]
+command=$HOME/.config/i3blocks/scripts/battery.sh
+interval=persist
+border=#2aa198
+
+[wireless]
+label=  
+command=$HOME/.config/i3blocks/scripts/wifi.sh
+interval=2
+border=#268bd2
+
+[time]
+label= 📅
+command=echo "`date +'%a %d %b'` <b>`date +'%T'`</b> "
+interval=1
+markup=pango
+separator_block_width=0
+border=#859900
