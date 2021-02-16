@@ -155,6 +155,7 @@
      lm_sensors
      ffmpeg
      flac
+     zoom-us
   ];
 
   environment.pathsToLink = [ "/libexec" ];
