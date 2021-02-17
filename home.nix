@@ -12,6 +12,10 @@ in {
   home.file.".emacs.d/init.el".text = ''
       (load "default.el")
   '';
+  home.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = 1;
+    XDG_SESSION_TYPE = "wayland";
+  };
   programs = {
     git = {
       enable = true;
