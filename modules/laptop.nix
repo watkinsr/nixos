@@ -9,6 +9,11 @@
     enable = true;
   };
 
+  networking = {
+    wireless.iwd.enable = true;
+    networkmanager.wifi.backend = "iwd";
+  };
+
   systemd.services.lock-before-sleeping = {
     restartIfChanged = false;
     unitConfig = {

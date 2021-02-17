@@ -30,13 +30,7 @@
       wlan0.useDHCP = true;
       wwp0s20f0u6i12.useDHCP = true;
     };
-    wireless = {
-      iwd.enable = true;
-    };
-    networkmanager = {
-      enable = true;
-      wifi.backend = "iwd";
-    };
+
     hostId = "CC221B11";
     hostName = "muspus";
   };
