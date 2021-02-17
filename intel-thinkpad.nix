@@ -9,6 +9,7 @@
       ./modules/common.nix
       ./modules/wayland.nix
       ./modules/laptop.nix
+      ./modules/home-services.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
