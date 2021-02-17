@@ -27,7 +27,7 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-molokai)
 
-(setq doom-font "Inconsolata 16")
+(setq doom-font "Inconsolata 14")
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -54,5 +54,13 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(setq doom-d "/home/pimeys/.config/nixpkgs/home/doom.d")
+(load (concat doom-d "/emacs-prisma-mode/prisma-mode.el"))
+(require 'prisma-mode)
+
+(setq auto-mode-alist
+      (cons '("\\.prisma$" . prisma-mode) auto-mode-alist))
+
 (after! rustic
   (setq rustic-format-trigger 'on-save))
