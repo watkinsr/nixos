@@ -119,6 +119,8 @@
      spotify
      ncmpcpp
      slack
+     python3
+     bat
   ];
 
   environment.pathsToLink = [ "/libexec" ];
