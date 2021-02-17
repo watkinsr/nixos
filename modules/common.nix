@@ -116,6 +116,9 @@
      ffmpeg
      flac
      zoom-us
+     spotify
+     ncmpcpp
+     slack
   ];
 
   environment.pathsToLink = [ "/libexec" ];
