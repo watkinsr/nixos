@@ -7,6 +7,7 @@
 
   powerManagement = {
     enable = true;
+    cpuFreqGovernor = "shedutil";
   };
 
   networking = {

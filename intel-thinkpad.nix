@@ -19,6 +19,8 @@
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-intel" ];
+    # This allows the `shedutil` freq governor.
+    kernelParams = [ "intel_pstate=passive" ];
     extraModulePackages = [ ];
   };
 
