@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  boot.kernelModules = [ "v4l2loopback" ];
+
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
@@ -17,6 +19,8 @@
       i3blocks-gaps
       i3status
       wev
+      wf-recorder
+      linuxPackages.v4l2loopback
     ];
     extraSessionCommands = ''
       export _JAVA_AWT_WM_NONREPARENTING=1;

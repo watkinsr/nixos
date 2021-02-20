@@ -18,10 +18,16 @@
       availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
     };
-    kernelModules = [ "kvm-intel" ];
-    # This allows the `shedutil` freq governor.
-    kernelParams = [ "intel_pstate=passive" ];
-    extraModulePackages = [ ];
+    kernelModules = [
+      "kvm-intel"
+      "acpi-call"
+    ];
+    kernelParams = [
+      "intel_pstate=passive"
+      "i915.enable_fbc=1"
+      "i915.enable_psr=2"
+    ];
+    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
 
   swapDevices = [ ];

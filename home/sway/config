@@ -93,7 +93,7 @@ floating_modifier $mod
 #
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
 #output * bg /home/pimeys/.config/sway/JKDsRHa.png fill
-output * bg /home/pimeys/Pictures/Ve0XkQ4.jpg fill
+output * bg $HOME/.config/nixpkgs/home/pictures/TNEJezP.jpg fill
 
 output $monitor scale 1
 output $laptop pos 0 0 res 1920x1080

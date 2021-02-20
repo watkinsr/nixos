@@ -131,6 +131,12 @@
      slack
      python3
      bat
+     mpv
+     home-manager
+     home-assistant-cli
+     evince
+     gnome3.eog
+     signal-desktop
   ];
 
   environment.pathsToLink = [ "/libexec" ];
@@ -163,7 +169,6 @@
       dejavu_fonts
       nerdfonts
       hack-font
-      home-manager
     ];
   };
 
