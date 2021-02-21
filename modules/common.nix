@@ -138,6 +138,8 @@
      gnome3.eog
      signal-desktop
      niv
+     jq
+     nodejs-slim
   ];
 
   environment.pathsToLink = [ "/libexec" ];

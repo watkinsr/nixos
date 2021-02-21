@@ -1,3 +1,6 @@
 [submodule "prisma-mode"]
 	path = home/doom.d/emacs-prisma-mode
 	url = https://github.com/pimeys/emacs-prisma-mode/
+[submodule "secret"]
+	path = secret
+	url = root@git.local:nix-secret.git

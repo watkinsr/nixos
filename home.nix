@@ -43,6 +43,7 @@ in {
     "i3blocks/scripts/memory.sh".source = ./home/i3blocks/scripts/memory.sh;
     "i3blocks/scripts/temperature.sh".source = ./home/i3blocks/scripts/temperature.sh;
     "i3blocks/scripts/wifi.sh".source = ./home/i3blocks/scripts/wifi.sh;
+    "i3blocks/scripts/dist.js".source = ./home/i3blocks/scripts/dist.js;
     "waybar/config".source = ./home/waybar/config;
     "waybar/style.css".source = ./home/waybar/style.css;
   };

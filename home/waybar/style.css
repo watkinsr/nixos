@@ -74,6 +74,8 @@ window#waybar.chromium {
 #network,
 #pulseaudio,
 #custom-media,
+#custom-weather,
+#custom-dist,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -168,6 +170,16 @@ label:focus {
     background-color: #66cc99;
     color: #2a5c45;
     min-width: 100px;
+}
+
+#custom-weather {
+    background-color: #f1c40f;
+    color: #000000;
+}
+
+#custom-dist {
+    background-color: #740864;
+    color: #ffffff;
 }
 
 #custom-media.custom-spotify {
