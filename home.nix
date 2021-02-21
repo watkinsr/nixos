@@ -1,21 +1,52 @@
 { pkgs, ... }:
 
 let
+  prisma-mode = pkgs.callPackage (builtins.fetchTarball {
+    url = https://github.com/pimeys/emacs-prisma-mode/archive/master.tar.gz;
+  });
   doom-emacs = pkgs.callPackage (builtins.fetchTarball {
     url = https://github.com/vlaci/nix-doom-emacs/archive/master.tar.gz;
   }) {
     doomPrivateDir = ./home/doom.d;  # Directory containing your config.el init.el
-                                     # and packages.el files
+    emacsPackagesOverlay = self: super: {
+      magit-delta = super.magit-delta.overrideAttrs (esuper: {
+        buildInputs = esuper.buildInputs ++ [ pkgs.git ];
+      });
+    };
   };
 in {
-  home.packages = [ doom-emacs ];
-  home.file.".emacs.d/init.el".text = ''
+  home = {
+    packages = [ doom-emacs ];
+    file.".emacs.d/init.el".text = ''
       (load "default.el")
-  '';
-  home.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = 1;
-    XDG_SESSION_TYPE = "wayland";
+    '';
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+      XDG_SESSION_TYPE = "wayland";
+    };
   };
+
+  xdg.configFile = {
+    "sway/config".source = ./home/sway/config;
+    "wofi/style.css".source = ./home/wofi/style.css;
+    "picom/config".source = ./home/picom/config;
+    "dunst/dunstrc".source = ./home/dunst/dunstrc;
+    "i3/config".source = ./home/i3/config;
+    "i3/i3exit".source = ./home/i3/i3exit;
+    "i3/i3subscribe".source = ./home/i3/i3subscribe;
+    "i3lock/cat.png".source = ./home/i3lock/cat.png;
+    "i3lock/i3lock.sh".source = ./home/i3lock/i3lock.sh;
+    "i3blocks/config".source = ./home/i3blocks/config;
+    "i3blocks/i3status.conf".source = ./home/i3blocks/i3status.conf;
+    "i3blocks/scripts/battery.sh".source = ./home/i3blocks/scripts/battery.sh;
+    "i3blocks/scripts/cpu.pl".source = ./home/i3blocks/scripts/cpu.pl;
+    "i3blocks/scripts/memory.sh".source = ./home/i3blocks/scripts/memory.sh;
+    "i3blocks/scripts/temperature.sh".source = ./home/i3blocks/scripts/temperature.sh;
+    "i3blocks/scripts/wifi.sh".source = ./home/i3blocks/scripts/wifi.sh;
+    "waybar/config".source = ./home/waybar/config;
+    "waybar/style.css".source = ./home/waybar/style.css;
+  };
+
   programs = {
     git = {
       enable = true;
@@ -136,25 +167,6 @@ in {
         };
       };
     };
-  };
-
-  xdg.configFile = {
-    "sway/config".source = ./home/sway/config;
-    "wofi/style.css".source = ./home/wofi/style.css;
-    "picom/config".source = ./home/picom/config;
-    "dunst/dunstrc".source = ./home/dunst/dunstrc;
-    "i3/config".source = ./home/i3/config;
-    "i3/i3exit".source = ./home/i3/i3exit;
-    "i3/i3subscribe".source = ./home/i3/i3subscribe;
-    "i3lock/cat.png".source = ./home/i3lock/cat.png;
-    "i3lock/i3lock.sh".source = ./home/i3lock/i3lock.sh;
-    "i3blocks/config".source = ./home/i3blocks/config;
-    "i3blocks/i3status.conf".source = ./home/i3blocks/i3status.conf;
-    "i3blocks/scripts/battery.sh".source = ./home/i3blocks/scripts/battery.sh;
-    "i3blocks/scripts/cpu.pl".source = ./home/i3blocks/scripts/cpu.pl;
-    "i3blocks/scripts/memory.sh".source = ./home/i3blocks/scripts/memory.sh;
-    "i3blocks/scripts/temperature.sh".source = ./home/i3blocks/scripts/temperature.sh;
-    "i3blocks/scripts/wifi.sh".source = ./home/i3blocks/scripts/wifi.sh;
   };
 
   xresources.properties = {

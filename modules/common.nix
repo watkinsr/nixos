@@ -137,6 +137,7 @@
      evince
      gnome3.eog
      signal-desktop
+     niv
   ];
 
   environment.pathsToLink = [ "/libexec" ];
