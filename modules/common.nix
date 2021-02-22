@@ -141,6 +141,7 @@
      jq
      nodejs-slim
      bc
+     speedcrunch
   ];
 
   environment.pathsToLink = [ "/libexec" ];
