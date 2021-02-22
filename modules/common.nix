@@ -140,6 +140,7 @@
      niv
      jq
      nodejs-slim
+     bc
   ];
 
   environment.pathsToLink = [ "/libexec" ];

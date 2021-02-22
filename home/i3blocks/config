@@ -7,24 +7,24 @@ border_bottom=4
 
 [cpu]
 label= 📛
-command=$HOME/.config/i3blocks/scripts/cpu.pl
+command=$HOME/.config/scripts/cpu.pl
 interval=5
 border=#b58900
 
 [memory]
 label= 📟
-command=$HOME/.config/i3blocks/scripts/memory.sh
+command=$HOME/.config/scripts/memory.sh
 interval=5
 border=#cb4b16
 
 [battery]
-command=$HOME/.config/i3blocks/scripts/battery.sh
+command=$HOME/.config/scripts/battery.sh
 interval=persist
 border=#2aa198
 
 [wireless]
 label=  
-command=$HOME/.config/i3blocks/scripts/wifi.sh
+command=$HOME/.config/scripts/wifi.sh
 interval=2
 border=#268bd2
 

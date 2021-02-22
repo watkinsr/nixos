@@ -75,6 +75,7 @@ window#waybar.chromium {
 #pulseaudio,
 #custom-media,
 #custom-weather,
+#custom-glucose,
 #custom-dist,
 #tray,
 #mode,
@@ -175,6 +176,11 @@ label:focus {
 #custom-weather {
     background-color: #f1c40f;
     color: #000000;
+}
+
+#custom-glucose {
+    background-color: #2d3436;
+    color: #ffffff;
 }
 
 #custom-dist {

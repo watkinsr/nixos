@@ -2,7 +2,7 @@
     "height": 30, // Waybar height (to be removed for auto height)
     "modules-left": ["sway/workspaces"],
     "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor", "custom/weather", "custom/dist", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "custom/weather", "custom/dist", "custom/glucose", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "clock", "tray"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -112,12 +112,17 @@
         "on-click": "pavucontrol"
     },
     "custom/weather": {
-        "exec": "hass-cli --output=json state get weather.home|jq .[].attributes.temperature",
+        "exec": "~/.config/scripts/weather.sh",
         "format": "{}°C 🌡",
         "interval": 60
     },
+    "custom/glucose": {
+        "exec": "~/.config/scripts/glucose.sh",
+        "format": "{} mmol/l 🩸",
+        "interval": 300
+    },
     "custom/dist": {
-        "exec": "node ~/.config/i3blocks/scripts/dist.js",
+        "exec": "node ~/.config/scripts/dist.js",
         "format": "{} 💕",
         "on-click": "xdg-open https://hass.local/lovelace/people",
         "interval": 15
