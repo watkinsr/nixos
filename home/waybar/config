@@ -119,7 +119,7 @@
     "custom/glucose": {
         "exec": "~/.config/scripts/glucose.sh",
         "format": "{} mmol/l 🩸",
-        "interval": 300
+        "interval": 30
     },
     "custom/dist": {
         "exec": "node ~/.config/scripts/dist.js",
