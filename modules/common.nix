@@ -142,6 +142,7 @@
      nodejs-slim
      bc
      speedcrunch
+     starship
   ];
 
   environment.pathsToLink = [ "/libexec" ];

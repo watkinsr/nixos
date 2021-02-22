@@ -82,6 +82,10 @@ in {
         }
       ];
     };
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     beets = {
       enable = true;
       settings = {
