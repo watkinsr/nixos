@@ -55,6 +55,9 @@ in {
       enable = true;
       userName = "Julius de Bruijn";
       userEmail = "julius@nauk.io";
+      extraConfig = {
+        pull.rebase = true;
+      };
       aliases = {
         co = "checkout";
         br = "branch";
