@@ -2,9 +2,6 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -14,7 +11,6 @@
   outputs = inputs @ {
     self
     , nixpkgs
-    , agenix
     , home-manager
     , doom-emacs
     , ...
@@ -22,7 +18,6 @@
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
     common-modules = [
-      agenix.nixosModules.age
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;

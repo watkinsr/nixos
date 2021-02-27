@@ -32,7 +32,7 @@
      ];
       extraSessionCommands = ''
         export HASS_SERVER="http://hass.local:8123";
-        source ${config.age.secrets.env.path};
+        source $HOME/.config/nixpkgs/secret/secret;
       '';
     };
   };

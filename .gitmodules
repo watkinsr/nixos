@@ -3,4 +3,4 @@
 	url = https://github.com/pimeys/emacs-prisma-mode/
 [submodule "secret"]
 	path = secret
-	url = root@git.local:nix-secret.git
+	url = root@git.local:nix-secrets.git

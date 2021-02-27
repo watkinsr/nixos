@@ -72,18 +72,6 @@
     '';
   };
 
-  age = {
-    secrets = {
-      home = {
-        file = ../secrets/home.age;
-        owner = "pimeys";
-      };
-    };
-    sshKeyPaths = [
-      "/home/pimeys/.ssh/id_ed25519"
-    ];
-  };
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 

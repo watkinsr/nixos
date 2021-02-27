@@ -28,6 +28,7 @@
       export QT_QPA_PLATFORM=wayland
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export HASS_SERVER="http://hass.local:8123";
+      source $HOME/.config/nixpkgs/secret/secret;
     '';
   };
 
