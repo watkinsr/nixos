@@ -34,6 +34,8 @@
     '';
   };
 
+  services.xserver.displayManager.gdm.wayland = true;
+
   nixpkgs.overlays = [
     (self: super: {
       wl-clipboard-x11 = super.stdenv.mkDerivation rec {
