@@ -3,9 +3,15 @@
 {
   # Use the systemd-boot EFI boot loader.
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.grub.copyKernels = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+      };
+      grub.copyKernels = true;
+      efi.canTouchEfiVariables = true;
+    };
+
     kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = [ "zfs" ];
 
