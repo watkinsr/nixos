@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -9,8 +9,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     doom-emacs.url = "github:vlaci/nix-doom-emacs";
-    doom-emacs.inputs.emacs-overlay.follows = "emacs-overlay";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs = inputs @ {

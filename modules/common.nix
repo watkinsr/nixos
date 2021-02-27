@@ -159,13 +159,12 @@
      bc
      speedcrunch
      starship
-     agenix.defaultPackage.x86_64-linux
   ];
 
   environment.pathsToLink = [ "/libexec" ];
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     fontconfig = {
       enable = true;
