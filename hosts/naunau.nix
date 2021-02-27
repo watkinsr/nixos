@@ -6,10 +6,10 @@
 {
   imports =
     [
-      ./modules/common.nix
-      ./modules/xorg.nix
-      ./modules/home-services.nix
-      ./modules/gaming.nix
+      ../modules/common.nix
+      ../modules/xorg.nix
+      ../modules/home-services.nix
+      ../modules/gaming.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
@@ -98,4 +98,19 @@
     cpu.amd.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
+
+  fileSystems."/" =
+    { device = "rpool/root/nixos";
+      fsType = "zfs";
+    };
+
+  fileSystems."/home" =
+    { device = "rpool/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/6CB4-D8D9";
+      fsType = "vfat";
+    };
 }

@@ -1,25 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
-let
-  prisma-mode = pkgs.callPackage (builtins.fetchTarball {
-    url = https://github.com/pimeys/emacs-prisma-mode/archive/master.tar.gz;
-  });
-  doom-emacs = pkgs.callPackage (builtins.fetchTarball {
-    url = https://github.com/vlaci/nix-doom-emacs/archive/master.tar.gz;
-  }) {
-    doomPrivateDir = ./home/doom.d;  # Directory containing your config.el init.el
-    emacsPackagesOverlay = self: super: {
-      magit-delta = super.magit-delta.overrideAttrs (esuper: {
-        buildInputs = esuper.buildInputs ++ [ pkgs.git ];
-      });
-    };
-  };
-in {
+{
   home = {
-    packages = [ doom-emacs ];
-    file.".emacs.d/init.el".text = ''
-      (load "default.el")
-    '';
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
@@ -51,6 +33,10 @@ in {
   };
 
   programs = {
+    doom-emacs = {
+      enable = true;
+      doomPrivateDir = ./home/doom.d;
+    };
     git = {
       enable = true;
       userName = "Julius de Bruijn";

@@ -1,9 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let
-  hass-token = import ../secret/hass-token.nix;
-  home-coords = import ../secret/home-coords.nix;
-in {
+{
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
@@ -35,8 +32,7 @@ in {
      ];
       extraSessionCommands = ''
         export HASS_SERVER="http://hass.local:8123";
-        export HASS_TOKEN=${hass-token};
-        export HOME_COORDS=${home-coords};
+        source ${config.age.secrets.env.path};
       '';
     };
   };
