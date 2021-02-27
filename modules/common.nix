@@ -231,6 +231,7 @@
   virtualisation.docker.enable = true;
 
   services = {
+    haveged.enable = true;
     zfs = {
       trim.enable = true;
       autoScrub.enable = true;
