@@ -3,5 +3,5 @@ let
   users = [ user1 ];
 in
 {
-  "env.age".publicKeys = users;
+  "home.age".publicKeys = users;
 }

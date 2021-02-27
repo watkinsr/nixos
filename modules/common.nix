@@ -25,8 +25,8 @@
 
   age = {
     secrets = {
-      env = {
-        file = ../secrets/env.age;
+      home = {
+        file = ../secrets/home.age;
         owner = "pimeys";
       };
     };
