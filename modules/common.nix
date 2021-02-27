@@ -105,10 +105,6 @@
   sound.enable = true;
 
   hardware = {
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-    };
     bluetooth.enable = true;
     opengl = {
       driSupport = true;
@@ -248,7 +244,16 @@
       enable = true;
       displayManager.gdm.enable = true;
     };
+    pipewire = {
+      enable = true;
+      # Compatibility shims, adjust according to your needs
+      alsa.enable = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
+
+  security.rtkit.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
