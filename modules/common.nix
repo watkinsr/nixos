@@ -19,6 +19,13 @@
     supportedFilesystems = [ "zfs" ];
   };
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
