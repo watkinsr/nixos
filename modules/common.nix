@@ -204,6 +204,7 @@
      bc
      speedcrunch
      starship
+     zip
   ];
 
   environment.pathsToLink = [ "/libexec" ];
