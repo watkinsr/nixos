@@ -6,39 +6,39 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     doom-emacs.url = "github:vlaci/nix-doom-emacs";
+    neovim-nightly = {
+      url = github:neovim/neovim?dir=contrib;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ {
-    self
-    , nixpkgs
-    , home-manager
-    , doom-emacs
-    , ...
-  }: let
-    inherit (nixpkgs) lib;
+  outputs = inputs: let
+    inherit (inputs.nixpkgs) lib;
     system = "x86_64-linux";
 
     home = [
-      home-manager.nixosModules.home-manager
+      inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.pimeys = lib.mkMerge [
           {
-            imports = [ doom-emacs.hmModule ];
+            imports = [ inputs.doom-emacs.hmModule ];
           }
           ./home.nix
         ];
       }
     ];
   in {
-    nixosConfigurations.muspus = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.muspus = inputs.nixpkgs.lib.nixosSystem {
       system = system;
       modules = [ ./hosts/muspus.nix ] ++ home;
+      specialArgs = { inherit inputs; };
     };
-    nixosConfigurations.naunau = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.naunau = inputs.nixpkgs.lib.nixosSystem {
       system = system;
       modules = [ ./hosts/naunau.nix ] ++ home;
+      specialArgs = { inherit inputs; };
     };
   };
 }

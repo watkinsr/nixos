@@ -44,7 +44,6 @@
       "video"
       "networkmanager"
       "docker"
-      "lp"
       "scanner"
     ];
   };

@@ -9,6 +9,7 @@
     # - Address: socket://10.0.0.17:9100 (or whatever IP you set in your future router)
     printing = {
       enable = true;
+      allowFrom = [ "localhost" "muspus" "naunau" ];
       drivers = with pkgs; [ brlaser ];
     };
   };
@@ -24,6 +25,8 @@
       };
     };
   };
+
+  programs.system-config-printer.enable = true;
 
   #
   # NAS mounts

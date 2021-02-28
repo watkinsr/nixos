@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
-{
+let
+     neovim-nightly = inputs.neovim-nightly.defaultPackage."${pkgs.system}";
+in {
   virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
-     neovim
+     neovim-nightly
      emacs
      git
      perl
