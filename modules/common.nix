@@ -6,6 +6,10 @@
   system.stateVersion = "20.09";
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
     haveged.enable = true;
     zfs = {
       trim.enable = true;
@@ -40,6 +44,8 @@
       "video"
       "networkmanager"
       "docker"
+      "lp"
+      "scanner"
     ];
   };
 

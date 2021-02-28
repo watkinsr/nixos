@@ -12,6 +12,19 @@
       drivers = with pkgs; [ brlaser ];
     };
   };
+
+  hardware = {
+    sane = {
+      enable = true;
+      brscan4 = {
+        enable = true;
+        netDevices = {
+          home = { model = "MFC-L2710DW"; ip = "10.0.0.17"; };
+        };
+      };
+    };
+  };
+
   #
   # NAS mounts
   #
