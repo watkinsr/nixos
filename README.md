@@ -7,7 +7,7 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 
 ## New system installation
 
-1. Use the unstable build of [NixOS 21.05][nixos].
+1. Use the unstable build of [NixOS 21.05][https://releases.nixos.org/unstable/].
 2. Boot into the installer.
 3. Partition your disk ([see partitioning](#partitioning))
 4. Install these dotfiles:
@@ -25,7 +25,7 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 ``` sh
 # Always use the by-id aliases for devices, otherwise ZFS can choke on imports.
 DISK=/dev/disk/by-id/...
-
+https://releases.nixos.org/?prefix=nixos/unstable/
 # Partition 2 will be the boot partition, needed for legacy (BIOS) boot
 sgdisk -a1 -n2:34:2047 -t2:EF02 $DISK
 # If you need EFI support, make an EFI partition:
