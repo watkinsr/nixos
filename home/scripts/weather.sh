@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-hass-cli --output=json state get weather.home | jq .[].attributes.temperature
+TEMP=$(hass-cli --output=json state get weather.home | jq .[].attributes.temperature)
+
+echo "$TEMP°C"

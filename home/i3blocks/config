@@ -5,6 +5,24 @@ border_left=0
 border_right=0
 border_bottom=4
 
+[weather]
+label= 🌡
+command=$HOME/.config/scripts/weather.sh
+interval=60
+border=#cb4b16
+
+[glucose]
+label= 🩸
+command=$HOME/.config/scripts/glucose.sh
+interval=30
+border=#cb4b16
+
+[dist]
+label= 💕
+command=node $HOME/.config/scripts/dist.js
+interval=15
+border=#cb4b16
+
 [cpu]
 label= 📛
 command=$HOME/.config/scripts/cpu.pl

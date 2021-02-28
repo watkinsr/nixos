@@ -113,12 +113,12 @@
     },
     "custom/weather": {
         "exec": "~/.config/scripts/weather.sh",
-        "format": "{}°C 🌡",
+        "format": "{} 🌡",
         "interval": 60
     },
     "custom/glucose": {
         "exec": "~/.config/scripts/glucose.sh",
-        "format": "{} mmol/l 🩸",
+        "format": "{} 🩸",
         "interval": 30
     },
     "custom/dist": {
