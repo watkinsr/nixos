@@ -7,7 +7,20 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 
 ## New system installation
 
-Shamelessly copied from the [documentation](https://nixos.wiki/wiki/NixOS_on_ZFS).
+1. Use the unstable build of [NixOS 21.05][nixos].
+2. Boot into the installer.
+3. Partition your disk ([see partitioning](#partitioning))
+4. Install these dotfiles:
+5. `nix-shell -p git nixFlakes`
+6. `git clone https://github.com/pimeys/nixos /tmp/nixos`
+7. `nixos-generate-config --root /mnt`
+8. Merge the hardware config with the dotfiles in `/mnt/etc/nixos`
+7. Install NixOS: `nixos-install --root /mnt --flake /mnt/etc/nixos#XYZ`, where
+   `XYZ` is [the host you want to install](hosts/).
+8. Reboot!
+9. Change your `root` and `$USER` passwords!
+
+## Partitioning
 
 ``` sh
 # Always use the by-id aliases for devices, otherwise ZFS can choke on imports.
@@ -40,16 +53,4 @@ mount -t zfs rpool/home /mnt/home
 mkfs.vfat $DISK-part3
 mkdir /mnt/boot
 mount $DISK-part3 /mnt/boot
-
-# Generate the NixOS configuration, as per the NixOS manual.
-nixos-generate-config --root /mnt
-
-# Clone this repository somewhere, then merge your `hosts/machine.nix` with the
-# generated system configuration in `/mnt/etc/nixos/`. Remember to update submodules
-# in the repo before continuing.
-git clone git@github.com:pimeys/nixos.git
-
-# Install the system.
-nixos-install
-reboot
 ```

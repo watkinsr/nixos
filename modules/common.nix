@@ -31,8 +31,10 @@
   };
 
   users.users.pimeys = {
+    description = "The primary user account";
     isNormalUser = true;
     shell = pkgs.fish;
+    uid = 1000;
     extraGroups = [
       "wheel"
       "video"
