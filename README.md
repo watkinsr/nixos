@@ -7,7 +7,7 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 
 ## New system installation
 
-1. Use the unstable build of [NixOS 21.05][https://releases.nixos.org/unstable/].
+1. Use the unstable build of [NixOS 21.05](https://releases.nixos.org/unstable/).
 2. Boot into the installer.
 3. Partition your disk ([see partitioning](#partitioning))
 4. Install these dotfiles:
