@@ -12,7 +12,6 @@
       swayidle
       wl-clipboard
       mako # notification daemon
-      alacritty # Alacritty is the default terminal in the config
       wofi
       waybar
       kanshi

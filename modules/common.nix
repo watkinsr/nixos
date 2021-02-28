@@ -137,6 +137,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    alacritty
     wget
     brightnessctl
     polkit_gnome

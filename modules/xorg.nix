@@ -25,6 +25,7 @@
         dunst
         scrot
         imagemagick
+        picom
         xorg.xinput
         xorg.setxkbmap
         xorg.xset
