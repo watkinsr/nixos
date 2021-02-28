@@ -5,6 +5,10 @@
     [
       (modulesPath + "/installer/scan/not-detected.nix")
       ../modules/common.nix
+      ../modules/fonts.nix
+      ../modules/dev.nix
+      ../modules/multimedia.nix
+      ../modules/work.nix
       ../modules/wayland.nix
       ../modules/home-services.nix
       ../modules/laptop.nix

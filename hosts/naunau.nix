@@ -7,6 +7,10 @@
   imports =
     [
       ../modules/common.nix
+      ../modules/fonts.nix
+      ../modules/dev.nix
+      ../modules/multimedia.nix
+      ../modules/work.nix
       ../modules/xorg.nix
       ../modules/home-services.nix
       ../modules/gaming.nix
