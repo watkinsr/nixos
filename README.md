@@ -33,7 +33,7 @@ sgdisk -n3:1M:+512M -t3:EF00 $DISK
 # Partition 1 will be the main ZFS partition, using up the remaining space on the drive.
 sgdisk -n1:0:0 -t1:BF01 $DISK
 
-zpool create -O mountpoint=none -O atime=off -O compression=lz4 -O xattr=sa -O acltype=posixacl -o ashift=12 rpool $DISK-part1
+zpool create -O mountpoint=none -O atime=off -O compression=lz4 -O xattr=sa -O acltype=posixacl -o ashift=12 encryption=aes-256-gcm -O keyformat=passphrase rpool $DISK-part1
 
 # Create the filesystems. This layout is designed so that /home is separate from the root
 # filesystem, as you'll likely want to snapshot it differently for backup purposes. It also
