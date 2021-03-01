@@ -10,35 +10,49 @@
       url = github:neovim/neovim?dir=contrib;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-mozilla = {
+      url = github:mozilla/nixpkgs-mozilla;
+      flake = false;
+    };
   };
 
-  outputs = inputs: let
-    inherit (inputs.nixpkgs) lib;
+  outputs = inputs@{ self, nixpkgs-mozilla, nixpkgs, home-manager, doom-emacs, ... }: let
+    inherit (nixpkgs) lib;
     system = "x86_64-linux";
 
     home = [
-      inputs.home-manager.nixosModules.home-manager
+      home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.pimeys = lib.mkMerge [
           {
-            imports = [ inputs.doom-emacs.hmModule ];
+            imports = [ doom-emacs.hmModule ];
           }
           ./home.nix
         ];
       }
     ];
   in {
-    nixosConfigurations.muspus = inputs.nixpkgs.lib.nixosSystem {
-      system = system;
-      modules = [ ./hosts/muspus.nix ] ++ home;
-      specialArgs = { inherit inputs; };
-    };
-    nixosConfigurations.naunau = inputs.nixpkgs.lib.nixosSystem {
-      system = system;
-      modules = [ ./hosts/naunau.nix ] ++ home;
-      specialArgs = { inherit inputs; };
+    nixosConfigurations = {
+      # ThinkPad T25
+      muspus = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [ ./hosts/muspus.nix ] ++ home;
+        specialArgs = {
+          inherit inputs;
+          inherit nixpkgs-mozilla;
+        };
+      };
+
+      # The big workstation
+      naunau = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [ ./hosts/naunau.nix ] ++ home;
+        specialArgs = {
+          inherit inputs;
+        };
+      };
     };
   };
 }

@@ -5,6 +5,14 @@
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "20.09";
 
+  nixpkgs.overlays = [
+    (import inputs.nixpkgs-mozilla)
+
+    (final: prev: with prev; {
+      firefox-nightly-bin = latest.firefox-nightly-bin;
+    })
+  ];
+
   services = {
     avahi = {
       enable = true;
@@ -170,5 +178,6 @@
     bc
     speedcrunch
     zip
+    firefox-nightly-bin
   ];
 }
