@@ -3,7 +3,7 @@
 {
   nixpkgs.overlays = [
     (final: prev: with prev; {
-      neovim-nightly = inputs.neovim-nightly.defaultPackage.${system};
+      neovim-nightly = inputs.neovim.defaultPackage.${system};
     })
   ];
 

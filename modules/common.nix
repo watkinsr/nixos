@@ -2,7 +2,7 @@
 
 {
   nixpkgs.overlays = [
-    (import inputs.nixpkgs-mozilla)
+    (import inputs.mozilla)
 
     (final: prev: with prev; {
       firefox-nightly-bin = latest.firefox-nightly-bin;
