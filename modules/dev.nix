@@ -1,8 +1,12 @@
 { config, lib, pkgs, inputs, ... }:
 
-let
-     neovim-nightly = inputs.neovim-nightly.defaultPackage."${pkgs.system}";
-in {
+{
+  nixpkgs.overlays = [
+    (final: prev: with prev; {
+      neovim-nightly = inputs.neovim-nightly.defaultPackage.${system};
+    })
+  ];
+
   virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [

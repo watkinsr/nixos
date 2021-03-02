@@ -1,10 +1,6 @@
 { config, pkgs, inputs, ... }:
 
 {
-  time.timeZone = "Europe/Berlin";
-  nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "20.09";
-
   nixpkgs.overlays = [
     (import inputs.nixpkgs-mozilla)
 
@@ -12,6 +8,10 @@
       firefox-nightly-bin = latest.firefox-nightly-bin;
     })
   ];
+
+  time.timeZone = "Europe/Berlin";
+  nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "20.09";
 
   services = {
     avahi = {
