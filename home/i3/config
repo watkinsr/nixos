@@ -331,18 +331,13 @@ bar {
 
 # AUTOSTART
 exec_always --no-startup-id feh --bg-fill $HOME/.config/nixpkgs/home/pictures/TNEJezP.jpg
-exec --no-startup-id picom -b --config $HOME/.picom.conf
+exec --no-startup-id picom -b --config $HOME/.config/picom/config
 exec --no-startup-id dunst &
-#exec --no-startup-id signal-desktop &
-#exec --no-startup-id telegram-desktop &
 exec --no-startup-id element-desktop &
 exec --no-startup-id slack &
-exec --no-startup-id firefox &
 exec --no-startup-id xrdb -load ~/.Xresources
 
 exec --no-startup-id xset r rate 200 20
 
 exec --no-startup-id setxkbmap -layout us -option caps:ctrl_modifier,compose:ralt
 exec --no-startup-id xinput set-prop 13 'Device Enabled' 1
-
-exec_always --no-startup-id "pgrep --exact xev || xev -root -event randr | grep --line-buffered ScreenChangeNotify | while read change; do pkill -RTMIN+4 i3blocks; done"
