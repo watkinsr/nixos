@@ -19,20 +19,20 @@
 
     # But, sometimes we also need vim. We compile the master to get the most up
     # to date version.
-    neovim = {
-      url = github:neovim/neovim?dir=contrib;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #neovim = {
+    #  url = github:neovim/neovim?dir=contrib;
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     # For now in NixOS monorepo we don't have recent enough firefox. For now,
     # we'll use the nightly firefox.
-    mozilla = {
-      url = github:mozilla/nixpkgs-mozilla;
-      flake = false;
-    };
+    #mozilla = {
+    #  url = github:mozilla/nixpkgs-mozilla;
+    #  flake = false;
+    #};
   };
 
-  outputs = inputs@{ self, mozilla, nixpkgs, home-manager, doom-emacs, ... }: let
+  outputs = inputs@{ self, nixpkgs, home-manager, doom-emacs, ... }: let
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
 

@@ -4,10 +4,10 @@ let
   master = import inputs.nixpkgs-master {};
 in {
   nixpkgs.overlays = [
-    (import inputs.mozilla)
+    #(import inputs.mozilla)
 
     (final: prev: with prev; {
-      firefox-nightly-bin = latest.firefox-nightly-bin;
+      #firefox-nightly-bin = latest.firefox-nightly-bin;
       beets = master.beets;
     })
   ];
@@ -181,6 +181,7 @@ in {
     bc
     speedcrunch
     zip
-    firefox-nightly-bin
+    chromium
+    firefox-wayland
   ];
 }

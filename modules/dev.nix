@@ -1,16 +1,17 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (final: prev: with prev; {
-      neovim-nightly = inputs.neovim.defaultPackage.${system};
-    })
-  ];
+  #nixpkgs.overlays = [
+  #  (final: prev: with prev; {
+  #    neovim-nightly = inputs.neovim.defaultPackage.${system};
+  #  })
+  #];
 
   virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
-     neovim-nightly
+     #neovim-nightly
+     neovim
      emacs
      git
      perl
