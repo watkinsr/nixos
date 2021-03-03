@@ -6,6 +6,9 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    # NixOS master. For quick patches, if needed
+    nixpkgs-master.url = "nixpkgs/master";
+
     # Home manager handles whatever configuration is in my home directory.
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
