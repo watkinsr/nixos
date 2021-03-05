@@ -1,14 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 
-let
-  master = import inputs.nixpkgs-master {};
-in {
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = master.waybar;
-    })
-  ];
-
+{
   boot.kernelModules = [ "v4l2loopback" ];
 
   programs.sway = {

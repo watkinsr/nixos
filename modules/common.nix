@@ -1,16 +1,6 @@
 { config, pkgs, inputs, ... }:
 
-let
-  master = import inputs.nixpkgs-master {};
-in {
-  nixpkgs.overlays = [
-    #(import inputs.mozilla)
-
-    (final: prev: with prev; {
-      #firefox-nightly-bin = latest.firefox-nightly-bin;
-      beets = master.beets;
-    })
-  ];
+{
 
   time.timeZone = "Europe/Berlin";
   nixpkgs.config.allowUnfree = true;
