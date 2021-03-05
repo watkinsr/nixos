@@ -181,7 +181,6 @@ in {
     bc
     speedcrunch
     zip
-    chromium
     firefox-wayland
   ];
 }
