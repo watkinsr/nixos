@@ -1,7 +1,15 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, nixpkgs, ... }:
 
-{
+let
+  stable = import inputs.nixpkgs-stable {};
+in {
   boot.kernelModules = [ "v4l2loopback" ];
+
+  nixpkgs.overlays = [
+    (self: super: {
+      firefox-wayland = stable.firefox-wayland;
+    })
+  ];
 
   programs.sway = {
     enable = true;
@@ -38,5 +46,6 @@
 
   environment.systemPackages = with pkgs; [
      wl-clipboard
+     firefox-wayland
   ];
 }

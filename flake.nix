@@ -6,6 +6,9 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    # We take a working firefox from here.
+    nixpkgs-stable.url = "nixpkgs/nixos-20.09";
+
     # Home manager handles whatever configuration is in my home directory.
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
