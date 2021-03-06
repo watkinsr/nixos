@@ -37,6 +37,10 @@
       enable = true;
       doomPrivateDir = ./home/doom.d;
     };
+    direnv = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     git = {
       enable = true;
       userName = "Julius de Bruijn";

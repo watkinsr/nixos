@@ -2,6 +2,7 @@
 
 {
   virtualisation.docker.enable = true;
+  services.lorri.enable = true;
 
   environment.systemPackages = with pkgs; [
      neovim
