@@ -171,6 +171,5 @@
     bc
     speedcrunch
     zip
-    firefox-wayland
   ];
 }

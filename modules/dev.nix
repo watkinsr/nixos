@@ -32,5 +32,7 @@
      starship
      docker-compose
      python3
+     pkg-config
+     openssl
   ];
 }
