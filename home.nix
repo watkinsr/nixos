@@ -40,6 +40,7 @@
     direnv = {
       enable = true;
       enableFishIntegration = true;
+      enableNixDirenvIntegration = true;
     };
     git = {
       enable = true;
