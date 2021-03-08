@@ -9,13 +9,9 @@
      emacs
      git
      perl
-     rustup
      clang
      binutils
      zlib
-     openssl
-     automake
-     gnumake
      rust-analyzer
      ripgrep
      fd
