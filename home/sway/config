@@ -229,7 +229,7 @@ mode "$mode_gaps_outer" {
     # reload the configuration file
     bindsym $mod+Shift+c reload
 
-    bindsym $mod+z exec --no-startup-id "emacs"
+    bindsym $mod+z exec --no-startup-id "emacsclient -nc"
 #
 # Moving around:
 #

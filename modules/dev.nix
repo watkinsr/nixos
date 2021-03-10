@@ -6,9 +6,13 @@
 
   nixpkgs.overlays = [
     (import inputs.emacs)
+    (import inputs.rust-overlay)
 
     (self: super: with super; {
        emacs-wayland = pkgs.emacsPgtk;
+       rust-latest = rust-bin.stable.latest.rust;
+       rust-src-latest = rust-bin.stable.latest.rust-src;
+       cargo-latest = rust-bin.stable.latest.cargo;
     })
   ];
 
@@ -19,7 +23,6 @@
      clang
      binutils
      zlib
-     rust-analyzer
      ripgrep
      fd
      openjdk
@@ -29,5 +32,9 @@
      starship
      docker-compose
      python3
+     rust-analyzer
+     rust-latest
+     rust-src-latest
+     cargo-latest
   ];
 }

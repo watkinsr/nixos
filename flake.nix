@@ -6,6 +6,8 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+
     # We take a working firefox from here.
     #nixpkgs-stable.url = "nixpkgs/nixos-20.09";
 
