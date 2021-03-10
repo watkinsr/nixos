@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, nixpkgs, ... }:
 
 {
   home = {
@@ -36,6 +36,7 @@
     doom-emacs = {
       enable = true;
       doomPrivateDir = ./home/doom.d;
+      emacsPackage = pkgs.emacs-wayland;
     };
     direnv = {
       enable = true;

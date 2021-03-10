@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [ ../cachix.nix ];
 
   time.timeZone = "Europe/Berlin";
   nixpkgs.config.allowUnfree = true;
@@ -171,5 +172,6 @@
     bc
     speedcrunch
     zip
+    cachix
   ];
 }

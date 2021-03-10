@@ -7,7 +7,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     # We take a working firefox from here.
-    nixpkgs-stable.url = "nixpkgs/nixos-20.09";
+    #nixpkgs-stable.url = "nixpkgs/nixos-20.09";
 
     # Home manager handles whatever configuration is in my home directory.
     home-manager.url = "github:nix-community/home-manager";
@@ -16,6 +16,13 @@
     # Doom emacs distribution, being better than VSCode in every way! And better
     # vim than vim.
     doom-emacs.url = "github:vlaci/nix-doom-emacs";
+
+    emacs.url = "github:nix-community/emacs-overlay";
+
+    mozilla = {
+      url = github:mozilla/nixpkgs-mozilla;
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, doom-emacs, ... }: let

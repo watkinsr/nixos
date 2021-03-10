@@ -1,12 +1,19 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, nixpkgs, ... }:
 
 {
   virtualisation.docker.enable = true;
   services.lorri.enable = true;
 
+  nixpkgs.overlays = [
+    (import inputs.emacs)
+
+    (self: super: with super; {
+       emacs-wayland = pkgs.emacsPgtk;
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
      neovim
-     emacs
      git
      perl
      clang
