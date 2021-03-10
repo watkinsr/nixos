@@ -173,5 +173,6 @@
     speedcrunch
     zip
     cachix
+    openssl
   ];
 }
