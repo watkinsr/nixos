@@ -379,3 +379,4 @@ bar {
 
 include /usr/local/etc/sway/config.d/*
 exec --no-startup-id mako &
+exec --no-startup-id emacs --daemon &

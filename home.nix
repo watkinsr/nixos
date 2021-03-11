@@ -32,11 +32,6 @@
     "waybar/style.css".source = ./home/waybar/style.css;
   };
 
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs-wayland;
-  };
-
   programs = {
     doom-emacs = {
       enable = true;
