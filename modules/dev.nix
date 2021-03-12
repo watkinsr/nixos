@@ -9,7 +9,6 @@
     (import inputs.rust-overlay)
 
     (self: super: with super; {
-       dune = super.dune_1; # see: https://github.com/vlaci/nix-doom-emacs/issues/166
        emacs-wayland = pkgs.emacsPgtk;
        rust-latest = rust-bin.stable.latest.rust;
        rust-src-latest = rust-bin.stable.latest.rust-src;
