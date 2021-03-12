@@ -46,7 +46,7 @@
     git = {
       enable = true;
       userName = "Julius de Bruijn";
-      userEmail = "julius@nauk.io";
+      userEmail = "julius+github@nauk.io";
       extraConfig = {
         pull.rebase = true;
       };
