@@ -174,5 +174,6 @@
     zip
     cachix
     openssl
+    groff
   ];
 }
