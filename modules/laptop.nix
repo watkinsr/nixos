@@ -26,7 +26,10 @@
 
   networking = {
     wireless.iwd.enable = true;
-    networkmanager.wifi.backend = "iwd";
+    networkmanager = {
+      wifi.backend = "iwd";
+      wifi.powersave = true;
+    };
   };
 
   systemd.services.lock-before-sleeping = {
