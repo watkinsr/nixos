@@ -1,6 +1,6 @@
-{ pkgs, inputs, nixpkgs, ... }:
+{ pkgs, inputs, nixpkgs, config, ... }:
 
-{
+rec {
   home = {
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
@@ -30,6 +30,11 @@
     "scripts/dist.js".source = ./home/scripts/dist.js;
     "waybar/config".source = ./home/waybar/config;
     "waybar/style.css".source = ./home/waybar/style.css;
+  };
+
+  services.emacs = {
+    enable = true;
+    package = config.programs.emacs.package;
   };
 
   programs = {

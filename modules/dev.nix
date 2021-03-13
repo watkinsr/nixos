@@ -17,24 +17,25 @@
   ];
 
   environment.systemPackages = with pkgs; [
-     neovim
-     git
-     perl
-     clang
-     binutils
-     zlib
-     ripgrep
-     fd
-     openjdk
-     android-studio
-     jq
-     nodejs-slim
-     starship
-     docker-compose
-     python3
-     rust-analyzer
-     rust-latest
-     rust-src-latest
-     cargo-latest
+    ansible
+    neovim
+    git
+    perl
+    clang
+    binutils
+    zlib
+    ripgrep
+    fd
+    openjdk
+    android-studio
+    jq
+    nodejs-slim
+    starship
+    docker-compose
+    python3
+    rust-analyzer
+    rust-latest
+    rust-src-latest
+    cargo-latest
   ];
 }
