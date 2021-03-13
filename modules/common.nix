@@ -10,7 +10,6 @@
   services = {
     avahi = {
       enable = true;
-      nssmdns = true;
     };
     haveged.enable = true;
     zfs = {
@@ -175,5 +174,6 @@
     cachix
     openssl
     groff
+    bind
   ];
 }
