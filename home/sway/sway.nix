@@ -91,6 +91,8 @@ in {
     "${modifier}+d" = "exec ${menu}";
     "${modifier}+Shift+c" = "reload";
     "${modifier}+z" = ''exec --no-startup-id "emacsclient -nc"'';
+    "${modifier}+n" = ''exec --no-startup-id "makoctl dismiss"'';
+    "${modifier}+Shift+n" = ''exec --no-startup-id "makoctl dismiss --all"'';
 
     "Mod1+Control+l" = "mode power";
   };
