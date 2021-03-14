@@ -29,9 +29,24 @@ rec {
     "scripts/dist.js".source = ./home/scripts/dist.js;
   };
 
-  services.emacs = {
-    enable = true;
-    package = config.programs.emacs.package;
+  services = {
+    emacs = {
+      enable = true;
+      package = config.programs.emacs.package;
+    };
+    redshift = {
+      enable = true;
+      package = pkgs.redshift-wlr;
+      latitude = "52.47";
+      longitude = "13.44";
+      settings = {
+        redshift = {
+          brightness-day = "1";
+          brightness-night = "0.5";
+        };
+      };
+      tray = true;
+    };
   };
 
   wayland = {

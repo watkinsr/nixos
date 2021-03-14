@@ -42,7 +42,9 @@
     '';
   };
 
-  services.xserver.displayManager.gdm.wayland = true;
+  services = {
+    xserver.displayManager.gdm.wayland = true;
+  };
 
   environment = {
     pathsToLink = [ "/libexec" ];
