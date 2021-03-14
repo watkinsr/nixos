@@ -3,39 +3,43 @@
 {
   boot.kernelModules = [ "v4l2loopback" ];
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    extraPackages = with pkgs; [
-      xwayland
-      swaylock
-      swayidle
-      wl-clipboard
-      mako # notification daemon
-      wofi
-      waybar
-      kanshi
-      i3blocks-gaps
-      i3status
-      wev
-      wf-recorder
-      linuxPackages.v4l2loopback
-    ];
-  };
+  nixpkgs.overlays = [
+    (import inputs.nixpkgs-wayland)
+  ];
 
   services.xserver = {
     displayManager = {
-      defaultSession = "sway";
       gdm.wayland = true;
+    };
+  };
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+      ];
+      gtkUsePortal = true;
     };
   };
 
   environment = {
     pathsToLink = [ "/libexec" ];
     systemPackages = with pkgs; [
-      wl-clipboard
+      linuxPackages.v4l2loopback
+      xwayland
       firefox-wayland
       polkit_gnome
+      waybar
+      swaylock
+      swayidle
+      wl-clipboard
+      mako
+      wofi
+      kanshi
+      wev
+      wf-recorder
+      wl-clipboard
     ];
   };
 }

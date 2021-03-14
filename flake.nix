@@ -7,7 +7,15 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
 
+    # Newest of the new rust.
     rust-overlay.url = "github:oxalica/rust-overlay";
+
+    # Wayland latest of the latest.
+    nixpkgs-wayland = {
+      url = "github:colemickens/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.master.follows = "nixpkgs-master";
+    };
 
     # We take a working firefox from here.
     #nixpkgs-stable.url = "nixpkgs/nixos-20.09";
@@ -47,6 +55,26 @@
         ];
       }
     ];
+
+    wayland = ({pkgs, config, ... }: {
+      config = {
+        nix = {
+          # add binary caches
+          binaryCachePublicKeys = [
+            "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+            "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          ];
+          binaryCaches = [
+            "https://cache.nixos.org"
+            "https://nixpkgs-wayland.cachix.org"
+            "https://nix-community.cachix.org"
+          ];
+        };
+      };
+
+      nixpkgs.overlays = [ inputs.nixpkgs-wayland ];
+    });
   in {
     nixosConfigurations = {
       # ThinkPad T25 laptop runs this branch.
