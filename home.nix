@@ -1,4 +1,4 @@
-{ pkgs, inputs, nixpkgs, config, ... }:
+{ pkgs, inputs, nixpkgs, config, lib, ... }:
 
 rec {
   home = {
@@ -9,7 +9,6 @@ rec {
   };
 
   xdg.configFile = {
-    "sway/config".source = ./home/sway/config;
     "wofi/style.css".source = ./home/wofi/style.css;
     "picom/config".source = ./home/picom/config;
     "dunst/dunstrc".source = ./home/dunst/dunstrc;
@@ -28,13 +27,35 @@ rec {
     "scripts/temperature.sh".source = ./home/scripts/temperature.sh;
     "scripts/wifi.sh".source = ./home/scripts/wifi.sh;
     "scripts/dist.js".source = ./home/scripts/dist.js;
-    "waybar/config".source = ./home/waybar/config;
-    "waybar/style.css".source = ./home/waybar/style.css;
   };
 
   services.emacs = {
     enable = true;
     package = config.programs.emacs.package;
+  };
+
+  wayland = {
+    windowManager.sway = {
+      enable = true;
+      config = import ./home/sway/sway.nix {
+        lib = lib;
+      };
+      wrapperFeatures.gtk = true;
+      extraSessionCommands = ''
+        export _JAVA_AWT_WM_NONREPARENTING=1;
+        export SDL_VIDEODRIVER=wayland
+        export QT_QPA_PLATFORM=wayland
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+        export HASS_SERVER="http://hass.local:8123";
+        export MOZ_ENABLE_WAYLAND="1";
+        export XDG_SESSION_TYPE="wayland";
+        export XDG_CURRENT_DESKTOP="sway";
+        source $HOME/.config/nixpkgs/secret/secret;
+      '';
+      extraConfig = ''
+        exec --no-startup-id mako &
+      '';
+    };
   };
 
   programs = {
@@ -113,6 +134,14 @@ rec {
           };
         };
       };
+    };
+    mako = {
+      enable = true;
+    };
+    waybar = {
+      enable = true;
+      settings = import ./home/waybar/waybar.nix;
+      style = import ./home/waybar/style.css;
     };
     alacritty = {
       enable = true;

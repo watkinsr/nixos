@@ -44,8 +44,12 @@
 
   services.xserver.displayManager.gdm.wayland = true;
 
-  environment.systemPackages = with pkgs; [
-     wl-clipboard
-     firefox-nightly-bin
-  ];
+  environment = {
+    pathsToLink = [ "/libexec" ];
+    systemPackages = with pkgs; [
+      wl-clipboard
+      firefox-nightly-bin
+      polkit_gnome
+    ];
+  };
 }
