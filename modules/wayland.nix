@@ -29,17 +29,6 @@
       wf-recorder
       linuxPackages.v4l2loopback
     ];
-    extraSessionCommands = ''
-      export _JAVA_AWT_WM_NONREPARENTING=1;
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export HASS_SERVER="http://hass.local:8123";
-      export MOZ_ENABLE_WAYLAND="1";
-      export XDG_SESSION_TYPE="wayland";
-      export XDG_CURRENT_DESKTOP="sway";
-      source $HOME/.config/nixpkgs/secret/secret;
-    '';
   };
 
   services.xserver = {
