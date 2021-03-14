@@ -42,8 +42,11 @@
     '';
   };
 
-  services = {
-    xserver.displayManager.gdm.wayland = true;
+  services.xserver = {
+    displayManager = {
+      defaultSession = "sway";
+      gdm.wayland = true;
+    };
   };
 
   environment = {

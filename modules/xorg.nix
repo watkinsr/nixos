@@ -10,7 +10,7 @@
     };
 
     displayManager = {
-        defaultSession = "none+i3";
+      defaultSession = "none+i3";
     };
 
     windowManager.i3 = {
@@ -30,7 +30,7 @@
         xorg.setxkbmap
         xorg.xset
         xorg.xrdb
-     ];
+      ];
       extraSessionCommands = ''
         export HASS_SERVER="http://hass.local:8123";
         source $HOME/.config/nixpkgs/secret/secret;
