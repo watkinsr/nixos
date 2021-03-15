@@ -5,6 +5,7 @@
   inputs = {
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "nixpkgs/master";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
@@ -21,10 +22,10 @@
 
     emacs.url = "github:nix-community/emacs-overlay";
 
-    mozilla = {
-      url = github:mozilla/nixpkgs-mozilla;
-      flake = false;
-    };
+    #mozilla = {
+    #  url = github:mozilla/nixpkgs-mozilla;
+    #  flake = false;
+    #};
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, doom-emacs, ... }: let
