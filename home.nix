@@ -131,16 +131,16 @@ rec {
           backend = "gstreamer";
         };
         import = {
-          move = "yes";
+          move = true;
         };
         fetchart = {
-          auto = "yes";
+          auto = true;
         };
         convert = {
-          auto = "no";
+          auto = false;
           threads = 4;
-          copy_album_art = "yes";
-          embed = "yes";
+          copy_album_art = true;
+          embed = true;
           format = "opus";
           dest = "/mnt/opus/";
           formats = {

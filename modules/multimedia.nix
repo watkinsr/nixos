@@ -10,6 +10,12 @@
       alsa.enable = true;
       pulse.enable = true;
       jack.enable = true;
+
+      media-session.config.bluez-monitor = {
+        properties = {
+          bluez5.codecs = ["ldac" "aptx_hd"];
+        };
+      };
     };
   };
 
