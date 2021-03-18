@@ -57,6 +57,15 @@
         };
       };
 
+      # ThinkPad T25 laptop runs this branch.
+      meowmeow = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [ ./hosts/meowmeow.nix ] ++ home;
+        specialArgs = {
+          inherit inputs;
+        };
+      };
+
       # The big workstation (AMD/NVIDIA) uses this.
       naunau = nixpkgs.lib.nixosSystem {
         system = system;
