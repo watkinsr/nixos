@@ -8,7 +8,7 @@
     wrapperFeatures.gtk = true; # so that gtk works properly
     extraPackages = with pkgs; [
       xwayland
-      swaylock
+      swaylock-effects
       swayidle
       wl-clipboard
       mako # notification daemon
