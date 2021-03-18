@@ -330,7 +330,7 @@ bar {
 }
 
 # AUTOSTART
-exec_always --no-startup-id feh --bg-fill $HOME/.config/nixpkgs/home/pictures/TNEJezP.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/.config/pictures/TNEJezP.jpg
 exec --no-startup-id picom -b --config $HOME/.config/picom/config
 exec --no-startup-id dunst &
 exec --no-startup-id element-desktop &

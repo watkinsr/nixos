@@ -37,7 +37,7 @@ in {
 
   output = {
     "*" = {
-      bg = "~/.config/nixpkgs/home/pictures/TNEJezP.jpg fill";
+      bg = "~/.config/pictures/TNEJezP.jpg fill";
     };
   };
 

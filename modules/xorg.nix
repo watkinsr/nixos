@@ -33,7 +33,7 @@
       ];
       extraSessionCommands = ''
         export HASS_SERVER="http://hass.local:8123";
-        source $HOME/.config/nixpkgs/secret/secret;
+        source /etc/nixos/secret/secret;
       '';
     };
   };

@@ -13,7 +13,7 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 4. Install these dotfiles:
 5. `nix-shell -p git nixFlakes`
 6. `git clone https://github.com/pimeys/nixos /tmp/nixos`
-7. `nixos-generate-config --root /mnt`
+7. `nixos-generate-config --root /mnt --show-hardware-config`
 8. Merge the hardware config with the dotfiles in `/mnt/etc/nixos`
 7. Install NixOS: `nixos-install --root /mnt --flake /mnt/etc/nixos#XYZ`, where
    `XYZ` is [the host you want to install](hosts/).

@@ -9,6 +9,8 @@ rec {
   };
 
   xdg.configFile = {
+    "pictures".source = ./home/pictures;
+    "doom.d".source = ./home/doom.d;
     "wofi/style.css".source = ./home/wofi/style.css;
     "picom/config".source = ./home/picom/config;
     "dunst/dunstrc".source = ./home/dunst/dunstrc;
@@ -67,7 +69,7 @@ rec {
         export MOZ_DBUS_REMOTE="1";
         export XDG_SESSION_TYPE="wayland";
         export XDG_CURRENT_DESKTOP="sway";
-        source $HOME/.config/nixpkgs/secret/secret;
+        source /etc/nixos/secret/secret;
       '';
       extraConfig = ''
         exec --no-startup-id mako &

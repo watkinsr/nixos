@@ -175,5 +175,6 @@
     openssl
     groff
     bind
+    man-db
   ];
 }

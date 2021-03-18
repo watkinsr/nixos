@@ -55,7 +55,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(setq doom-d "/home/pimeys/.config/nixpkgs/home/doom.d")
+(setq doom-d "/etc/nixos/home/doom.d")
 (load (concat doom-d "/emacs-prisma-mode/prisma-mode.el"))
 (require 'prisma-mode)
 
