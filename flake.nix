@@ -9,8 +9,7 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
-    # We take a working firefox from here.
-    #nixpkgs-stable.url = "nixpkgs/nixos-20.09";
+    nixpkgs-sway.url = "github:Synthetica9/nixpkgs/sway-1.16";
 
     # Home manager handles whatever configuration is in my home directory.
     home-manager.url = "github:nix-community/home-manager";
