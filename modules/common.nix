@@ -176,5 +176,6 @@
     groff
     bind
     man-db
+    dmidecode
   ];
 }
