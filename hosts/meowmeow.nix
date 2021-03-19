@@ -38,9 +38,9 @@
 
   networking = {
     interfaces = {
-      enp0s31f6.useDHCP = true;
+      enp0s25.useDHCP = true;
       wlan0.useDHCP = true;
-      wwp0s20f0u6i12.useDHCP = true;
+      wwp0s20u4i6.useDHCP = true;
     };
 
     hostId = "CC221B11";
