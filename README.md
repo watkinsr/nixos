@@ -4,6 +4,7 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 
 - `muspus` has the ThinkPad T25 configuration. Intel system using Wayland/Sway.
 - `naunau` has the Workstation configuration. AMD system with NVidia graphics card using Xorg/i3.
+- `meowmeow` has the ThinkPad X230 configuration. Intel system using Wayland/Sway.
 
 ## New system installation
 
