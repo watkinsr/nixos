@@ -28,6 +28,10 @@
 
   programs.system-config-printer.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    simple-scan
+  ];
+
   #
   # NAS mounts
   #
