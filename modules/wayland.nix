@@ -22,7 +22,6 @@
       linuxPackages.v4l2loopback
       slurp
       wlogout
-      clipman
     ];
   };
 

@@ -39,8 +39,8 @@ rec {
     redshift = {
       enable = true;
       package = pkgs.redshift-wlr;
-      latitude = "52.47";
-      longitude = "13.44";
+      latitude = "52.4";
+      longitude = "13.4";
       settings = {
         redshift = {
           brightness-day = "1";
@@ -72,8 +72,6 @@ rec {
         source /etc/nixos/secret/secret;
       '';
       extraConfig = ''
-        exec wl-paste -t text --watch clipman store &
-        exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json" &
         exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
         exec --no-startup-id systemctl --user restart emacs.service &
         exec --no-startup-id mako &

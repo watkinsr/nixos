@@ -80,11 +80,13 @@
     };
     "custom/weather" = {
       exec = "~/.config/scripts/weather.sh";
+      on-click = "xdg-open https://hass.local/lovelace/climate";
       format = "{} 🌡";
       interval = 60;
     };
     "custom/glucose" = {
       exec = "~/.config/scripts/glucose.sh";
+      on-click = "xdg-open https://sokeri.nauk.io";
       format = "{} 🩸";
       interval = 30;
     };
