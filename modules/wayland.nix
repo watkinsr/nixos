@@ -3,12 +3,6 @@
 {
   boot.kernelModules = [ "v4l2loopback" ];
 
-  nixpkgs.overlays = [
-    (self: super: with super; {
-      sway-unwrapped = inputs.nixpkgs-sway.legacyPackages.x86_64-linux.sway-unwrapped;
-    })
-  ];
-
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
