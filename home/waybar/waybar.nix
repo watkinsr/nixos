@@ -62,10 +62,10 @@
         warning = 30;
         critical = 15;
       };
-      format = "{capacity}% {icon}";
+      format = "{time} {icon}";
+      format-alt = "{capacity}% {icon}";
       format-charging = "{capacity}% ";
       format-plugged = "{capacity}% ";
-      format-alt = "{time} {icon}";
       format-icons = ["" "" "" "" ""];
     };
     "battery#bat2" = {

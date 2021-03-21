@@ -89,26 +89,13 @@ in {
     "${modifier}+Return" = "exec ${terminal}";
     "${modifier}+q" = "kill";
     "${modifier}+d" = "exec ${menu}";
+    "${modifier}+p" = "exec clipman pick -t wofi";
     "${modifier}+Shift+c" = "reload";
     "${modifier}+z" = ''exec --no-startup-id "emacsclient -nc"'';
     "${modifier}+n" = ''exec --no-startup-id "makoctl dismiss"'';
     "${modifier}+Shift+n" = ''exec --no-startup-id "makoctl dismiss --all"'';
 
-    "Mod1+Control+l" = "mode power";
-  };
-
-  modes = {
-    power = {
-      l = ''mode default, exec --no-startup-id swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2'';
-      e = ''mode default, exec --no-startup-id swaymsg exit'';
-      s = ''mode default, exec --no-startup-id systemctl suspend'';
-      h = ''mode default, exec --no-startup-id systemctl hibernate'';
-      r = ''mode default, exec --no-startup-id systemctl reboot'';
-      p = ''mode default, exec --no-startup-id systemctl poweroff'';
-
-      Return = "mode default";
-      Escape = "mode default";
-    };
+    "Mod1+Control+l" = ''exec --no-startup-id wlogout'';
   };
 
   floating = {

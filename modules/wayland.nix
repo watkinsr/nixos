@@ -20,7 +20,21 @@
       wev
       wf-recorder
       linuxPackages.v4l2loopback
+      slurp
+      wlogout
+      clipman
     ];
+  };
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
   };
 
   services.xserver = {
@@ -33,7 +47,6 @@
   environment = {
     pathsToLink = [ "/libexec" ];
     systemPackages = with pkgs; [
-      wl-clipboard
       firefox-wayland
       polkit_gnome
     ];
