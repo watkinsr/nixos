@@ -6,26 +6,15 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
-
     rust-overlay.url = "github:oxalica/rust-overlay";
-
-    # Unstable master wayland tools
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
-
-    # Home manager handles whatever configuration is in my home directory.
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Doom emacs distribution, being better than VSCode in every way! And better
-    # vim than vim.
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     doom-emacs.url = "github:vlaci/nix-doom-emacs";
-
     emacs.url = "github:nix-community/emacs-overlay";
-
-    #mozilla = {
-    #  url = github:mozilla/nixpkgs-mozilla;
-    #  flake = false;
-    #};
+    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = inputs@{
@@ -33,6 +22,7 @@
     , nixpkgs
     , home-manager
     , doom-emacs
+    , nixos-hardware
     , ...
   }: let
     inherit (nixpkgs) lib;
@@ -101,6 +91,7 @@
           wayland
           emacs
           rust
+          nixos-hardware.nixosModules.lenovo-thinkpad-t470s
         ] ++ home;
         specialArgs = {
           inherit inputs;
@@ -115,6 +106,7 @@
           wayland
           emacs
           rust
+          nixos-hardware.nixosModules.lenovo-thinkpad-x230
         ] ++ home;
         specialArgs = {
           inherit inputs;
@@ -128,6 +120,8 @@
           ./hosts/naunau.nix
           emacs
           rust
+          nixos-hardware.nixosModules.common-cpu-amd
+          nixos-hardware.nixosModules.common-gpu-nvidia
         ] ++ home;
         specialArgs = {
           inherit inputs;

@@ -34,7 +34,6 @@
   };
 
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
     config = ''
       Section "ServerLayout"
           Identifier     "Layout0"

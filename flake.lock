@@ -262,6 +262,21 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1616486713,
+        "narHash": "sha256-aKjMFFKYhoCz0vbfQs5gx+TwCJteO/0vMpmsL0CwRks=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "681ffa8a8c27c25a8ea14927dbacdf1ec3117201",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1615236539,
@@ -457,6 +472,7 @@
         "doom-emacs": "doom-emacs",
         "emacs": "emacs",
         "home-manager": "home-manager",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-wayland": "nixpkgs-wayland",

@@ -22,7 +22,6 @@
 
     kernelModules = [
       "kvm-intel"
-      "acpi-call"
     ];
 
     kernelParams = [
@@ -30,8 +29,6 @@
       "i915.enable_fbc=1"
       "i915.enable_psr=2"
     ];
-
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
 
   swapDevices = [ ];
