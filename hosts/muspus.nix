@@ -1,8 +1,9 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, modulesPath, inputs, ... }:
 
 {
   imports =
     [
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
       (modulesPath + "/installer/scan/not-detected.nix")
       ../modules/common.nix
       ../modules/fonts.nix
@@ -42,15 +43,6 @@
 
     hostId = "CC221B11";
     hostName = "muspus";
-  };
-
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    opengl.extraPackages = with pkgs; [
-      vaapiIntel
-      libvdpau-va-gl
-      vaapiVdpau
-    ];
   };
 
   fileSystems."/" =

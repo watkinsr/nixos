@@ -1,8 +1,9 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, modulesPath, inputs, ... }:
 
 {
   imports =
     [
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
       (modulesPath + "/installer/scan/not-detected.nix")
       ../modules/common.nix
       ../modules/fonts.nix

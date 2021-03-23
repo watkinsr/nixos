@@ -22,7 +22,6 @@
     , nixpkgs
     , home-manager
     , doom-emacs
-    , nixos-hardware
     , ...
   }: let
     inherit (nixpkgs) lib;
@@ -91,7 +90,6 @@
           wayland
           emacs
           rust
-          nixos-hardware.nixosModules.lenovo-thinkpad-t470s
         ] ++ home;
         specialArgs = {
           inherit inputs;
@@ -106,7 +104,6 @@
           wayland
           emacs
           rust
-          nixos-hardware.nixosModules.lenovo-thinkpad-x230
         ] ++ home;
         specialArgs = {
           inherit inputs;
@@ -120,8 +117,6 @@
           ./hosts/naunau.nix
           emacs
           rust
-          nixos-hardware.nixosModules.common-cpu-amd
-          nixos-hardware.nixosModules.common-gpu-nvidia
         ] ++ home;
         specialArgs = {
           inherit inputs;
