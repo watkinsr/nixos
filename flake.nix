@@ -54,31 +54,54 @@
       }
     ];
 
-    wayland = {pkgs, config, ... }: {
+    wayland = { pkgs, config, ... }: {
       config = {
         nix = {
           # add binary caches
           binaryCachePublicKeys = [
             "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
             "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
           binaryCaches = [
             "https://cache.nixos.org"
             "https://nixpkgs-wayland.cachix.org"
-            "https://nix-community.cachix.org"
           ];
         };
 
         nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
       };
     };
+
+    emacs = { pkgs, config, ... }: {
+      config = {
+        nix = {
+          # add binary caches
+          binaryCachePublicKeys = [
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          ];
+          binaryCaches = [
+            "https://nix-community.cachix.org"
+          ];
+        };
+
+        nixpkgs.overlays = [ inputs.emacs.overlay ];
+      };
+    };
+
+    rust = { pkgs, config, ... }: {
+      config.nixpkgs.overlays = [ inputs.rust-overlay.overlay ];
+    };
   in {
     nixosConfigurations = {
       # ThinkPad T25 laptop runs this branch.
       muspus = nixpkgs.lib.nixosSystem {
         system = system;
-        modules = [ ./hosts/muspus.nix wayland ] ++ home;
+        modules = [
+          ./hosts/muspus.nix
+          wayland
+          emacs
+          rust
+        ] ++ home;
         specialArgs = {
           inherit inputs;
         };
@@ -87,7 +110,12 @@
       # ThinkPad T25 laptop runs this branch.
       meowmeow = nixpkgs.lib.nixosSystem {
         system = system;
-        modules = [ ./hosts/meowmeow.nix wayland ] ++ home;
+        modules = [
+          ./hosts/meowmeow.nix
+          wayland
+          emacs
+          rust
+        ] ++ home;
         specialArgs = {
           inherit inputs;
         };
@@ -96,7 +124,11 @@
       # The big workstation (AMD/NVIDIA) uses this.
       naunau = nixpkgs.lib.nixosSystem {
         system = system;
-        modules = [ ./hosts/naunau.nix ] ++ home;
+        modules = [
+          ./hosts/naunau.nix
+          emacs
+          rust
+        ] ++ home;
         specialArgs = {
           inherit inputs;
         };
