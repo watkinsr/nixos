@@ -7,7 +7,6 @@
   imports =
     [
       inputs.nixos-hardware.nixosModules.common-cpu-amd
-      inputs.nixos-hardware.nixosModules.common-gpu-nvidia
       (modulesPath + "/installer/scan/not-detected.nix")
       ../modules/common.nix
       ../modules/fonts.nix
@@ -36,6 +35,8 @@
   };
 
   services.xserver = {
+    videoDrivers = lib.mkDefault [ "nvidia" ];
+
     config = ''
       Section "ServerLayout"
           Identifier     "Layout0"
