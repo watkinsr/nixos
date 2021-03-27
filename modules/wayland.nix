@@ -3,6 +3,14 @@
 {
   boot.kernelModules = [ "v4l2loopback" ];
 
+  nixpkgs.overlays = [
+    (import inputs.emacs)
+
+    (self: super: with super; {
+      emacs-custom = pkgs.emacsPgtk;
+    })
+  ];
+
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly

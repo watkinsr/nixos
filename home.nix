@@ -83,7 +83,7 @@ rec {
     doom-emacs = {
       enable = true;
       doomPrivateDir = ./home/doom.d;
-      emacsPackage = pkgs.emacsPgtk;
+      emacsPackage = pkgs.emacs-custom;
     };
     direnv = {
       enable = true;

@@ -20,68 +20,25 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];
+    kernelParams = [ "nvidia-drm.modeset=1" ];
     extraModulePackages = [ ];
   };
-
-  swapDevices = [ ];
 
   networking = {
     hostId = "DD221B11";
     hostName = "naunau";
   };
+  
+  services.sshd.enable = true;
 
   services.xserver = {
-    videoDrivers = lib.mkDefault [ "nvidia" ];
+    videoDrivers = [ "nvidia" ];
 
     config = ''
-      Section "ServerLayout"
-          Identifier     "Layout0"
-          Screen      0  "Screen0" 0 0
-          InputDevice    "Keyboard0" "CoreKeyboard"
-          InputDevice    "Mouse0" "CorePointer"
-          Option         "Xinerama" "0"
-      EndSection
-
-      Section "Files"
-      EndSection
-
-      Section "InputDevice"
-          # generated from default
-          Identifier     "Mouse0"
-          Driver         "mouse"
-          Option         "Protocol" "auto"
-          Option         "Device" "/dev/psaux"
-          Option         "Emulate3Buttons" "no"
-          Option         "ZAxisMapping" "4 5"
-      EndSection
-
-      Section "InputDevice"
-          # generated from default
-          Identifier     "Keyboard0"
-          Driver         "kbd"
-      EndSection
-
-      Section "Monitor"
-          # HorizSync source: edid, VertRefresh source: edid
-          Identifier     "Monitor0"
-          VendorName     "Unknown"
-          ModelName      "Ancor Communications Inc PB328"
-          HorizSync       29.0 - 113.0
-          VertRefresh     49.0 - 76.0
-          Option         "DPMS"
-      EndSection
-
-      Section "Device"
-          Identifier     "Device0"
-          Driver         "nvidia"
-          VendorName     "NVIDIA Corporation"
-          BoardName      "GeForce RTX 2080 Ti"
-      EndSection
-
       Section "Screen"
           Identifier     "Screen0"
           Device         "Device0"
@@ -101,22 +58,27 @@
   };
 
   hardware = {
-    cpu.amd.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.amd.updateMicrocode = true;
+    opengl.enable = true;
   };
 
+  nix.maxJobs = 32;
+  powerManagement.cpuFreqGovernor = "performance";
+
   fileSystems."/" =
-    { device = "rpool/root/nixos";
+    { device = "zroot/root/nixos";
       fsType = "zfs";
     };
 
   fileSystems."/home" =
-    { device = "rpool/home";
+    { device = "zroot/home";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6CB4-D8D9";
+    { device = "/dev/disk/by-uuid/1D53-9739";
       fsType = "vfat";
     };
+
+  swapDevices = [ ];
 }
