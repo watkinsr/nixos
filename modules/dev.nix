@@ -1,8 +1,15 @@
 { config, lib, pkgs, inputs, nixpkgs, ... }:
 
 {
-  virtualisation.docker.enable = true;
-  services.lorri.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+  };
+
+  users.extraGroups.vboxusers.members = [ "pimeys" ];
 
   environment.systemPackages = with pkgs; [
     ansible
@@ -25,5 +32,7 @@
     rust-bin.stable.latest.rust
     rust-bin.stable.latest.rust-src
     rust-bin.stable.latest.cargo
+    cargo-watch
+    cargo-bloat
   ];
 }
