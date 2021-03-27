@@ -24,7 +24,7 @@
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [ "nvidia-drm.modeset=1" ];
+    kernelParams = [ "nvidia-drm" "modeset=1" ];
     extraModulePackages = [ ];
   };
 
@@ -60,6 +60,9 @@
   hardware = {
     cpu.amd.updateMicrocode = true;
     opengl.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+    };
   };
 
   nix.maxJobs = 32;
