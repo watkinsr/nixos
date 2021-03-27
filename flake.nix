@@ -72,8 +72,6 @@
             "https://nix-community.cachix.org"
           ];
         };
-
-        nixpkgs.overlays = [ inputs.emacs.overlay ];
       };
     };
 
@@ -115,8 +113,8 @@
         system = system;
         modules = [
           ./hosts/naunau.nix
-          emacs
           rust
+          emacs
         ] ++ home;
         specialArgs = {
           inherit inputs;

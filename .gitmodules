@@ -3,4 +3,7 @@
 	url = https://github.com/pimeys/emacs-prisma-mode/
 [submodule "secret"]
 	path = secret
-	url = git@git.local:nix-secret.git
+	url = root@git.local:nix-secret.git
+[submodule "home/doom.d/emacs-prisma-mode"]
+	path = home/doom.d/emacs-prisma-mode
+	url = https://github.com/pimeys/emacs-prisma-mode.git

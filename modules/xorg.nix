@@ -1,6 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
+  nixpkgs.overlays = [
+    (import inputs.emacs)
+
+    (self: super: with super; {
+      emacs-custom = pkgs.emacs;
+    })
+  ];
+
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
@@ -10,6 +18,7 @@
     };
 
     displayManager = {
+      gdm.enable = true;
       defaultSession = "none+i3";
     };
 
@@ -17,6 +26,8 @@
       enable = true;
       package = pkgs.i3-gaps;
       extraPackages = with pkgs; [
+        firefox
+        libinput
         rofi
         i3status
         i3lock
@@ -30,6 +41,8 @@
         xorg.setxkbmap
         xorg.xset
         xorg.xrdb
+        xorg.xinit
+        xorg.libxcb
       ];
       extraSessionCommands = ''
         export HASS_SERVER="http://hass.local:8123";

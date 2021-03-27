@@ -5,4 +5,6 @@
     steam
     lutris
   ];
+
+  hardware.opengl.driSupport32Bit = true;
 }

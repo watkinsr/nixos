@@ -35,17 +35,6 @@ command=$HOME/.config/scripts/memory.sh
 interval=5
 border=#cb4b16
 
-[battery]
-command=$HOME/.config/scripts/battery.sh
-interval=persist
-border=#2aa198
-
-[wireless]
-label=  
-command=$HOME/.config/scripts/wifi.sh
-interval=2
-border=#268bd2
-
 [time]
 label= 📅
 command=echo "`date +'%a %d %b'` <b>`date +'%T'`</b> "
