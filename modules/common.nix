@@ -51,12 +51,18 @@
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
+        copyKernels = true;
+        zfsSupport = true;
+        efiSupport = true;
+        useOSProber = true;
+        device = "nodev";
         configurationLimit = 10;
       };
-      grub.copyKernels = true;
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+      };
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
