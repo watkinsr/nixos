@@ -1,14 +1,6 @@
 { inputs, config, lib, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (import inputs.emacs)
-
-    (self: super: with super; {
-      emacs-custom = pkgs.emacs;
-    })
-  ];
-
   programs.dconf.enable = true;
   services.xserver = {
     enable = true;
