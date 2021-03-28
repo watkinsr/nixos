@@ -84,5 +84,17 @@
       fsType = "vfat";
     };
 
+  fileSystems."/mnt/scratch" =
+    { device = "/dev/disk/by-id/ata-HGST_HTS725050A7E630_TF755AWHG6DWHM";
+      fsType = "btrfs";
+      options = [ "subvol=_sata/scratch" "noatime"];
+    };
+
+  fileSystems."/mnt/steam" =
+    { device = "/dev/disk/by-id/ata-HGST_HTS725050A7E630_TF755AWHG6DWHM";
+      fsType = "btrfs";
+      options = [ "subvol=_sata/steam" "noatime"];
+    };
+
   swapDevices = [ ];
 }
