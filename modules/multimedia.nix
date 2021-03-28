@@ -28,6 +28,6 @@
      mpv
      evince
      gnome3.eog
-     audacious
+     deadbeef
   ];
 }
