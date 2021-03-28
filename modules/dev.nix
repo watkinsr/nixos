@@ -3,13 +3,7 @@
 {
   virtualisation = {
     docker.enable = true;
-    virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
   };
-
-  users.extraGroups.vboxusers.members = [ "pimeys" ];
 
   environment.systemPackages = with pkgs; [
     ansible
