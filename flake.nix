@@ -72,6 +72,8 @@
             "https://nix-community.cachix.org"
           ];
         };
+
+        nixpkgs.overlays = [ inputs.emacs.overlay ];
       };
     };
 
