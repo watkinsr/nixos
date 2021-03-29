@@ -108,6 +108,7 @@ rec {
       enable = true;
       interactiveShellInit = ''
         set PATH ~/.cargo/bin ~/.local/bin $PATH
+        set EDITOR ${pkgs.neovim}/bin/nvim
       '';
       plugins = [
         {
