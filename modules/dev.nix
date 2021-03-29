@@ -19,6 +19,7 @@
     android-studio
     jq
     nodejs-slim
+    nodePackages.npm
     starship
     docker-compose
     python3
@@ -28,5 +29,7 @@
     rust-bin.stable.latest.cargo
     cargo-watch
     cargo-bloat
+    mysql-client
+    postgresql_12
   ];
 }
