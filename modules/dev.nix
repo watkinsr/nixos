@@ -9,6 +9,7 @@
     ansible
     neovim
     git
+    gdb
     perl
     clang
     binutils
