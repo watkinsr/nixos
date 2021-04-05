@@ -2,7 +2,7 @@
 
 {
   home-manager.users.pimeys = {
-    sessionVariables = {
+    home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
     };
