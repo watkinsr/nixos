@@ -20,12 +20,20 @@
   outputs = inputs@{
     self
     , nixpkgs
+    , nixpkgs-master
     , home-manager
     , doom-emacs
     , ...
   }: let
     inherit (nixpkgs) lib;
     system = "x86_64-linux";
+
+    mkPkgs = pkgs: extraOverlays: import pkgs {
+      inherit system;
+      config.allowUnfree = true;  # forgive me Stallman senpai
+      overlays = extraOverlays;
+    };
+    master = mkPkgs nixpkgs-master [];
 
     # Home manager setup. We also import doom-emacs to be in the scope. See
     # `home.nix` for more.
@@ -43,42 +51,46 @@
       }
     ];
 
-    wayland = { pkgs, config, ... }: {
+    common = { pkgs, config, ... }: {
       config = {
         nix = {
           # add binary caches
           binaryCachePublicKeys = [
             "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-            "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-          ];
-          binaryCaches = [
-            "https://cache.nixos.org"
-            "https://nixpkgs-wayland.cachix.org"
-          ];
-        };
-
-        nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
-      };
-    };
-
-    emacs = { pkgs, config, ... }: {
-      config = {
-        nix = {
-          # add binary caches
-          binaryCachePublicKeys = [
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
           binaryCaches = [
+            "https://cache.nixos.org"
             "https://nix-community.cachix.org"
           ];
         };
 
-        nixpkgs.overlays = [ inputs.emacs.overlay ];
+        nixpkgs.overlays = [
+          (self: super: {
+            master = master;
+          })
+          inputs.rust-overlay.overlay
+          inputs.emacs.overlay
+        ];
       };
     };
 
-    rust = { pkgs, config, ... }: {
-      config.nixpkgs.overlays = [ inputs.rust-overlay.overlay ];
+    wayland = { pkgs, config, ... }: {
+      config = {
+        nix = {
+          # add binary caches
+          binaryCachePublicKeys = [
+            "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+          ];
+          binaryCaches = [
+            "https://nixpkgs-wayland.cachix.org"
+          ];
+        };
+
+        nixpkgs.overlays = [
+          inputs.nixpkgs-wayland.overlay
+        ];
+      };
     };
   in {
     nixosConfigurations = {
@@ -87,12 +99,12 @@
         system = system;
         modules = [
           ./hosts/muspus.nix
+          common
           wayland
-          emacs
-          rust
         ] ++ home;
         specialArgs = {
           inherit inputs;
+          inherit home-manager;
         };
       };
 
@@ -101,12 +113,12 @@
         system = system;
         modules = [
           ./hosts/meowmeow.nix
+          common
           wayland
-          emacs
-          rust
         ] ++ home;
         specialArgs = {
           inherit inputs;
+          inherit home-manager;
         };
       };
 
@@ -115,11 +127,11 @@
         system = system;
         modules = [
           ./hosts/naunau.nix
-          rust
-          emacs
+          common
         ] ++ home;
         specialArgs = {
           inherit inputs;
+          inherit home-manager;
         };
       };
     };
