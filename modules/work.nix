@@ -5,7 +5,7 @@
      jetbrains.datagrip
      google-cloud-sdk
      jetbrains.idea-community
-     zoom-us
+     master.zoom-us
      slack
   ];
 }
