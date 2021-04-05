@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, nixpkgs, ... }:
+{ config, lib, pkgs, nixpkgs, home-manager, ... }:
 
 {
   virtualisation = {

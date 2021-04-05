@@ -1,6 +1,52 @@
-{ config, lib, pkgs, inputs, nixpkgs, ... }:
+{ config, lib, pkgs, inputs, nixpkgs, home-manager, ... }:
 
 {
+  home-manager.users.pimeys = {
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+      XDG_SESSION_TYPE = "wayland";
+    };
+
+    wayland = {
+      windowManager.sway = {
+        enable = true;
+        config = import ../home/sway/sway.nix {
+          lib = lib;
+        };
+        wrapperFeatures.gtk = true;
+        extraSessionCommands = ''
+          export _JAVA_AWT_WM_NONREPARENTING=1;
+          export SDL_VIDEODRIVER=wayland;
+          export QT_QPA_PLATFORM=wayland;
+          export QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
+          export QT_WAYLAND_FORCE_DPI="physical";
+          export HASS_SERVER="http://hass.local:8123";
+          export MOZ_ENABLE_WAYLAND="1";
+          export MOZ_DBUS_REMOTE="1";
+          export XDG_SESSION_TYPE="wayland";
+          export XDG_CURRENT_DESKTOP="sway";
+          source /etc/nixos/secret/secret;
+        '';
+        extraConfig = ''
+          exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
+          exec --no-startup-id systemctl --user restart emacs.service &
+          exec --no-startup-id mako &
+        '';
+      };
+    };
+
+    programs = {
+      mako = {
+        enable = true;
+      };
+      waybar = {
+        enable = true;
+        settings = import ../home/waybar/waybar.nix;
+        style = "${builtins.readFile ../home/waybar/style.css}";
+      };
+    };
+  };
+
   boot.kernelModules = [ "v4l2loopback" ];
 
   programs.sway = {
