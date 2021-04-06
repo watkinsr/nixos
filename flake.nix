@@ -25,7 +25,8 @@
     , doom-emacs
     , ...
   }: let
-    inherit (nixpkgs) lib;
+    inherit (lib.my) mapModules mapModulesRec mapHosts;
+
     system = "x86_64-linux";
 
     mkPkgs = pkgs: extraOverlays: import pkgs {
@@ -33,7 +34,11 @@
       config.allowUnfree = true;  # forgive me Stallman senpai
       overlays = extraOverlays;
     };
+    pkgs = mkPkgs nixpkgs [];
     master = mkPkgs nixpkgs-master [];
+
+    lib = nixpkgs.lib.extend
+      (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
 
     # Home manager setup. We also import doom-emacs to be in the scope. See
     # `home.nix` for more.
@@ -68,6 +73,7 @@
         nixpkgs.overlays = [
           (self: super: {
             master = master;
+            my = self.packages."${system}";
           })
           inputs.rust-overlay.overlay
           inputs.emacs.overlay
@@ -93,6 +99,9 @@
       };
     };
   in {
+    packages."${system}" =
+      mapModules ./packages (p: pkgs.callPackage p {});
+
     nixosConfigurations = {
       # ThinkPad T25 laptop runs this branch.
       muspus = nixpkgs.lib.nixosSystem {
