@@ -86,6 +86,10 @@ rec {
           };
         }
       ];
+      shellAliases = {
+        cw = "cargo watch -s 'clear; cargo check --tests --all-features --color=always 2>&1 | head -40'";
+        cwa = "cargo watch -s 'clear; cargo check --tests --features=all --color=always 2>&1 | head -40'";
+      };
     };
     starship = {
       enable = true;
