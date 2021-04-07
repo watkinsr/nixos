@@ -16,12 +16,23 @@
       ../modules/work.nix
       ../modules/xorg.nix
       ../modules/home-services.nix
-      ../modules/gaming.nix
+      #../modules/gaming.nix
     ];
 
   boot = {
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];

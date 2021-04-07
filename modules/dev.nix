@@ -25,9 +25,7 @@
     docker-compose
     python3
     rust-analyzer
-    rust-bin.stable.latest.rust
-    rust-bin.stable.latest.rust-src
-    rust-bin.stable.latest.cargo
+    rust-bin.stable.latest.default
     cargo-watch
     cargo-bloat
     mysql-client
