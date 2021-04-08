@@ -154,7 +154,9 @@
     element-desktop
     tree
     tmux
+    zip
     unzip
+    zstd
     blueman
     qt5.qtwayland
     lm_sensors
@@ -164,7 +166,6 @@
     signal-desktop
     bc
     speedcrunch
-    zip
     cachix
     openssl
     groff
