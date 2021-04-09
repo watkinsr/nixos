@@ -109,7 +109,7 @@
         modules = [
           ./hosts/muspus.nix
           common
-          wayland
+          #wayland
         ] ++ home;
         specialArgs = {
           inherit inputs;
@@ -117,13 +117,13 @@
         };
       };
 
-      # ThinkPad T25 laptop runs this branch.
+      # ThinkPad X230 laptop runs this branch.
       meowmeow = nixpkgs.lib.nixosSystem {
         system = system;
         modules = [
           ./hosts/meowmeow.nix
           common
-          wayland
+          #wayland
         ] ++ home;
         specialArgs = {
           inherit inputs;
