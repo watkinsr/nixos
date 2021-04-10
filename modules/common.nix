@@ -165,6 +165,7 @@
     home-assistant-cli
     signal-desktop
     bc
+    mc
     speedcrunch
     cachix
     openssl
