@@ -16,7 +16,7 @@
       ../modules/work.nix
       ../modules/xorg.nix
       ../modules/home-services.nix
-      #../modules/gaming.nix
+      ../modules/gaming.nix
     ];
 
   boot = {
