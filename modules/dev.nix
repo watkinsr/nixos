@@ -30,5 +30,6 @@
     cargo-bloat
     mysql-client
     postgresql_12
+    gnumake
   ];
 }
