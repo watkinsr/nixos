@@ -31,5 +31,6 @@
     mysql-client
     postgresql_12
     gnumake
+    evcxr
   ];
 }
