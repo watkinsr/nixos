@@ -173,5 +173,6 @@
     bind
     man-db
     dmidecode
+    feh
   ];
 }
