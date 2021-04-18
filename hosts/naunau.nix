@@ -37,7 +37,7 @@
     };
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ "nvidia-drm" "modeset=1" ];
-    extraModulePackages = [];
+    extraModulePackages = with pkgs; [ nvidia_x11 ];
   };
 
   networking = {
@@ -74,7 +74,7 @@
     opengl.enable = true;
     nvidia = {
       modesetting.enable = true;
-      package = pkgs.nvidia-patch.linuxPackages_5_11.nvidia_x11;
+      package = pkgs.nvidia_x11;
     };
   };
 

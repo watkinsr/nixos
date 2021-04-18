@@ -8,7 +8,6 @@
     nixpkgs-master.url = "nixpkgs/master";
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
-    nixpkgs-nvidia-patch.url = "github:pimeys/nixpkgs/nvidia-460.73.01";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +21,6 @@
     self
     , nixpkgs
     , nixpkgs-master
-    , nixpkgs-nvidia-patch
     , home-manager
     , doom-emacs
     , ...
@@ -38,7 +36,6 @@
     };
     pkgs = mkPkgs nixpkgs [];
     master = mkPkgs nixpkgs-master [];
-    nvidia-patch = mkPkgs nixpkgs-nvidia-patch [];
 
     lib = nixpkgs.lib.extend
       (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
@@ -77,7 +74,7 @@
           (self: super: {
             master = master;
             my = self.packages."${system}";
-            nvidia-patch = nvidia-patch;
+            nvidia_x11 = master.linuxPackages_5_11.nvidia_x11;
           })
           inputs.rust-overlay.overlay
           inputs.emacs.overlay
