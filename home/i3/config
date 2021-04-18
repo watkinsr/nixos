@@ -102,7 +102,6 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 bindsym $mod+a focus parent
@@ -123,7 +122,6 @@ bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
-bindsym $mod+Shift+s sticky toggle
 # put YouTube into fullscreen and execute this for media mode
 bindsym $mod+y fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1940 54
 
@@ -143,6 +141,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volume_control.p
 bindsym XF86AudioMute exec --no-startup-id $HOME/scripts/volume_control.py toggle
 bindsym $mod+Shift+v exec --no-startup-id "killall pavucontrol; $HOME/scripts/fullscreen_wrap.sh pavucontrol -t 3"
 bindsym $mod+Shift+b exec --no-startup-id "pulseaudio -k"
+bindsym $mod+Print exec --no-startup-id "sleep 0.2 ; scrot -s ~/Downloads/screenshot-$(date +%Y-%m-%d_%H-%m-%s).png"
 
 bindsym XF86MonBrightnessDown exec --no-startup-id ${HOME}/scripts/backlight.sh -dec 10
 bindsym XF86MonBrightnessUp exec --no-startup-id ${HOME}/scripts/backlight.sh -inc 10
@@ -151,10 +150,6 @@ bindsym $mod+Shift+w exec --no-startup-id $editor --name "__nmtui" -e "nmtui-con
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-
-# screenshot
-bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
-bindsym --release Shift+Print exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $HOME/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
 
 bindsym $mod+n exec --no-startup-id thunar
 
