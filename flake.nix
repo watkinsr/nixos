@@ -74,7 +74,7 @@
           (self: super: {
             master = master;
             my = self.packages."${system}";
-            nvidia_x11 = master.linuxPackages_5_11.nvidia_x11;
+            nvidia_x11 = self.linuxPackages_5_11.nvidia_x11;
           })
           inputs.rust-overlay.overlay
           inputs.emacs.overlay
