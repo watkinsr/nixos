@@ -39,6 +39,9 @@ in {
     "*" = {
       bg = "~/.config/pictures/TNEJezP.jpg fill";
     };
+    "eDP-1" = {
+      scale = "1.25";
+    };
   };
 
   input = {
@@ -85,11 +88,20 @@ in {
     outer = 0;
   };
 
+  modes = {
+    chat = {
+      Escape = "mode default";
+      e = ''exec --no-startup-id "element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland"'';
+      s = ''exec --no-startup-id "slack --enable-features=UseOzonePlatform --ozone-platform=wayland"'';
+    };
+  };
+
   keybindings = lib.mkOptionDefault {
     "${modifier}+Return" = "exec ${terminal}";
     "${modifier}+q" = "kill";
     "${modifier}+d" = "exec ${menu}";
     "${modifier}+Shift+c" = "reload";
+    "${modifier}+c" = ''mode "chat"'';
     "${modifier}+z" = ''exec --no-startup-id "emacsclient -nc"'';
     "${modifier}+n" = ''exec --no-startup-id "makoctl dismiss"'';
     "${modifier}+Shift+n" = ''exec --no-startup-id "makoctl dismiss --all"'';
