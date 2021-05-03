@@ -71,13 +71,14 @@
         };
 
         nixpkgs.overlays = [
+          inputs.rust-overlay.overlay
+          inputs.emacs.overlay
+
           (self: super: {
             master = master;
             my = self.packages."${system}";
             nvidia_x11 = self.linuxPackages_5_11.nvidia_x11;
           })
-          inputs.rust-overlay.overlay
-          inputs.emacs.overlay
         ];
       };
     };
