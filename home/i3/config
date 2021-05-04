@@ -275,9 +275,7 @@ for_window [class="(?i)pavucontrol" instance="pavucontrol-bar"] move down $heigh
 assign [class="(?i)firefox"] $ws1
 assign [class="(?i)Discord"] $ws3
 assign [class="(?i)slack"] $ws3
-assign [class="(?i)Signal"] $ws4
-assign [class="(?i)Telegram"] $ws4
-assign [class="(?i)Element"] $ws4
+assign [class="(?i)Element"] $ws3
 
 bar {
     status_command i3blocks
@@ -312,6 +310,7 @@ exec --no-startup-id picom -b --config $HOME/.config/picom/config
 exec --no-startup-id dunst &
 exec --no-startup-id element-desktop &
 exec --no-startup-id slack &
+exec --no-startup-id Discord &
 exec --no-startup-id xrdb -load ~/.Xresources
 
 exec --no-startup-id xset r rate 200 20
