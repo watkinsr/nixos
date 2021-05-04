@@ -3,7 +3,6 @@
 rec {
   xdg.configFile = {
     "pictures".source = ./home/pictures;
-    "doom.d".source = ./home/doom.d;
     "wofi/style.css".source = ./home/wofi/style.css;
     "picom/config".source = ./home/picom/config;
     "dunst/dunstrc".source = ./home/dunst/dunstrc;
@@ -24,10 +23,18 @@ rec {
     "scripts/dist.js".source = ./home/scripts/dist.js;
   };
 
+  home.file = {
+    doom = {
+      source = ./home/doom.d;
+      target = ".doom.d";
+      recursive = true;
+    };
+  };
+
   services = {
     emacs = {
       enable = true;
-      package = config.programs.emacs.package;
+      package = pkgs.emacsPgtkGcc;
     };
     redshift = {
       enable = true;
@@ -45,11 +52,6 @@ rec {
   };
 
   programs = {
-    doom-emacs = {
-      enable = true;
-      doomPrivateDir = ./home/doom.d;
-      #emacsPackage = pkgs.emacsPgtk;
-    };
     direnv = {
       enable = true;
       enableFishIntegration = true;
