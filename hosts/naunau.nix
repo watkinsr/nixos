@@ -36,7 +36,7 @@
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [ "nvidia-drm" "modeset=1" ];
+    kernelParams = [ "nvidia-drm" "modeset=1" "acpi_osi=Windows" ];
     extraModulePackages = with pkgs; [ nvidia_x11 ];
   };
 
@@ -50,32 +50,11 @@
   services.xserver = {
     videoDrivers = [ "nvidia" ];
 
-    config = ''
-      Section "Monitor"
-          # HorizSync source: edid, VertRefresh source: edid
-          Identifier     "Monitor0"
-          VendorName     "Unknown"
-          ModelName      "Samsung C49RG9x"
-          HorizSync       30.0 - 160.0
-          VertRefresh     24.0 - 120.0
-          Option         "DPMS"
-      EndSection
-
-      Section "Screen"
-          Identifier     "Screen0"
-          Device         "Device0"
-          Monitor        "Monitor0"
-          DefaultDepth   24
-          Option         "Stereo" "0"
-          Option         "nvidiaXineramaInfoOrder" "DFP-5"
-          Option         "metamodes" "5120x1440 +0+0; nvidia-auto-select +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-          Option         "SLI" "Off"
-          Option         "MultiGPU" "Off"
-          Option         "BaseMosaic" "off"
-          SubSection     "Display"
-              Depth          24
-          EndSubSection
-      EndSection
+    screenSection = ''
+      Option         "metamodes" "5120x1440 +0+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+      Option         "SLI" "Off"
+      Option         "MultiGPU" "Off"
+      Option         "BaseMosaic" "off"
     '';
   };
 
