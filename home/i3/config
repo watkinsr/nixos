@@ -305,7 +305,7 @@ bar {
 }
 
 # AUTOSTART
-exec_always --no-startup-id feh --bg-fill $HOME/.config/pictures/0dbgaexeolw61.png
+exec_always --no-startup-id feh --bg-fill $HOME/.config/pictures/85kpazrfhbv61.png
 exec --no-startup-id picom -b --config $HOME/.config/picom/config
 exec --no-startup-id dunst &
 exec --no-startup-id element-desktop &
