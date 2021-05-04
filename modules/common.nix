@@ -152,6 +152,7 @@
     thefuck
     sysstat
     element-desktop
+    discord
     tree
     tmux
     zip
