@@ -207,7 +207,7 @@ detect-rounded-corners = true;
 
 # Specify refresh rate of the screen.
 # If not specified or 0, picom will try detecting this with X RandR extension.
-refresh-rate = 60;
+refresh-rate = 120;
 
 # Set VSync method. VSync methods currently available:
 # none: No VSync
