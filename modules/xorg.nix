@@ -22,7 +22,7 @@
         libinput
         rofi
         i3status
-        i3lock
+        i3lock-fancy
         i3blocks-gaps
         feh
         dunst
