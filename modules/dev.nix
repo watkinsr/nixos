@@ -32,6 +32,5 @@
     postgresql_12
     gnumake
     evcxr
-    emacsPgtkGcc
   ];
 }
