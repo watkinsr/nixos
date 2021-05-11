@@ -6,7 +6,7 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.url = "github:pimeys/rust-overlay/v1.52.1";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
     home-manager = {
       url = "github:nix-community/home-manager";
