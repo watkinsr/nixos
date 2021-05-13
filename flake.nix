@@ -80,7 +80,7 @@
           (self: super: {
             master = master;
             my = self.packages."${system}";
-            nvidia_x11 = nvidia-patch.linuxPackages_5_11.nvidia_x11;
+            nvidia_x11 = nvidia-patch.linuxPackages_latest.nvidia_x11;
           })
         ];
       };
