@@ -36,10 +36,12 @@ in {
   fonts = [ "pango:Hack" "FontAwesome 12" ];
 
   output = {
-    "*" = {
-      bg = "~/.config/pictures/TNEJezP.jpg fill";
+    "DP-2" = {
+      bg = "~/.config/pictures/85kpazrfhbv61.png fill";
+      pos = "0 0 res 5120x1440";
     };
     "eDP-1" = {
+      bg = "~/.config/pictures/TNEJezP.jpg fill";
       scale = "1.25";
     };
   };
@@ -89,6 +91,19 @@ in {
   };
 
   modes = {
+    resize = {
+      Left = "resize shrink width 10 px or 1 ppt";
+      Down = "resize grow height 10 px or 1 ppt";
+      Up = "resize shrink height 10 px or 1 ppt";
+      Right = "resize grow width 10 px or 1 ppt";
+      Return = ''mode "default"'';
+      Escape = ''mode "default"'';
+
+      "Shift+Left" = "resize shrink width 20 px or 5 ppt";
+      "Shift+Down" = "resize grow height 20 px or 5 ppt";
+      "Shift+Up" = "resize shrink height 20 px or 5 ppt";
+      "Shift+Right" = "resize grow width 20 px or 5 ppt";
+    };
     chat = {
       Escape = "mode default";
       e = ''exec --no-startup-id "element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland"'';
@@ -102,6 +117,7 @@ in {
     "${modifier}+d" = "exec ${menu}";
     "${modifier}+Shift+c" = "reload";
     "${modifier}+c" = ''mode "chat"'';
+    "${modifier}+r" = ''mode "resize"'';
     "${modifier}+z" = ''exec --no-startup-id "emacsclient -nc"'';
     "${modifier}+n" = ''exec --no-startup-id "makoctl dismiss"'';
     "${modifier}+Shift+n" = ''exec --no-startup-id "makoctl dismiss --all"'';

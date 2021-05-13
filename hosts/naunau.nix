@@ -13,6 +13,7 @@
       ../modules/work.nix
       ../modules/home-services.nix
       ../modules/gaming.nix
+      ../modules/wayland.nix
     ];
 
   boot = {
@@ -38,7 +39,6 @@
   };
   
   services.sshd.enable = true;
-
 
   hardware = {
     cpu.amd.updateMicrocode = true;
