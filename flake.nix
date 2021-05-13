@@ -6,6 +6,7 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
+    nixpkgs-nvidia.url = "github:pimeys/nixpkgs/nvidia-460.80";
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
     home-manager = {
@@ -21,6 +22,7 @@
     self
     , nixpkgs
     , nixpkgs-master
+    , nixpkgs-nvidia
     , home-manager
     , doom-emacs
     , ...
@@ -36,6 +38,7 @@
     };
     pkgs = mkPkgs nixpkgs [];
     master = mkPkgs nixpkgs-master [];
+    nvidia-patch = mkPkgs nixpkgs-nvidia [];
 
     lib = nixpkgs.lib.extend
       (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
@@ -77,7 +80,7 @@
           (self: super: {
             master = master;
             my = self.packages."${system}";
-            nvidia_x11 = self.linuxPackages_5_11.nvidia_x11;
+            nvidia_x11 = nvidia-patch.linuxPackages_5_11.nvidia_x11;
           })
         ];
       };
