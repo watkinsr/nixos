@@ -153,6 +153,7 @@ rec {
           };
           size = 14.0;
         };
+        background_opacity = 0.9;
         colors = {
           primary = {
             background = "0x002635";
