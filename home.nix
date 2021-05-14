@@ -7,6 +7,7 @@ rec {
     "wofi/style.css".source = ./home/wofi/style.css;
     "picom/config".source = ./home/picom/config;
     "dunst/dunstrc".source = ./home/dunst/dunstrc;
+    "wlogout/layout".source = ./home/wlogout/layout;
     "i3/config".source = ./home/i3/config;
     "i3/i3exit".source = ./home/i3/i3exit;
     "i3/i3subscribe".source = ./home/i3/i3subscribe;

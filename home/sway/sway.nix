@@ -42,7 +42,6 @@ in {
     };
     "eDP-1" = {
       bg = "~/.config/pictures/TNEJezP.jpg fill";
-      scale = "1.25";
     };
   };
 
