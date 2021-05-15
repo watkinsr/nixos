@@ -32,5 +32,7 @@
     postgresql_12
     gnumake
     evcxr
+    valgrind
+    massif-visualizer
   ];
 }
