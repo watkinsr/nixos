@@ -47,6 +47,10 @@
   nix.maxJobs = 32;
   powerManagement.cpuFreqGovernor = "performance";
 
+  environment.systemPackages = with pkgs; [
+    corectrl
+  ];
+
   fileSystems."/" =
     { device = "zroot/root/nixos";
       fsType = "zfs";
