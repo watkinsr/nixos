@@ -2,3 +2,4 @@
 ;;; $DOOMDIR/packages.el
 
 (package! direnv)
+(package! pest-mode)

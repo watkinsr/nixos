@@ -29,7 +29,7 @@
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];
-    kernelParams = [];
+    kernelParams = [ "amdgpu.freesync_video=1" ];
     extraModulePackages = with pkgs; [];
   };
 
