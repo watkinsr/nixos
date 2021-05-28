@@ -28,6 +28,7 @@
       options = "--delete-older-than-7d";
     };
 
+    sandboxPaths = [ "/bin/sh=${pkgs.bash}/bin/sh" ];
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes

@@ -60,6 +60,7 @@ rec {
       userEmail = "julius+github@nauk.io";
       extraConfig = {
         pull.rebase = true;
+        init.defaultBranch = "main";
       };
       aliases = {
         co = "checkout";
