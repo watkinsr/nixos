@@ -66,7 +66,7 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_5_11;
     supportedFilesystems = [ "zfs" ];
 
     kernelModules = [ "tcp_bbr" ];
