@@ -2,11 +2,7 @@
 
 {
   services = {
-    # Holy fuck this printer. Installation instructions for the future me:
-    #
-    # - Open CUPS admin: http://localhost:631/
-    # - Printer type LPD/LPR
-    # - Address: socket://10.0.0.17:9100 (or whatever IP you set in your future router)
+    # lpadmin -p Brother -E -v ipp://10.0.0.17/ipp -m everywhere
     printing = {
       enable = true;
       allowFrom = [ "localhost" "muspus" "naunau" ];
@@ -15,6 +11,22 @@
   };
 
   hardware = {
+    printers = {
+      ensureDefaultPrinter = "Brother_Upstairs";
+      ensurePrinters = [
+        {
+          description = "Brother MFC-L2710DW";
+          deviceUri = "ipp://10.0.0.17/ipp";
+          location = "Living room";
+          name = "Brother_Upstairs";
+          model = "everywhere";
+          ppdOptions = {
+            PageSize = "A4";
+          };
+        }
+      ];
+    };
+
     sane = {
       enable = true;
       brscan4 = {
