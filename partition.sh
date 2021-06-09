@@ -14,7 +14,7 @@ zpool create \
     -O atime=off \
     -O compression=lz4 \
     -O xattr=sa \
-    zroot $DISK
+    zroot $DISK-part1
 
 zfs create -o mountpoint=legacy zroot/root
 zfs create -o mountpoint=legacy zroot/root/nixos

@@ -122,6 +122,20 @@
         };
       };
 
+      # Prisma ThinkPad X1c
+      purrpurr = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [
+          ./hosts/purrpurr.nix
+          common
+          #wayland
+        ] ++ home;
+        specialArgs = {
+          inherit inputs;
+          inherit home-manager;
+        };
+      };
+
       # ThinkPad X230 laptop runs this branch.
       meowmeow = nixpkgs.lib.nixosSystem {
         system = system;
