@@ -24,4 +24,4 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 1. Reboot!
 1. Change your `root` and `$USER` passwords!
 1. `chmod -R pimeys:users /etc/nixos`
-1. `ln -s /etc/nixos /home/pimeys/.confit/nixpkgs`
+1. `ln -s /etc/nixos /home/pimeys/.config/nixpkgs`
