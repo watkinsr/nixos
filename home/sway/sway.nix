@@ -126,6 +126,8 @@ in {
     "${modifier}+n" = ''exec --no-startup-id "makoctl dismiss"'';
     "${modifier}+Shift+n" = ''exec --no-startup-id "makoctl dismiss --all"'';
     "${modifier}+Print" = ''exec grim -t png -g "$(slurp)" ~/Downloads/$(date +%Y-%m-%d_%H-%m-%s).png'';
+    "${modifier}+i" = ''exec brillo -U 10'';
+    "${modifier}+o" = ''exec brillo -A 10'';
 
     "Mod1+Control+l" = ''exec --no-startup-id wlogout'';
   };

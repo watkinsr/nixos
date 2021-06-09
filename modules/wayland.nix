@@ -53,6 +53,7 @@
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
     extraPackages = with pkgs; [
+      brillo
       xwayland
       swaylock-effects
       swayidle
