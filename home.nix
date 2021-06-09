@@ -152,7 +152,7 @@ rec {
             family = "Inconsolata";
             style = "Bold Italic";
           };
-          size = 14.0;
+          size = 18.0;
         };
         background_opacity = 0.9;
         colors = {
