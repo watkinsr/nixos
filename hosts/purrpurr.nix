@@ -15,6 +15,18 @@
       ../modules/laptop.nix
     ];
 
+  home-manager.users.pimeys = {
+    wayland.windowManager.sway = {
+      config = {
+        output = {
+          "eDP-1" = {
+            scale = "1.5";
+          };
+        };
+      };
+    };
+  };
+
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
@@ -49,7 +61,7 @@
 
   swapDevices = [ ];
 
-  hardware.video.hidpi.enable = lib.mkDefault false;
+  hardware.video.hidpi.enable = lib.mkDefault true;
 
   networking = {
     interfaces = {

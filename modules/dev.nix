@@ -6,6 +6,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    emacsPgtkGcc
     ansible
     neovim
     git
