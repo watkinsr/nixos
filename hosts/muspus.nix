@@ -15,6 +15,18 @@
       ../modules/laptop.nix
     ];
 
+  home-manager.users.pimeys = {
+    wayland.windowManager.sway = {
+      config = {
+        output = {
+          "eDP-1" = {
+            scale = "1.25";
+          };
+        };
+      };
+    };
+  };
+
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
