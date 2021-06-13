@@ -15,6 +15,8 @@
       ../modules/laptop.nix
     ];
 
+  time.timeZone = "Europe/Berlin";
+
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "ehci_pci" "ata_piix" "usb_storage" "sd_mod" "sdhci_pci" ];

@@ -11,9 +11,11 @@
       ../modules/multimedia.nix
       ../modules/work.nix
       ../modules/wayland.nix
-      ../modules/home-services.nix
+      #../modules/home-services.nix
       ../modules/laptop.nix
     ];
+
+  time.timeZone = "Europe/Helsinki";
 
   home-manager.users.pimeys = {
     wayland.windowManager.sway = {

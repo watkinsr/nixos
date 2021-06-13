@@ -16,6 +16,8 @@
       ../modules/wayland.nix
     ];
 
+  time.timeZone = "Europe/Berlin";
+
   boot = {
     initrd = {
       availableKernelModules = [

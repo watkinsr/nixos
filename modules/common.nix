@@ -3,7 +3,6 @@
 {
   imports = [ ../cachix.nix ];
 
-  time.timeZone = "Europe/Berlin";
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "20.09";
 
