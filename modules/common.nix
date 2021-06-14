@@ -146,6 +146,7 @@
     bc
     bind
     blueman
+    bottom
     brightnessctl
     cachix
     discord
