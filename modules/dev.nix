@@ -17,6 +17,7 @@
     zlib
     ripgrep
     xsv
+    exa
     fd
     openjdk
     android-studio
