@@ -16,6 +16,7 @@
     binutils
     zlib
     ripgrep
+    xsv
     fd
     openjdk
     android-studio
