@@ -67,6 +67,12 @@ rec {
         ci = "commit";
       };
     };
+    mcfly = {
+      enable = true;
+      enableFishIntegration = true;
+      enableFuzzySearch = true;
+      keyScheme = "vim";
+    };
     fish = {
       enable = true;
       interactiveShellInit = ''
