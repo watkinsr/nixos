@@ -6,37 +6,31 @@
   };
 
   environment.systemPackages = with pkgs; [
-    emacsPgtkGcc
-    ansible
-    neovim
-    git
-    gdb
-    perl
-    clang
-    binutils
-    zlib
-    ripgrep
-    xsv
-    exa
-    dust
-    fd
-    openjdk
     android-studio
-    jq
+    ansible
+    binutils
+    cargo-bloat
+    cargo-watch
+    clang
+    docker-compose
+    emacsPgtkGcc
+    evcxr
+    gdb
+    git
+    gnumake
+    massif-visualizer
+    mysql-client
+    neovim
     nodejs-slim
     nodePackages.npm
-    starship
-    docker-compose
+    openjdk
+    perl
+    postgresql_12
     python3
+    ripgrep
     rust-analyzer
     rust-bin.stable.latest.default
-    cargo-watch
-    cargo-bloat
-    mysql-client
-    postgresql_12
-    gnumake
-    evcxr
     valgrind
-    massif-visualizer
+    zlib
   ];
 }

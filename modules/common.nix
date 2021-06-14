@@ -142,40 +142,47 @@
 
   environment.systemPackages = with pkgs; [
     alacritty
-    wget
+    bat
+    bc
+    bind
+    blueman
     brightnessctl
-    polkit_gnome
+    cachix
+    discord
+    dmidecode
+    dust
+    element-desktop
+    exa
+    fd
+    feh
+    fish
+    groff
+    gsettings-desktop-schemas
     gtk-engine-murrine
     gtk_engines
-    gsettings-desktop-schemas
-    lxappearance
-    fish
-    htop
-    thefuck
-    sysstat
-    element-desktop
-    discord
-    tree
-    tmux
-    zip
-    unzip
-    zstd
-    blueman
-    qt5.qtwayland
-    lm_sensors
-    bat
-    home-manager
     home-assistant-cli
-    signal-desktop
-    bc
-    mc
-    speedcrunch
-    cachix
-    openssl
-    groff
-    bind
+    home-manager
+    htop
+    jq
+    lm_sensors
+    lxappearance
     man-db
-    dmidecode
-    feh
+    mc
+    openssl
+    polkit_gnome
+    qt5.qtwayland
+    signal-desktop
+    speedcrunch
+    starship
+    sysstat
+    tealdeer
+    thefuck
+    tmux
+    tree
+    unzip
+    wget
+    xsv
+    zip
+    zstd
   ];
 }
