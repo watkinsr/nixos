@@ -18,6 +18,7 @@
     ripgrep
     xsv
     exa
+    dust
     fd
     openjdk
     android-studio
