@@ -67,6 +67,8 @@
 (after! rustic
   (setq rustic-format-trigger 'on-save))
 
+(add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
+
 (use-package! tree-sitter
   :config
   (require 'tree-sitter-langs)

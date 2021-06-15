@@ -5,3 +5,4 @@
 (package! pest-mode)
 (package! tree-sitter)
 (package! tree-sitter-langs)
+(package! magit-delta)

@@ -54,6 +54,15 @@ rec {
     };
     git = {
       enable = true;
+      delta = {
+        enable = true;
+        options = {
+          syntax-theme = "Monokai Extended Bright";
+          minus-style = "#fdf6e3 #dc322f";
+          plus-style = "#fdf6e3 #859900";
+          side-by-side = true;
+        };
+      };
       userName = "Julius de Bruijn";
       userEmail = "julius+github@nauk.io";
       extraConfig = {
