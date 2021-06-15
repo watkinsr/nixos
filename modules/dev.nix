@@ -13,7 +13,6 @@
     cargo-watch
     clang
     docker-compose
-    emacsPgtkGcc
     evcxr
     gdb
     git

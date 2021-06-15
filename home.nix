@@ -29,7 +29,7 @@ rec {
   services = {
     emacs = {
       enable = true;
-      package = pkgs.emacsPgtkGcc;
+      package = pkgs.emacsPgtk;
     };
     redshift = {
       enable = true;
@@ -47,10 +47,15 @@ rec {
   };
 
   programs = {
+    emacs = {
+      enable = true;
+      package = pkgs.emacsPgtk;
+      extraPackages = (epkgs: [ epkgs.vterm ] );
+    };
     direnv = {
       enable = true;
       enableFishIntegration = true;
-      enableNixDirenvIntegration = true;
+      nix-direnv.enable = true;
     };
     git = {
       enable = true;
