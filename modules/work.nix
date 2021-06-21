@@ -6,5 +6,6 @@
      google-cloud-sdk
      jetbrains.idea-community
      slack
+     zoom-us
   ];
 }
