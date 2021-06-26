@@ -29,7 +29,7 @@ rec {
   services = {
     emacs = {
       enable = true;
-      package = pkgs.emacsPgtk;
+      package = pkgs.emacsPgtkGcc;
     };
     redshift = {
       enable = true;
@@ -49,7 +49,7 @@ rec {
   programs = {
     emacs = {
       enable = true;
-      package = pkgs.emacsPgtk;
+      package = pkgs.emacsPgtkGcc;
       extraPackages = (epkgs: [ epkgs.vterm ] );
     };
     direnv = {
@@ -62,8 +62,10 @@ rec {
       delta = {
         enable = true;
         options = {
-          syntax-theme = "gruvbox-light";
-          side-by-side = true;
+          syntax-theme = "solarized-dark";
+          minus-style = "#fdf6e3 #dc322f";
+          plus-style = "#fdf6e3 #859900";
+          side-by-side = false;
         };
       };
       userName = "Julius de Bruijn";
@@ -172,7 +174,7 @@ rec {
           size = 14.0;
         };
         background_opacity = 0.9;
-        colors = import ./home/alacritty/gruvbox_light.nix {};
+        colors = import ./home/alacritty/solarized_dark.nix {};
       };
     };
   };

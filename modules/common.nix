@@ -185,5 +185,7 @@
     xsv
     zip
     zstd
+    file
+    libuchardet
   ];
 }
