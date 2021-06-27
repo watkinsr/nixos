@@ -83,14 +83,10 @@
     };
   };
 
-  services.greetd = {
-    enable = true;
-    restart = false;
-    settings = {
-      default_session = {
-        command = "${pkgs.cage}/bin/cage ${pkgs.greetd.gtkgreet}/bin/gtkgreet -- --command=sway";
-        user = "greeter";
-      };
+  services.xserver = {
+    displayManager = {
+      defaultSession = "sway";
+      gdm.wayland = true;
     };
   };
 
@@ -99,8 +95,6 @@
     systemPackages = with pkgs; [
       firefox-wayland
       polkit_gnome
-      cage
-      greetd.gtkgreet
     ];
   };
 

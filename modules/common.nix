@@ -15,6 +15,9 @@
       trim.enable = true;
       autoScrub.enable = true;
     };
+    xserver = {
+      enable = true;
+    };
   };
 
   nix = {
