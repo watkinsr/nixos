@@ -18,6 +18,20 @@
 
   time.timeZone = "Europe/Berlin";
 
+  home-manager.users.pimeys = {
+    wayland.windowManager.sway = {
+      config = {
+        output = {
+          "*" = {
+            bg = "~/.config/pictures/85kpazrfhbv61.png fill";
+            pos = "0 0 res 5120x1440";
+            adaptive_sync = "off";
+          };
+        };
+      };
+    };
+  };
+
   boot = {
     initrd = {
       availableKernelModules = [
