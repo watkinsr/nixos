@@ -11,7 +11,6 @@
       ../modules/multimedia.nix
       ../modules/work.nix
       ../modules/wayland.nix
-      ../modules/laptop.nix
     ];
 
   time.timeZone = "Europe/Berlin";
@@ -28,23 +27,10 @@
     };
   };
 
-
-  boot = {
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
-    };
-
-    kernelModules = [
-      "kvm-intel"
-    ];
-
-    kernelParams = [
-      "intel_pstate=passive"
-      "i915.enable_fbc=1"
-      "i915.enable_psr=2"
-    ];
-  };
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "uas" "usbhid" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     { device = "zroot/root/nixos";
@@ -57,7 +43,7 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DED2-1948";
+    { device = "/dev/disk/by-uuid/9DEB-2857";
       fsType = "vfat";
     };
 
@@ -67,11 +53,10 @@
 
   networking = {
     interfaces = {
-      enp0s31f6.useDHCP = true;
-      wlan0.useDHCP = true;
+      enp5s0.useDHCP = true;
     };
 
-    hostId = "CC221B11";
-    hostName = "purrpurr";
+    hostId = "CC221B18";
+    hostName = "munchmunch";
   };
 }

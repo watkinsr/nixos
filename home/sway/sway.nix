@@ -39,12 +39,7 @@ in {
   };
 
   output = {
-    "DP-2" = {
-      bg = "~/.config/pictures/85kpazrfhbv61.png fill";
-      pos = "0 0 res 5120x1440";
-      adaptive_sync = "off";
-    };
-    "eDP-1" = {
+    "*" = {
       bg = "~/.config/pictures/TNEJezP.jpg fill";
     };
   };

@@ -150,11 +150,24 @@
         };
       };
 
-      # The big workstation (AMD/NVIDIA) uses this.
+      # The home workstation (AMD) uses this.
       naunau = nixpkgs.lib.nixosSystem {
         system = system;
         modules = [
           ./hosts/naunau.nix
+          common
+        ] ++ home;
+        specialArgs = {
+          inherit inputs;
+          inherit home-manager;
+        };
+      };
+
+      # The office workstation (AMD) uses this.
+      munchmunch = nixpkgs.lib.nixosSystem {
+        system = system;
+        modules = [
+          ./hosts/munchmunch.nix
           common
         ] ++ home;
         specialArgs = {
