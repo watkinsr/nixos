@@ -2,10 +2,11 @@
 
 Configuration for home directory and a complete NixOS system. Machine configurations are in `hosts/`, split currently into two hosts:
 
-- `naunau` has the Workstation configuration. AMD system with a Radeon graphics card using Wayland/Sway.
-- `meowmeow` has the ThinkPad X230 configuration. Intel system using Wayland/Sway.
-- `muspus` has the ThinkPad T25 configuration. Intel system using Wayland/Sway.
-- `purrpurr` has the ThinkPad X1 Carbon configuration. Intel system using Wayland/Sway.
+- `naunau` has the home workstation configuration. AMD Ryzen 3950x system with a Radeon graphics card.
+- `meowmeow` has the ThinkPad X230 configuration. Intel system.
+- `muspus` has the ThinkPad T25 configuration. Intel system.
+- `purrpurr` has the ThinkPad X1 Carbon configuration. Intel system.
+- `munchmunch` has the office workstation configuration. AMD ThreadRipper 2970wx system with a Radeon graphics card.
 
 ## New system installation
 
