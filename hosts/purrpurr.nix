@@ -15,7 +15,7 @@
       ../modules/laptop.nix
     ];
 
-  time.timeZone = "Europe/Helsinki";
+  time.timeZone = "Europe/Berlin";
 
   home-manager.users.pimeys = {
     wayland.windowManager.sway = {
