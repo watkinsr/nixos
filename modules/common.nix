@@ -45,6 +45,8 @@
       "networkmanager"
       "docker"
       "scanner"
+      "libvirtd"
+      "kvm"
     ];
   };
 
