@@ -31,5 +31,6 @@
     rust-bin.stable.latest.default
     valgrind
     zlib
+    pscale.pscale
   ];
 }

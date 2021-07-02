@@ -189,5 +189,6 @@
     zstd
     file
     libuchardet
+    pciutils
   ];
 }

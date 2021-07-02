@@ -47,6 +47,7 @@ rec {
   };
 
   programs = {
+    go.enable = true;
     emacs = {
       enable = true;
       package = pkgs.emacsPgtkGcc;

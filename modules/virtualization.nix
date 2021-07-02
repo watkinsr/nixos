@@ -2,7 +2,13 @@
 
 {
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemuOvmf = true;
+      qemuRunAsRoot = false;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+    };
     virtualbox.host = {
       enable = true;
       enableExtensionPack = true;
