@@ -32,5 +32,6 @@
     valgrind
     zlib
     pscale.pscale
+    fzf
   ];
 }
