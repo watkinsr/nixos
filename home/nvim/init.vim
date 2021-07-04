@@ -19,7 +19,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " automatic parentheses
-Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+
+" Tree
+Plug 'scrooloose/nerdtree'
 
 " Commenting
 Plug 'scrooloose/nerdcommenter'
@@ -43,6 +46,12 @@ Plug 'LnL7/vim-nix'
 " Fuzzy find
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
+" Prisma hilights
+Plug 'pantharshit00/vim-prisma'
+
+" Unix utilities
+Plug 'tpope/vim-eunuch'
 
 call plug#end()
 
@@ -120,6 +129,9 @@ autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+" NERDTree
+map <C-r> :NERDTreeToggle<CR>
 
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
