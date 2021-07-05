@@ -53,6 +53,18 @@ Plug 'pantharshit00/vim-prisma'
 " Unix utilities
 Plug 'tpope/vim-eunuch'
 
+" Lua functions
+Plug 'nvim-lua/plenary.nvim'
+
+" LSP extras
+Plug 'neovim/nvim-lspconfig'
+
+" Typescript
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+
+" TOML
+Plug 'cespare/vim-toml'
+
 call plug#end()
 
 syntax enable
@@ -133,6 +145,10 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " NERDTree
 map <C-r> :NERDTreeToggle<CR>
 
+" Jump things
+map <C-p> :Rg<CR>
+map <C-f> :Files<CR>
+
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
 set signcolumn=yes
@@ -152,6 +168,3 @@ hi HighlightedyankRegion cterm=reverse gui=reverse
 
 " signify/git
 set updatetime=100
-
-" automatically cwd to current directory
-autocmd BufEnter * silent! lcd %:p:h
