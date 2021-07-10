@@ -6,7 +6,6 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
-    nixpkgs-pscale.url = "github:pimeys/nixpkgs/planetscale";
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
     home-manager = {
@@ -22,7 +21,6 @@
     self
     , nixpkgs
     , nixpkgs-master
-    , nixpkgs-pscale
     , home-manager
     , doom-emacs
     , ...
@@ -38,7 +36,6 @@
     };
     pkgs = mkPkgs nixpkgs [];
     master = mkPkgs nixpkgs-master [];
-    pscale = mkPkgs nixpkgs-pscale [];
 
     lib = nixpkgs.lib.extend
       (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
@@ -79,7 +76,6 @@
 
           (self: super: {
             master = master;
-            pscale = pscale;
             my = self.packages."${system}";
           })
         ];

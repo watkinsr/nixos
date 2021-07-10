@@ -67,7 +67,7 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_5_12;
+    kernelPackages = pkgs.linuxPackages;
     supportedFilesystems = [ "zfs" ];
 
     zfs.enableUnstable = true;
@@ -190,5 +190,6 @@
     file
     libuchardet
     pciutils
+    libqrencode
   ];
 }

@@ -7,5 +7,6 @@
      jetbrains.idea-community
      slack
      zoom-us
+     libreoffice
   ];
 }
