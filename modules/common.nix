@@ -70,7 +70,7 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.master.linuxPackages_latest;
     supportedFilesystems = [ "zfs" ];
 
     zfs.enableUnstable = true;
