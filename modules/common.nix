@@ -18,6 +18,9 @@
     xserver = {
       enable = true;
     };
+    tailscale = {
+      enable = true;
+    };
   };
 
   nix = {
@@ -123,6 +126,11 @@
     # replicates the default behaviour.
     useDHCP = false;
     networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      trustedInterfaces = [ "tailscale0" ];
+      allowedUDPPorts = [ 41641 ];
+    };
 
     timeServers = [
       "0.de.pool.ntp.org"
@@ -191,5 +199,6 @@
     libuchardet
     pciutils
     libqrencode
+    tailscale
   ];
 }
