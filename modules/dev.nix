@@ -31,7 +31,7 @@
     rust-bin.stable.latest.default
     valgrind
     zlib
-    pscale
+    master.pscale
     fzf
   ];
 }
