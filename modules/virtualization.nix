@@ -9,10 +9,6 @@
       onBoot = "ignore";
       onShutdown = "shutdown";
     };
-    virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
   };
 
   programs.dconf.enable = true;
