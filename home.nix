@@ -49,6 +49,14 @@ rec {
 
   programs = {
     go.enable = true;
+    ssh = {
+      enable = true;
+      extraConfig = ''
+        Host oneplus-8-pro
+          User u0_a340
+          Port 2222
+      '';
+    };
     emacs = {
       enable = true;
       package = pkgs.emacsPgtkGcc;
