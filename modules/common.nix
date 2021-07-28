@@ -20,6 +20,7 @@
     };
     tailscale = {
       enable = true;
+      package = pkgs.master.tailscale;
     };
   };
 
@@ -199,6 +200,6 @@
     libuchardet
     pciutils
     libqrencode
-    tailscale
+    master.tailscale
   ];
 }
