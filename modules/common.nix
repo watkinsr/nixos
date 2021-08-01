@@ -51,6 +51,7 @@
       "scanner"
       "libvirtd"
       "kvm"
+      "input"
     ];
   };
 
@@ -201,5 +202,6 @@
     pciutils
     libqrencode
     master.tailscale
+    linux-pam
   ];
 }

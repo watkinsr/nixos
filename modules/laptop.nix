@@ -24,6 +24,28 @@
     cpuFreqGovernor = "shedutil";
   };
 
+  security = {
+    pam = {
+      services = {
+        login.fprintAuth = true;
+        swaylock-effects.fprintAuth = true;
+        sudo.fprintAuth = true;
+        system-local-login.fprintAuth = true;
+        su.fprintAuth = true;
+        gdm.fprintAuth = true;
+      };
+    };
+  };
+
+  services = {
+    fwupd = {
+      enable = true;
+    };
+    fprintd = {
+      enable = true;
+    };
+  };
+
   networking = {
     wireless.iwd.enable = true;
     networkmanager = {
