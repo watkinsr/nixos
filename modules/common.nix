@@ -189,6 +189,7 @@
     starship
     sysstat
     tealdeer
+    tdesktop
     thefuck
     tmux
     tree
