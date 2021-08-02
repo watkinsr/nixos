@@ -3,7 +3,6 @@
 rec {
   xdg.configFile = {
     "pictures".source = ./home/pictures;
-    "nvim".source = ./home/nvim;
     "wofi/style.css".source = ./home/wofi/style.css;
     "picom/config".source = ./home/picom/config;
     "dunst/dunstrc".source = ./home/dunst/dunstrc;

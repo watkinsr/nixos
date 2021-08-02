@@ -10,6 +10,7 @@
       ../modules/multimedia.nix
       ../modules/work.nix
       ../modules/wayland.nix
+      ../modules/home-services.nix
     ];
 
   time.timeZone = "Europe/Berlin";
