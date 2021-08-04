@@ -52,6 +52,7 @@
       "libvirtd"
       "kvm"
       "input"
+      "adbusers"
     ];
   };
 
