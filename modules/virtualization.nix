@@ -12,6 +12,5 @@
   };
 
   programs.dconf.enable = true;
-  users.extraGroups.vboxusers.members = [ "pimeys" ];
   environment.systemPackages = with pkgs; [ virt-manager ];
 }

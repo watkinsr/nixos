@@ -13,6 +13,7 @@
       ../modules/wayland.nix
       ../modules/home-services.nix
       ../modules/laptop.nix
+      ../modules/virtualization.nix
     ];
 
   time.timeZone = "Europe/Berlin";
@@ -25,6 +26,16 @@
             scale = "1.25";
           };
         };
+      };
+    };
+  };
+
+  services = {
+    fprintd = {
+      package = pkgs.fprintd;
+      tod = {
+        enable = true;
+        driver = pkgs.master.libfprint-2-tod1-vfs0090;
       };
     };
   };
@@ -60,17 +71,17 @@
   };
 
   fileSystems."/" =
-    { device = "rpool/root/nixos";
+    { device = "zroot/root/nixos";
       fsType = "zfs";
     };
 
   fileSystems."/home" =
-    { device = "rpool/home";
+    { device = "zroot/home";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6CB4-D8D9";
+    { device = "/dev/disk/by-uuid/D95D-B8C7";
       fsType = "vfat";
     };
 }
