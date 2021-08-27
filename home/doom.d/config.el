@@ -29,6 +29,9 @@
 
 (setq doom-font "Inconsolata 14")
 
+;; those lines too long errors...
+(setq max-specpdl-size 50000)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
