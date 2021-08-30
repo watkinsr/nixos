@@ -6,3 +6,4 @@
 (package! tree-sitter)
 (package! tree-sitter-langs)
 (package! magit-delta)
+(package! solarized-theme)
