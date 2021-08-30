@@ -167,6 +167,7 @@
     bottom
     brightnessctl
     cachix
+    chafa
     discord
     dmidecode
     dust
