@@ -24,6 +24,7 @@
           export MOZ_DBUS_REMOTE="1";
           export XDG_SESSION_TYPE="wayland";
           export XDG_CURRENT_DESKTOP="sway";
+          export MC_SKIN=$HOME/.config/mc/selenized.ini;
           source /etc/nixos/secret/secret;
         '';
         extraConfig = ''

@@ -20,6 +20,7 @@ rec {
     "scripts/temperature.sh".source = ./home/scripts/temperature.sh;
     "scripts/wifi.sh".source = ./home/scripts/wifi.sh;
     "scripts/dist.js".source = ./home/scripts/dist.js;
+    "mc/selenized.ini".source = ./home/mc/selenized.ini;
   };
 
   home.file = {
