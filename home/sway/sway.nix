@@ -2,7 +2,7 @@
 
 let
   modifier = "Mod4";
-  terminal = "alacritty";
+  terminal = "foot";
   menu = "wofi --show run";
 
   darkred = "#cc241d";
