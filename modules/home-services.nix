@@ -44,6 +44,27 @@
     simple-scan
   ];
 
+  networking = {
+    extraHosts = ''
+      10.0.0.2 hifiberry.local
+      10.0.0.3 hass.local
+      10.0.0.4 influxdb.local
+      10.0.0.5 grafana.local
+      10.0.0.6 unifi.local
+      10.0.0.7 truenas.local
+      10.0.0.8 transmission.local
+      10.0.0.9 ipmi.local
+      10.0.0.10 monolith.local
+      10.0.0.11 artist.local
+      10.0.0.13 tv.local
+      10.0.0.15 postgres.local
+      10.0.0.16 hue.local
+      10.0.0.17 printer.local
+      10.0.0.19 git.local
+      10.0.0.20 shield.local
+    '';
+  };
+
   #
   # NAS mounts
   #

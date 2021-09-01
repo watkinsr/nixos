@@ -141,11 +141,6 @@
       "2.de.pool.ntp.org"
       "3.de.pool.ntp.org"
     ];
-
-    extraHosts = ''
-      10.0.0.3 hass.local
-      10.0.0.19 git.local
-    '';
   };
 
   programs.light.enable = true;
