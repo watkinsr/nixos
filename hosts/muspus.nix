@@ -13,7 +13,6 @@
       ../modules/wayland.nix
       ../modules/home-services.nix
       ../modules/laptop.nix
-      ../modules/virtualization.nix
     ];
 
   time.timeZone = "Europe/Berlin";
@@ -26,16 +25,6 @@
             scale = "1";
           };
         };
-      };
-    };
-  };
-
-  services = {
-    fprintd = {
-      package = pkgs.fprintd;
-      tod = {
-        enable = true;
-        driver = pkgs.master.libfprint-2-tod1-vfs0090;
       };
     };
   };
