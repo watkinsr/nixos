@@ -131,7 +131,7 @@
   environment = {
     pathsToLink = [ "/libexec" ];
     systemPackages = with pkgs; [
-      firefox-wayland
+      firefox-esr-91
       polkit_gnome
     ];
   };
