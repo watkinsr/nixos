@@ -106,6 +106,18 @@ rec {
         set PATH ~/.cargo/bin ~/.local/bin $PATH
         set EDITOR ${pkgs.neovim}/bin/nvim
       '';
+      functions = {
+        flakify = ''
+          if not test -e flake.nix
+            wget https://raw.githubusercontent.com/pimeys/nix-prisma-example/main/flake.nix
+            nvim flake.nix
+          end
+          if not test -e .envrc
+            echo "use flake" > .envrc
+            direnv allow
+          end
+        '';
+      };
       plugins = [
         {
           name = "agnoster";
