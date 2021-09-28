@@ -28,10 +28,6 @@ rec {
   };
 
   services = {
-    emacs = {
-      enable = true;
-      package = pkgs.emacsPgtkGcc;
-    };
     redshift = {
       enable = true;
       package = pkgs.redshift-wlr;

@@ -29,7 +29,6 @@
         '';
         extraConfig = ''
           exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
-          exec --no-startup-id systemctl --user restart emacs.service &
           exec --no-startup-id mako &
           exec --no-startup-id swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
         '';

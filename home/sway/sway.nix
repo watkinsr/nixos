@@ -116,7 +116,7 @@ in {
     "${modifier}+Shift+c" = "reload";
     "${modifier}+c" = ''mode "chat"'';
     "${modifier}+r" = ''mode "resize"'';
-    "${modifier}+z" = ''exec --no-startup-id "emacsclient -nc"'';
+    "${modifier}+z" = ''exec --no-startup-id "emacs"'';
     "${modifier}+n" = ''exec --no-startup-id "makoctl dismiss"'';
     "${modifier}+Shift+n" = ''exec --no-startup-id "makoctl dismiss --all"'';
     "${modifier}+Print" = ''exec grim -t png -g "$(slurp)" ~/Downloads/$(date +%Y-%m-%d_%H-%m-%s).png'';
