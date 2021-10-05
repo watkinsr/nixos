@@ -33,7 +33,7 @@
     rust-bin.stable.latest.default
     valgrind
     zlib
-    pimeys.nodePackages.prisma
+    master.nodePackages.prisma
     master.pscale
     fzf
   ];
