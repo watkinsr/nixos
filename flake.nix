@@ -6,7 +6,6 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
-    nixpkgs-pimeys.url = "github:pimeys/nixpkgs/prisma-3_2_0";
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
     home-manager = {
@@ -22,7 +21,6 @@
     self
     , nixpkgs
     , nixpkgs-master
-    , nixpkgs-pimeys
     , home-manager
     , doom-emacs
     , ...
@@ -38,7 +36,6 @@
     };
     pkgs = mkPkgs nixpkgs [];
     master = mkPkgs nixpkgs-master [];
-    pimeys = mkPkgs nixpkgs-pimeys [];
 
     lib = nixpkgs.lib.extend
       (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
@@ -79,7 +76,6 @@
 
           (self: super: {
             master = master;
-            pimeys = pimeys;
             my = self.packages."${system}";
           })
         ];
