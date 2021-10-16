@@ -185,6 +185,7 @@
     lxappearance
     man-db
     mc
+    ranger
     openssl
     polkit_gnome
     qt5.qtwayland
