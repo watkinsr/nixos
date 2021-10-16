@@ -98,6 +98,7 @@ rec {
         fzf-kak
         powerline-kak
         kakoune-rainbow
+        kakboard
       ];
       config = {
         colorScheme = "solarized-dark";
@@ -171,6 +172,7 @@ rec {
             option = ".*";
             commands = ''
               set-option global termcmd 'footclient sh -c'
+              kakboard-enable
             '';
           }
           {
