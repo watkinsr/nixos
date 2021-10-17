@@ -57,7 +57,7 @@ rec {
     emacs = {
       enable = true;
       package = pkgs.emacsPgtkGcc;
-      extraPackages = (epkgs: [ epkgs.vterm ] );
+      extraPackages = (epkgs: [ epkgs.vterm ]);
     };
     direnv = {
       enable = true;
@@ -186,7 +186,7 @@ rec {
             name = "BufCreate";
             option = "^.*\.nix$";
             commands = ''
-              set-option buffer formatcmd 'nixfmt'
+              set-option buffer formatcmd 'nixpkgs-fmt'
             '';
           }
           {
@@ -358,7 +358,7 @@ rec {
           size = 14.0;
         };
         background_opacity = 0.9;
-        colors = import ./home/alacritty/solarized_dark.nix {};
+        colors = import ./home/alacritty/solarized_dark.nix { };
       };
     };
   };
@@ -396,7 +396,7 @@ rec {
     "*color11" = "#fabd2f";
     "*color4" = "#458588";
     "*color12" = "#83a598";
-    "*color5"  = "#b16286";
+    "*color5" = "#b16286";
     "*color13" = "#d3869b";
     "*color6" = "#689d6a";
     "*color14" = "#8ec07c";

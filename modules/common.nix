@@ -209,5 +209,6 @@
     libqrencode
     master.tailscale
     linux-pam
+    nixpkgs-fmt
   ];
 }
