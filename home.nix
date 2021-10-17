@@ -187,6 +187,7 @@ rec {
             option = "^.*\.nix$";
             commands = ''
               set-option buffer formatcmd 'nixpkgs-fmt'
+              set-option buffer indentwidth 2
             '';
           }
           {
