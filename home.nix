@@ -103,9 +103,9 @@ rec {
       config = {
         colorScheme = "solarized-dark";
         numberLines = {
-          enable = true;
-          highlightCursor = true;
-          relative = true;
+          enable = false;
+          highlightCursor = false;
+          relative = false;
         };
         ui = {
           changeColors = false;
