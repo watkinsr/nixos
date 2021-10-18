@@ -94,7 +94,7 @@ rec {
     kakoune = {
       enable = true;
       plugins = with pkgs.kakounePlugins; [
-        kak-lsp
+        pkgs.tom.kakounePlugins.kak-lsp
         fzf-kak
         powerline-kak
         kakoune-rainbow
