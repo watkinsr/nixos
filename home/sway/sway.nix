@@ -3,7 +3,7 @@
 let
   modifier = "Mod4";
   terminal = "footclient";
-  menu = "wofi --show run";
+  menu = "wofi --show drun";
 
   darkred = "#cc241d";
   red = "#fb4934";

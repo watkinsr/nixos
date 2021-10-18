@@ -1,27 +1,45 @@
 { pkgs, inputs, nixpkgs, config, lib, ... }:
 
 rec {
-  xdg.configFile = {
-    "pictures".source = ./home/pictures;
-    "wofi/style.css".source = ./home/wofi/style.css;
-    "picom/config".source = ./home/picom/config;
-    "dunst/dunstrc".source = ./home/dunst/dunstrc;
-    "wlogout/layout".source = ./home/wlogout/layout;
-    "i3/config".source = ./home/i3/config;
-    "i3/i3exit".source = ./home/i3/i3exit;
-    "i3/i3subscribe".source = ./home/i3/i3subscribe;
-    "i3blocks/config".source = ./home/i3blocks/config;
-    "i3blocks/i3status.conf".source = ./home/i3blocks/i3status.conf;
-    "scripts/battery.sh".source = ./home/scripts/battery.sh;
-    "scripts/weather.sh".source = ./home/scripts/weather.sh;
-    "scripts/glucose.sh".source = ./home/scripts/glucose.sh;
-    "scripts/cpu.pl".source = ./home/scripts/cpu.pl;
-    "scripts/memory.sh".source = ./home/scripts/memory.sh;
-    "scripts/temperature.sh".source = ./home/scripts/temperature.sh;
-    "scripts/wifi.sh".source = ./home/scripts/wifi.sh;
-    "scripts/dist.js".source = ./home/scripts/dist.js;
-    "mc/selenized.ini".source = ./home/mc/selenized.ini;
-    "kak-lsp/kak-lsp.toml".source = ./home/kak-lsp/kak-lsp.toml;
+  xdg = {
+    configFile = {
+      "pictures".source = ./home/pictures;
+      "wofi/style.css".source = ./home/wofi/style.css;
+      "picom/config".source = ./home/picom/config;
+      "dunst/dunstrc".source = ./home/dunst/dunstrc;
+      "wlogout/layout".source = ./home/wlogout/layout;
+      "i3/config".source = ./home/i3/config;
+      "i3/i3exit".source = ./home/i3/i3exit;
+      "i3/i3subscribe".source = ./home/i3/i3subscribe;
+      "i3blocks/config".source = ./home/i3blocks/config;
+      "i3blocks/i3status.conf".source = ./home/i3blocks/i3status.conf;
+      "scripts/battery.sh".source = ./home/scripts/battery.sh;
+      "scripts/weather.sh".source = ./home/scripts/weather.sh;
+      "scripts/glucose.sh".source = ./home/scripts/glucose.sh;
+      "scripts/cpu.pl".source = ./home/scripts/cpu.pl;
+      "scripts/memory.sh".source = ./home/scripts/memory.sh;
+      "scripts/temperature.sh".source = ./home/scripts/temperature.sh;
+      "scripts/wifi.sh".source = ./home/scripts/wifi.sh;
+      "scripts/dist.js".source = ./home/scripts/dist.js;
+      "mc/selenized.ini".source = ./home/mc/selenized.ini;
+      "kak-lsp/kak-lsp.toml".source = ./home/kak-lsp/kak-lsp.toml;
+    };
+    desktopEntries = {
+      spotify = {
+        name = "Spotify";
+        genericName = "Music Player";
+        exec = "spotify";
+        terminal = false;
+        categories = [ "Application" "Music" ];
+      };
+      element = {
+        name = "Element";
+        genericName = "Chat";
+        exec = "element-desktop --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland";
+        terminal = false;
+        categories = [ "Application" "Chat" ];
+      };
+    };
   };
 
   home.file = {
@@ -405,3 +423,4 @@ rec {
     "*color15" = "#ebdbb2";
   };
 }
+
