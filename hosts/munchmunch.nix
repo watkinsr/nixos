@@ -15,6 +15,8 @@
 
   time.timeZone = "Europe/Berlin";
 
+  services.sshd.enable = true;
+
   home-manager.users.pimeys = {
     wayland.windowManager.sway = {
       config = {
@@ -33,17 +35,20 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "zroot/root/nixos";
+    {
+      device = "zroot/root/nixos";
       fsType = "zfs";
     };
 
   fileSystems."/home" =
-    { device = "zroot/home";
+    {
+      device = "zroot/home";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/9DEB-2857";
+    {
+      device = "/dev/disk/by-uuid/9DEB-2857";
       fsType = "vfat";
     };
 
