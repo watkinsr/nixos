@@ -27,7 +27,8 @@ let
 
   default-gaps-inner = 0;
   default-gaps-outer = 0;
-in {
+in
+{
   modifier = modifier;
   terminal = terminal;
   menu = menu;
@@ -53,11 +54,11 @@ in {
 
   colors = {
     focused = {
-      border = black;
+      border = yellow;
       background = yellow;
       text = black;
       indicator = darkblack;
-      childBorder = darkblack;
+      childBorder = yellow;
     };
     unfocused = {
       border = black;
