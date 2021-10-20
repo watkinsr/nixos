@@ -281,9 +281,8 @@ rec {
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      config = ''
-        set textwidth=0 
-        set wrapmargin=0
+      extraConfig = ''
+        set nowrap
       '';
       plugins = with pkgs.vimPlugins; [
         deoplete-rust
