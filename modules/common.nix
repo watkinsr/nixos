@@ -7,17 +7,13 @@
   system.stateVersion = "20.09";
 
   services = {
-      avahi = {
-      enable = true;
-    };
+    avahi = { enable = true; };
     haveged.enable = true;
     zfs = {
       trim.enable = true;
       autoScrub.enable = true;
     };
-    xserver = {
-      enable = true;
-    };
+    xserver = { enable = true; };
     tailscale = {
       enable = true;
       package = pkgs.master.tailscale;
@@ -70,9 +66,7 @@
         device = "nodev";
         configurationLimit = 10;
       };
-      efi = {
-        canTouchEfiVariables = true;
-      };
+      efi = { canTouchEfiVariables = true; };
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
@@ -150,9 +144,7 @@
 
   hardware = {
     bluetooth.enable = true;
-    opengl = {
-      driSupport = true;
-    };
+    opengl = { driSupport = true; };
   };
 
   environment.systemPackages = with pkgs; [
@@ -196,7 +188,6 @@
     tealdeer
     tdesktop
     thefuck
-    tmux
     tree
     unzip
     wget

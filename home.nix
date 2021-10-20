@@ -71,6 +71,15 @@ rec {
           Port 2222
       '';
     };
+    tmux = {
+      enable = true;
+      clock24 = true;
+      terminal = "xterm-256color";
+      extraConfig = ''
+        set -g default-terminal "xterm-256color"
+        set-option -ga terminal-overrides ",xterm-256color:Tc"
+      '';
+    };
     emacs = {
       enable = true;
       package = pkgs.emacsPgtkGcc;
@@ -283,6 +292,7 @@ rec {
       vimdiffAlias = true;
       extraConfig = ''
         set nowrap
+        set termguicolors
       '';
       extraPackages = with pkgs; [ tree-sitter ];
       plugins = with pkgs.vimPlugins; [
