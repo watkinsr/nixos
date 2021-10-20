@@ -286,7 +286,13 @@ rec {
       plugins = with pkgs.vimPlugins; [
         deoplete-rust
         deoplete-lsp
+        vim-gitgutter
+        fugitive
 
+        {
+          plugin = vim-gitgutter;
+          config = "let g:gitgutter_enabled = 1";
+        }
         {
           plugin = vim-autoformat;
           config = ''
