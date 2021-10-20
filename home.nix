@@ -408,8 +408,17 @@ rec {
           '';
         }
         {
+          plugin = vim-airline-themes;
+          config = ''
+            let g:airline_theme = 'solarized'
+            let g:airline_solarized_bg='dark'
+          '';
+        }
+        {
           plugin = vim-airline;
-          config = "let g:airline_powerline_fonts = 1";
+          config = ''
+            let g:airline_powerline_fonts = 1
+          '';
         }
         {
           plugin = NeoSolarized;
