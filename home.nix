@@ -304,6 +304,7 @@ rec {
         vim-gitgutter
         fugitive
         vim-nix
+        pkgs.prisma.vimPlugins.vim-prisma
 
         {
           plugin = nvim-treesitter;

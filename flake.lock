@@ -308,6 +308,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-prisma": {
+      "locked": {
+        "lastModified": 1634755314,
+        "narHash": "sha256-XBU80kPgvgkFFnfd6VcZeE49W0vznt+nV0b4lv4zjR4=",
+        "owner": "pimeys",
+        "repo": "nixpkgs",
+        "rev": "3142beeed22c5d15c558501f93ccf065dd576a5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pimeys",
+        "ref": "vim-prisma",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-tom": {
       "locked": {
         "lastModified": 1634535234,
@@ -509,6 +525,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-prisma": "nixpkgs-prisma",
         "nixpkgs-tom": "nixpkgs-tom",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "rust-overlay": "rust-overlay"

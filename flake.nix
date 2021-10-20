@@ -9,6 +9,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
     nixpkgs-tom.url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
+    nixpkgs-prisma.url = "github:pimeys/nixpkgs/vim-prisma";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,31 +19,30 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs =
-    inputs@{ self
-    , nixpkgs
-    , nixpkgs-master
-    , nixpkgs-tom
-    , home-manager
-    , doom-emacs
-    , ...
-    }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nixpkgs-prisma
+    , home-manager, doom-emacs, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
       system = "x86_64-linux";
 
-      mkPkgs = pkgs: extraOverlays: import pkgs {
-        inherit system;
-        config.allowUnfree = true; # forgive me Stallman senpai
-        overlays = extraOverlays;
-      };
+      mkPkgs = pkgs: extraOverlays:
+        import pkgs {
+          inherit system;
+          config.allowUnfree = true; # forgive me Stallman senpai
+          overlays = extraOverlays;
+        };
       pkgs = mkPkgs nixpkgs [ ];
       master = mkPkgs nixpkgs-master [ ];
       tom = mkPkgs nixpkgs-tom [ ];
+      prisma = mkPkgs nixpkgs-prisma [ ];
 
-      lib = nixpkgs.lib.extend
-        (self: super: { my = import ./lib { inherit pkgs inputs; lib = self; }; });
+      lib = nixpkgs.lib.extend (self: super: {
+        my = import ./lib {
+          inherit pkgs inputs;
+          lib = self;
+        };
+      });
 
       # Home manager setup. We also import doom-emacs to be in the scope. See
       # `home.nix` for more.
@@ -51,12 +51,8 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.pimeys = lib.mkMerge [
-            {
-              imports = [ doom-emacs.hmModule ];
-            }
-            ./home.nix
-          ];
+          home-manager.users.pimeys =
+            lib.mkMerge [ { imports = [ doom-emacs.hmModule ]; } ./home.nix ];
         }
       ];
 
@@ -68,10 +64,8 @@
               "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
               "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             ];
-            binaryCaches = [
-              "https://cache.nixos.org"
-              "https://nix-community.cachix.org"
-            ];
+            binaryCaches =
+              [ "https://cache.nixos.org" "https://nix-community.cachix.org" ];
           };
 
           nixpkgs.overlays = [
@@ -82,6 +76,7 @@
               master = master;
               my = self.packages."${system}";
               tom = tom;
+              prisma = prisma;
             })
           ];
         };
@@ -94,20 +89,14 @@
             binaryCachePublicKeys = [
               "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
             ];
-            binaryCaches = [
-              "https://nixpkgs-wayland.cachix.org"
-            ];
+            binaryCaches = [ "https://nixpkgs-wayland.cachix.org" ];
           };
 
-          nixpkgs.overlays = [
-            inputs.nixpkgs-wayland.overlay
-          ];
+          nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
         };
       };
-    in
-    {
-      packages."${system}" =
-        mapModules ./packages (p: pkgs.callPackage p { });
+    in {
+      packages."${system}" = mapModules ./packages (p: pkgs.callPackage p { });
 
       nixosConfigurations = {
         # ThinkPad T25 laptop runs this branch.
@@ -155,10 +144,7 @@
         # The home workstation (AMD) uses this.
         naunau = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [
-            ./hosts/naunau.nix
-            common
-          ] ++ home;
+          modules = [ ./hosts/naunau.nix common ] ++ home;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -168,10 +154,7 @@
         # The office workstation (AMD) uses this.
         munchmunch = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [
-            ./hosts/munchmunch.nix
-            common
-          ] ++ home;
+          modules = [ ./hosts/munchmunch.nix common ] ++ home;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
