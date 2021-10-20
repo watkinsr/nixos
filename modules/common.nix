@@ -7,7 +7,7 @@
   system.stateVersion = "20.09";
 
   services = {
-    avahi = {
+      avahi = {
       enable = true;
     };
     haveged.enable = true;
@@ -209,6 +209,6 @@
     libqrencode
     master.tailscale
     linux-pam
-    nixpkgs-fmt
+    nixfmt
   ];
 }

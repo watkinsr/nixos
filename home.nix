@@ -35,16 +35,15 @@ rec {
       element = {
         name = "Element";
         genericName = "Chat";
-        exec = "element-desktop --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland";
+        exec =
+          "element-desktop --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland";
         terminal = false;
         categories = [ "Application" "Chat" ];
       };
     };
   };
 
-  home.file = {
-    ".doom.d".source = ./home/doom.d;
-  };
+  home.file = { ".doom.d".source = ./home/doom.d; };
 
   services = {
     redshift = {
@@ -125,9 +124,7 @@ rec {
           highlightCursor = false;
           relative = false;
         };
-        ui = {
-          changeColors = false;
-        };
+        ui = { changeColors = false; };
         keyMappings = [
           {
             key = "l";
@@ -169,7 +166,8 @@ rec {
             key = "<space>";
             mode = "user";
             docstring = "find files";
-            effect = ": require-module fzf; require-module fzf-file; fzf-file<ret>";
+            effect =
+              ": require-module fzf; require-module fzf-file; fzf-file<ret>";
           }
           {
             key = "r";
@@ -202,7 +200,7 @@ rec {
           }
           {
             name = "BufCreate";
-            option = "^.*\.nix$";
+            option = "^.*.nix$";
             commands = ''
               set-option buffer formatcmd 'nixpkgs-fmt'
               set-option buffer indentwidth 2
@@ -210,7 +208,7 @@ rec {
           }
           {
             name = "BufWritePre";
-            option = "^.*\.nix$";
+            option = "^.*.nix$";
             commands = ''
               eval format
             '';
@@ -283,11 +281,16 @@ rec {
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      config = ''
+        set textwidth=0 
+        set wrapmargin=0
+      '';
       plugins = with pkgs.vimPlugins; [
         deoplete-rust
         deoplete-lsp
         vim-gitgutter
         fugitive
+        vim-nix
 
         {
           plugin = vim-gitgutter;
@@ -298,6 +301,9 @@ rec {
           config = ''
             autocmd BufWrite * :Autoformat
             autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+            let g:autoformat_autoindent = 0
+            let g:autoformat_retab = 0
+            let g:autoformat_remove_trailing_spaces = 0
           '';
         }
         {
@@ -406,20 +412,20 @@ rec {
           end
         '';
       };
-      plugins = [
-        {
-          name = "agnoster";
-          src = pkgs.fetchFromGitHub {
-            owner = "oh-my-fish";
-            repo = "theme-agnoster";
-            rev = "43860ce1536930bca689470e26083b0a5b7bd6ae";
-            sha256 = "16k94hz3s6wayass6g1lhlcjmbpf2w8mzx90qrrqp120h80xwp25";
-          };
-        }
-      ];
+      plugins = [{
+        name = "agnoster";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "theme-agnoster";
+          rev = "43860ce1536930bca689470e26083b0a5b7bd6ae";
+          sha256 = "16k94hz3s6wayass6g1lhlcjmbpf2w8mzx90qrrqp120h80xwp25";
+        };
+      }];
       shellAliases = {
-        cw = "cargo watch -s 'clear; cargo check --tests --all-features --color=always 2>&1 | head -40'";
-        cwa = "cargo watch -s 'clear; cargo check --tests --features=all --color=always 2>&1 | head -40'";
+        cw =
+          "cargo watch -s 'clear; cargo check --tests --all-features --color=always 2>&1 | head -40'";
+        cwa =
+          "cargo watch -s 'clear; cargo check --tests --features=all --color=always 2>&1 | head -40'";
         ls = "exa --git --icons";
       };
     };
@@ -433,15 +439,9 @@ rec {
         directory = "/mnt/music";
         library = "/home/pimeys/.config/beets/musiclibrary.blb";
         plugins = "convert replaygain fetchart";
-        replaygain = {
-          backend = "gstreamer";
-        };
-        import = {
-          move = true;
-        };
-        fetchart = {
-          auto = true;
-        };
+        replaygain = { backend = "gstreamer"; };
+        import = { move = true; };
+        fetchart = { auto = true; };
         convert = {
           auto = false;
           threads = 4;
@@ -461,12 +461,8 @@ rec {
     alacritty = {
       enable = true;
       settings = {
-        env = {
-          TERM = "xterm-256color";
-        };
-        scrolling = {
-          history = 100000;
-        };
+        env = { TERM = "xterm-256color"; };
+        scrolling = { history = 100000; };
         font = {
           normal = {
             family = "Inconsolata";
@@ -533,4 +529,3 @@ rec {
     "*color15" = "#ebdbb2";
   };
 }
-
