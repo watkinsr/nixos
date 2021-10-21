@@ -9,7 +9,6 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
     nixpkgs-tom.url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
-    nixpkgs-prisma.url = "github:pimeys/nixpkgs/vim-prisma";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,8 +18,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nixpkgs-prisma
-    , home-manager, doom-emacs, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, home-manager
+    , doom-emacs, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -35,7 +34,6 @@
       pkgs = mkPkgs nixpkgs [ ];
       master = mkPkgs nixpkgs-master [ ];
       tom = mkPkgs nixpkgs-tom [ ];
-      prisma = mkPkgs nixpkgs-prisma [ ];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -76,7 +74,6 @@
               master = master;
               my = self.packages."${system}";
               tom = tom;
-              prisma = prisma;
             })
           ];
         };

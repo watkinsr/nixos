@@ -307,7 +307,7 @@ rec {
         vim-gitgutter
         fugitive
         vim-nix
-        pkgs.prisma.vimPlugins.vim-prisma
+        pkgs.master.vimPlugins.vim-prisma
         fzf-lsp-nvim
 
         {
