@@ -309,6 +309,8 @@ rec {
         vim-nix
         pkgs.master.vimPlugins.vim-prisma
         fzf-lsp-nvim
+        tabular
+        vim-markdown
 
         {
           plugin = nvim-treesitter;
