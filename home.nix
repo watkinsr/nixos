@@ -295,8 +295,9 @@ rec {
         set nowrap
         set termguicolors
 
+        nmap <silent> gr :References<cr>
+
         nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
-        nmap <silent> <leader>gr :References<cr>
         nmap <silent> <leader>ca :CodeActions<cr>
         nmap <silent> <leader>/ :Rg<cr>
         nmap <silent> <leader><space> :Files<cr>
