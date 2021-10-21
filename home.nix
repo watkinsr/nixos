@@ -295,9 +295,12 @@ rec {
         set nowrap
         set termguicolors
 
-        nmap <silent> <leader>c :e ~/.config/nixpkgs/<cr>
+        nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
+        nmap <silent> <leader>ca :CodeActions<cr>
+        nmap <silent> <leader>/ :Rg<cr>
+        nmap <silent> <leader><space> :Files<cr>
       '';
-      extraPackages = with pkgs; [ tree-sitter ];
+      extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
         deoplete-rust
         deoplete-lsp
@@ -305,6 +308,7 @@ rec {
         fugitive
         vim-nix
         pkgs.prisma.vimPlugins.vim-prisma
+        fzf-lsp-nvim
 
         {
           plugin = nvim-treesitter;
@@ -342,6 +346,14 @@ rec {
           plugin = supertab;
           config = ''
             let g:SuperTabDefaultCompletionType = "<c-n>"
+          '';
+        }
+        {
+          plugin = fzf-vim;
+          config = ''
+            let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+            let g:fzf_buffers_jump = 1
+
           '';
         }
         {
@@ -387,7 +399,6 @@ rec {
                 buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
                 buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
                 buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-                buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
                 buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
                 buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
                 buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
