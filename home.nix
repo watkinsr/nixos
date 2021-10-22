@@ -305,7 +305,7 @@ rec {
         nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
         nmap <silent> <leader>ca :CodeActions<cr>
         nmap <silent> <leader>/ :Rg<cr>
-        nmap <silent> <leader><space> :Files<cr>
+        nmap <silent> <leader><space> :GFiles<cr>
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
@@ -362,13 +362,11 @@ rec {
           config = ''
             let g:fzf_preview_window = ['right:50%', 'ctrl-/']
             let g:fzf_buffers_jump = 1
-          '';
-        }
-        {
-          plugin = ctrlp-vim;
-          config = ''
-            let g:ctrlp_working_path_mode = 'ra'
-            let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+
+            command! -bang -nargs=* Rg
+              \ call fzf#vim#grep(
+              \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+              \   fzf#vim#with_preview(), <bang>0)
           '';
         }
         {
