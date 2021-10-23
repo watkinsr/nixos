@@ -13,7 +13,7 @@
     nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
     nmap <silent> <leader>ca :CodeActions<cr>
     nmap <silent> <leader>/ :Rg<cr>
-    nmap <silent> <leader><space> :Files<cr>
+    nmap <silent> <leader><space> :GFiles<cr>
   '';
   extraPackages = with pkgs; [ tree-sitter fzf ];
   plugins = with pkgs.vimPlugins; [
