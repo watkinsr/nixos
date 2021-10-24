@@ -135,6 +135,41 @@ rec {
             "browser.urlbar.placeholderName" = "DuckDuckGo";
             "browser.search.defaultenginename" = "DuckDuckGo";
 
+            # Safe browsing
+            "browser.safebrowsing.enabled" = false;
+            "browser.safebrowsing.phishing.enabled" = false;
+            "browser.safebrowsing.malware.enabled" = false;
+            "browser.safebrowsing.downloads.enabled" = false;
+            "browser.safebrowsing.provider.google4.updateURL" = "";
+            "browser.safebrowsing.provider.google4.reportURL" = "";
+            "browser.safebrowsing.provider.google4.reportPhishMistakeURL" = "";
+            "browser.safebrowsing.provider.google4.reportMalwareMistakeURL" =
+              "";
+            "browser.safebrowsing.provider.google4.lists" = "";
+            "browser.safebrowsing.provider.google4.gethashURL" = "";
+            "browser.safebrowsing.provider.google4.dataSharingURL" = "";
+            "browser.safebrowsing.provider.google4.dataSharing.enabled" = false;
+            "browser.safebrowsing.provider.google4.advisoryURL" = "";
+            "browser.safebrowsing.provider.google4.advisoryName" = "";
+            "browser.safebrowsing.provider.google.updateURL" = "";
+            "browser.safebrowsing.provider.google.reportURL" = "";
+            "browser.safebrowsing.provider.google.reportPhishMistakeURL" = "";
+            "browser.safebrowsing.provider.google.reportMalwareMistakeURL" = "";
+            "browser.safebrowsing.provider.google.pver" = "";
+            "browser.safebrowsing.provider.google.lists" = "";
+            "browser.safebrowsing.provider.google.gethashURL" = "";
+            "browser.safebrowsing.provider.google.advisoryURL" = "";
+            "browser.safebrowsing.downloads.remote.url" = "";
+
+            # Don't call home on new tabs
+            "browser.selfsupport.url" = "";
+            "browser.aboutHomeSnippets.updateUrL" = "";
+            "browser.startup.homepage_override.mstone" = "ignore";
+            "browser.startup.homepage_override.buildID" = "";
+            "startup.homepage_welcome_url" = "";
+            "startup.homepage_welcome_url.additional" = "";
+            "startup.homepage_override_url" = "";
+
             # Firefox experiments...
             "experiments.activeExperiment" = false;
             "experiments.enabled" = false;
