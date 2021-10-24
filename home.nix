@@ -117,6 +117,13 @@ rec {
           version = "1.38.6";
         })
         (createChromiumExtension {
+          # autoscroll
+          id = "occjjkgifpmdgodlplnacmkejpdionan";
+          sha256 =
+            "sha256:1mcmfgl046sjldrz2fm4kwgfg017hw2hy6zkpak6hrl8zwi4fli5";
+          version = "4.10";
+        })
+        (createChromiumExtension {
           # bitwarden
           id = "nngceckbapebfimnlniiiahkandclblb";
           sha256 =
