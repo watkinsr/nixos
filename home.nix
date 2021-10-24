@@ -177,6 +177,13 @@ rec {
             "sha256:0y0g3f5zcmc5d1689znikcpp8rl4bxm0qc509xrz5abanv6h60s3";
           version = "1.5.1";
         })
+        (createChromiumExtension {
+          # refined github
+          id = "hlepfoohegkhhmjieoechaddaejaokhf";
+          sha256 =
+            "sha256:0yglfyzm8fympnccndba30qm51gkp6gf5x8wi4mnd0413m8fzs7j";
+          version = "21.10.18";
+        })
       ];
     };
 
