@@ -9,6 +9,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
     nixpkgs-tom.url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
+    nur.url = "github:nix-community/NUR";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,8 +19,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, home-manager
-    , doom-emacs, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
+    , home-manager, doom-emacs, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -69,6 +70,7 @@
           nixpkgs.overlays = [
             inputs.rust-overlay.overlay
             inputs.emacs.overlay
+            nur.overlay
 
             (self: super: {
               master = master;

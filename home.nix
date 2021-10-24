@@ -26,6 +26,13 @@ rec {
       "kak-lsp/kak-lsp.toml".source = ./home/kak-lsp/kak-lsp.toml;
     };
     desktopEntries = {
+      firefox = {
+        name = "Firefox";
+        genericName = "Web Browser";
+        exec = "firefox";
+        terminal = false;
+        categories = [ "Application" ];
+      };
       spotify = {
         name = "Spotify";
         genericName = "Music Player";
@@ -68,6 +75,95 @@ rec {
 
     go.enable = true;
     ssh = { enable = true; };
+
+    firefox = {
+      enable = true;
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        bitwarden
+        multi-account-containers
+        refined-github
+        sponsorblock
+        ublock-origin
+        decentraleyes
+        clearurls
+        kristofferhagen-nord-theme
+        ninja-cookie
+        old-reddit-redirect
+        unpaywall
+        zoom-redirector
+      ];
+      profiles = {
+        default = {
+          isDefault = true;
+          settings = {
+            # Don't allow websites to prevent use of right-click, or otherwise
+            # messing with the context menu.
+            "dom.event.contextmenu.enabled" = false;
+
+            # Don't allow websites to prevent copy and paste. Disable
+            # notifications of copy, paste, or cut functions. Stop webpage
+            # knowing which part of the page had been selected.
+            "dom.event.clipboardevents.enabled" = false;
+
+            # Do not track from battery status.
+            "dom.battery.enabled" = false;
+
+            # Show punycode. Help protect from character 'spoofing'.
+            "network.IDN_show_punycode" = true;
+
+            # Disable site reading installed plugins.
+            "plugins.enumerable_names" = "";
+
+            # Use Mozilla instead of Google here.
+            "geo.provider.network.url" =
+              "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%";
+
+            # No speculative content when searching.
+            "browser.urlbar.speculativeConnect.enabled" = false;
+
+            # Sends data to servers when leaving pages.
+            "beacon.enabled" = false;
+
+            # Informs servers about links that get clicked on by the user.
+            "browser.send_pings" = false;
+
+            "browser.tabs.closeWindowWithLastTab" = false;
+            "browser.urlbar.placeholderName" = "DuckDuckGo";
+            "browser.search.defaultenginename" = "DuckDuckGo";
+
+            # Firefox experiments...
+            "experiments.activeExperiment" = false;
+            "experiments.enabled" = false;
+            "experiments.supported" = false;
+            "extensions.pocket.enabled" = false;
+
+            # Privacy
+            "privacy.donottrackheader.enabled" = true;
+            "privacy.donottrackheader.value" = 1;
+            "privacy.trackingprotection.enabled" = true;
+            "privacy.trackingprotection.socialtracking.enabled" = true;
+            "privacy.firstparty.isolate" = true;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "toolkit.telemetry.enabled" = false;
+            "toolkit.telemetry.unified" = false;
+            "toolkit.telemetry.archive.enabled" = false;
+            "browser.toolbars.bookmarks.visibility" = "never";
+
+            # Perf
+            "gfx.webrender.all" = true;
+            "media.ffmpeg.vaapi.enabled" = true;
+            "media.ffvpx.enabled" = false;
+            "media.rdd-vpx.enabled" = false;
+            "gfx.webrender.compositor.force-enabled" = true;
+
+            # Remove those extra empty spaces in both sides
+            "browser.uiCustomization.state" = ''
+              {"placements":{"widget-overflow-fixed-list":[],"nav-bar":["back-button","forward-button","stop-reload-button","urlbar-container","downloads-button","fxa-toolbar-menu-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["developer-button"],"dirtyAreaCache":["nav-bar","PersonalToolbar"],"currentVersion":17,"newElementCount":4}
+            '';
+          };
+        };
+      };
+    };
 
     tmux = {
       enable = true;

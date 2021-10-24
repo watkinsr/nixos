@@ -10,9 +10,7 @@
     wayland = {
       windowManager.sway = {
         enable = true;
-        config = import ../home/sway/sway.nix {
-          lib = lib;
-        };
+        config = import ../home/sway/sway.nix { lib = lib; };
         wrapperFeatures.gtk = true;
         extraSessionCommands = ''
           export _JAVA_AWT_WM_NONREPARENTING=1;
@@ -36,9 +34,7 @@
     };
 
     programs = {
-      mako = {
-        enable = true;
-      };
+      mako = { enable = true; };
       waybar = {
         enable = true;
         settings = import ../home/waybar/waybar.nix;
@@ -52,11 +48,9 @@
             term = "xterm-256color";
             font = "Inconsolata:size=14";
           };
-          cursor = {
-            color = "002b36 93a1a1";
-          };
+          cursor = { color = "002b36 93a1a1"; };
           colors = {
-            alpha      = 0.9;
+            alpha = 0.9;
             background = "103c48";
             foreground = "adbcbc";
 
@@ -129,10 +123,7 @@
 
   environment = {
     pathsToLink = [ "/libexec" ];
-    systemPackages = with pkgs; [
-      firefox-esr-91
-      polkit_gnome
-    ];
+    systemPackages = with pkgs; [ polkit_gnome ];
   };
 
   systemd.services.lock-before-sleeping = {
@@ -141,16 +132,13 @@
       Description = "Helper service to bind locker to sleep.target";
     };
     serviceConfig = {
-      ExecStart = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2";
+      ExecStart =
+        "${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2";
       Type = "simple";
       User = "pimeys";
     };
-    before = [
-      "pre-sleep.service"
-    ];
-    wantedBy= [
-      "pre-sleep.service"
-    ];
+    before = [ "pre-sleep.service" ];
+    wantedBy = [ "pre-sleep.service" ];
     environment = {
       DISPLAY = ":1";
       WAYLAND_DISPLAY = "wayland-1";
