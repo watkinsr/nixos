@@ -36,8 +36,13 @@ rec {
       chromium = {
         name = "Ungoogled Chromium";
         genericName = "Web Browser";
-        exec =
-          "chromium --enable-features=UseOzonePlatform,VaapiVideoDecoder --ozone-platform=wayland";
+        exec = ''
+          chromium \
+                    --enable-features=UseOzonePlatform,VaapiVideoDecoder \
+                    --ozone-platform=wayland \
+                    --ignore-gpu-blocklist \
+                    --enable-gpu-rasterization \
+                    --enable-zero-copy'';
         terminal = false;
         categories = [ "Application" ];
       };
@@ -86,7 +91,7 @@ rec {
 
     chromium = {
       enable = true;
-      package = pkgs.ungoogled-chromium;
+      package = pkgs.master.ungoogled-chromium;
       extensions = let
         createChromiumExtensionFor = browserVersion:
           { id, sha256, version }: {
