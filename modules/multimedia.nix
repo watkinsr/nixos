@@ -28,5 +28,6 @@
     evince
     gnome3.eog
     deadbeef
+    libva-utils
   ];
 }

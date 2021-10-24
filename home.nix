@@ -91,11 +91,15 @@ rec {
         old-reddit-redirect
         unpaywall
         zoom-redirector
+        h264ify
       ];
       profiles = {
         default = {
           isDefault = true;
           settings = {
+            # Do not save passwords to Firefox...
+            "security.ask_for_password" = 2;
+
             # Don't allow websites to prevent use of right-click, or otherwise
             # messing with the context menu.
             "dom.event.contextmenu.enabled" = false;
@@ -155,6 +159,7 @@ rec {
             "media.ffvpx.enabled" = false;
             "media.rdd-vpx.enabled" = false;
             "gfx.webrender.compositor.force-enabled" = true;
+            "media.navigator.mediadatadecoder_vpx_enabled" = true;
 
             # Remove those extra empty spaces in both sides
             "browser.uiCustomization.state" = ''
