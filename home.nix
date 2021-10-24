@@ -286,6 +286,7 @@ rec {
             "experiments.enabled" = false;
             "experiments.supported" = false;
             "extensions.pocket.enabled" = false;
+            "identity.fxaccounts.enabled" = false;
 
             # Privacy
             "privacy.donottrackheader.enabled" = true;
@@ -299,6 +300,9 @@ rec {
             "toolkit.telemetry.archive.enabled" = false;
             "browser.toolbars.bookmarks.visibility" = "never";
 
+            # Cookies
+            "network.cookie.cookieBehavior" = 1;
+
             # Perf
             "gfx.webrender.all" = true;
             "media.ffmpeg.vaapi.enabled" = true;
@@ -306,6 +310,12 @@ rec {
             "media.rdd-vpx.enabled" = false;
             "gfx.webrender.compositor.force-enabled" = true;
             "media.navigator.mediadatadecoder_vpx_enabled" = true;
+            "webgl.force-enabled" = true;
+            "layers.acceleration.force-enabled" = true;
+            "layers.offmainthreadcomposition.enabled" = true;
+            "layers.offmainthreadcomposition.async-animations" = true;
+            "layers.async-video.enabled" = true;
+            "html5.offmainthread" = true;
 
             # Remove those extra empty spaces in both sides
             "browser.uiCustomization.state" = ''
