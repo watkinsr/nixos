@@ -209,7 +209,10 @@ rec {
           isDefault = true;
           settings = {
             # Do not save passwords to Firefox...
-            "security.ask_for_password" = 2;
+            "security.ask_for_password" = 0;
+
+            # We handle this elsewhere
+            "browser.shell.checkDefaultBrowser" = false;
 
             # Don't allow websites to prevent use of right-click, or otherwise
             # messing with the context menu.
