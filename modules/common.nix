@@ -144,7 +144,16 @@
 
   hardware = {
     bluetooth.enable = true;
-    opengl = { driSupport = true; };
+    opengl = {
+      enable = true;
+      driSupport = true;
+      extraPackages = with pkgs; [
+        vaapiIntel
+        intel-media-driver
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
