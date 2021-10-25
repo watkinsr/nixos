@@ -38,12 +38,12 @@
 
           # Don't allow websites to prevent use of right-click, or otherwise
           # messing with the context menu.
-          "dom.event.contextmenu.enabled" = false;
+          "dom.event.contextmenu.enabled" = true;
 
           # Don't allow websites to prevent copy and paste. Disable
           # notifications of copy, paste, or cut functions. Stop webpage
           # knowing which part of the page had been selected.
-          "dom.event.clipboardevents.enabled" = false;
+          "dom.event.clipboardevents.enabled" = true;
 
           # Do not track from battery status.
           "dom.battery.enabled" = false;
