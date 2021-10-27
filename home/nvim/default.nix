@@ -11,6 +11,10 @@
       set nowrap
       set termguicolors
 
+      " Emacs way of changing pwd to the current file
+      autocmd BufEnter * silent! lcd %:p:h
+
+      " Keybindings
       nmap <silent> gr :References<cr>
 
       nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
