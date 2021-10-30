@@ -33,6 +33,7 @@
       fzf-lsp-nvim
       tabular
       vim-markdown
+      vim-surround
 
       {
         plugin = nvim-treesitter;
