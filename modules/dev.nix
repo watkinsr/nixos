@@ -16,6 +16,7 @@
     evcxr
     gdb
     gnumake
+    gnvim
     massif-visualizer
     mysql-client
     nodejs-slim

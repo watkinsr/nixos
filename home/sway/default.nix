@@ -146,7 +146,7 @@ in {
           "${modifier}+Shift+c" = "reload";
           "${modifier}+c" = ''mode "chat"'';
           "${modifier}+r" = ''mode "resize"'';
-          "${modifier}+z" = ''exec --no-startup-id "emacs"'';
+          "${modifier}+z" = ''exec --no-startup-id "gnvim ~/code"'';
           "${modifier}+n" = ''exec --no-startup-id "makoctl dismiss"'';
           "${modifier}+Shift+n" =
             ''exec --no-startup-id "makoctl dismiss --all"'';
