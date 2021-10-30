@@ -7,7 +7,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
     nixpkgs-wayland = {
-      url = "github:colemickens/nixpkgs-wayland";
+      url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay = {
@@ -126,11 +126,7 @@
         # Prisma ThinkPad X1c
         purrpurr = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [
-            ./hosts/purrpurr.nix
-            common
-            #wayland
-          ] ++ home;
+          modules = [ ./hosts/purrpurr.nix common wayland ] ++ home;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
