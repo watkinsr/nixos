@@ -10,6 +10,9 @@
                 --ozone-platform=wayland \
                 --ignore-gpu-blocklist \
                 --enable-gpu-rasterization \
+                --disable-gpu-driver-bug-workarounds \
+                --enable-accelerated-video-decode \
+                --use-gl=desktop \
                 --enable-zero-copy'';
     terminal = false;
     categories = [ "Application" ];
@@ -44,12 +47,6 @@
         id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
         sha256 = "sha256:12ps948lg91bbjxjmwb3d8590q8rf4mv7bkhzrjnnd210gbl5wxn";
         version = "1.38.6";
-      })
-      (createChromiumExtension {
-        # autoscroll
-        id = "occjjkgifpmdgodlplnacmkejpdionan";
-        sha256 = "sha256:1mcmfgl046sjldrz2fm4kwgfg017hw2hy6zkpak6hrl8zwi4fli5";
-        version = "4.10";
       })
       (createChromiumExtension {
         # bitwarden
