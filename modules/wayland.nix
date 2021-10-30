@@ -1,45 +1,16 @@
 { config, lib, pkgs, inputs, nixpkgs, home-manager, ... }:
 
 {
+  imports = [ ../home/waybar ../home/sway ];
+
   home-manager.users.pimeys = {
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
     };
 
-    wayland = {
-      windowManager.sway = {
-        enable = true;
-        config = import ../home/sway/sway.nix { lib = lib; };
-        wrapperFeatures.gtk = true;
-        extraSessionCommands = ''
-          export _JAVA_AWT_WM_NONREPARENTING=1;
-          export SDL_VIDEODRIVER=wayland;
-          export QT_QPA_PLATFORM=wayland;
-          export QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
-          export HASS_SERVER="http://hass.local:8123";
-          export MOZ_ENABLE_WAYLAND="1";
-          export MOZ_DBUS_REMOTE="1";
-          export XDG_SESSION_TYPE="wayland";
-          export XDG_CURRENT_DESKTOP="sway";
-          export MC_SKIN=$HOME/.config/mc/selenized.ini;
-          source /etc/nixos/secret/secret;
-        '';
-        extraConfig = ''
-          exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
-          exec --no-startup-id mako &
-          exec --no-startup-id swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
-        '';
-      };
-    };
-
     programs = {
       mako = { enable = true; };
-      waybar = {
-        enable = true;
-        settings = import ../home/waybar/waybar.nix;
-        style = "${builtins.readFile ../home/waybar/style.css}";
-      };
       foot = {
         enable = true;
         server.enable = true;
@@ -79,30 +50,6 @@
 
   boot.kernelModules = [ "v4l2loopback" ];
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    extraPackages = with pkgs; [
-      brillo
-      xwayland
-      swaylock-effects
-      swayidle
-      wl-clipboard
-      mako # notification daemon
-      wofi
-      waybar
-      kanshi
-      i3blocks-gaps
-      i3status
-      wev
-      wf-recorder
-      linuxPackages.v4l2loopback
-      slurp
-      wlogout
-      grim
-    ];
-  };
-
   xdg = {
     portal = {
       enable = true;
@@ -114,16 +61,26 @@
     };
   };
 
-  services.xserver = {
-    displayManager = {
-      defaultSession = "sway";
-      gdm.wayland = true;
-    };
-  };
-
   environment = {
     pathsToLink = [ "/libexec" ];
-    systemPackages = with pkgs; [ polkit_gnome ];
+    systemPackages = with pkgs; [
+      polkit_gnome
+      brillo
+      xwayland
+      swaylock-effects
+      swayidle
+      wl-clipboard
+      wofi
+      kanshi
+      i3blocks-gaps
+      i3status
+      wev
+      wf-recorder
+      linuxPackages.v4l2loopback
+      slurp
+      wlogout
+      grim
+    ];
   };
 
   systemd.services.lock-before-sleeping = {
