@@ -6,21 +6,32 @@
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    nixpkgs-wayland.url = "github:colemickens/nixpkgs-wayland";
-    nixpkgs-tom.url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
-    nur.url = "github:nix-community/NUR";
+    nixpkgs-wayland = {
+      url = "github:colemickens/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs-tom = {
+      url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    doom-emacs.url = "github:vlaci/nix-doom-emacs";
     emacs.url = "github:nix-community/emacs-overlay";
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
-    , home-manager, doom-emacs, ... }:
+    , home-manager, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -43,15 +54,15 @@
         };
       });
 
-      # Home manager setup. We also import doom-emacs to be in the scope. See
-      # `home.nix` for more.
+      # Home manager setup. See `home.nix` for more.
       home = [
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.pimeys =
-            lib.mkMerge [ { imports = [ doom-emacs.hmModule ]; } ./home.nix ];
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.pimeys = lib.mkMerge [ ./home.nix ];
+          };
         }
       ];
 
