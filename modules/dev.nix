@@ -1,9 +1,7 @@
 { config, lib, pkgs, nixpkgs, home-manager, ... }:
 
 {
-  virtualisation = {
-    docker.enable = true;
-  };
+  virtualisation = { docker.enable = true; };
 
   programs.adb.enable = true;
 
@@ -17,11 +15,9 @@
     docker-compose
     evcxr
     gdb
-    git
     gnumake
     massif-visualizer
     mysql-client
-    neovim
     nodejs-slim
     nodePackages.npm
     openjdk
