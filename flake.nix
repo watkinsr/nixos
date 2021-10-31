@@ -166,7 +166,7 @@
         # The office workstation (AMD) uses this.
         munchmunch = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/munchmunch.nix common ] ++ home;
+          modules = [ ./hosts/munchmunch.nix common wayland ] ++ home;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
