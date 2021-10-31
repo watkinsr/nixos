@@ -96,6 +96,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-gnvim": {
+      "locked": {
+        "lastModified": 1635665125,
+        "narHash": "sha256-5dLMQXTmy8zmczVkw76EWnBChYmv2P+ugo6TgN7kw5g=",
+        "owner": "pimeys",
+        "repo": "nixpkgs",
+        "rev": "ede416754f8af19cb86fe142902fa5dea43cc9bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pimeys",
+        "ref": "gnvim-master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-master": {
       "locked": {
         "lastModified": 1635579439,
@@ -169,6 +185,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-gnvim": "nixpkgs-gnvim",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-tom": "nixpkgs-tom",
         "nixpkgs-wayland": "nixpkgs-wayland",
