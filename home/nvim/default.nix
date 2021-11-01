@@ -14,6 +14,9 @@
       " Emacs way of changing pwd to the current file
       autocmd BufEnter * silent! lcd %:p:h
 
+      " Always use system clipboard
+      set clipboard+=unnamedplus
+
       " Keybindings
       nmap <silent> gr :References<cr>
 
