@@ -156,7 +156,7 @@
         # The home workstation (AMD) uses this.
         naunau = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/naunau.nix common ] ++ home;
+          modules = [ ./hosts/naunau.nix common wayland ] ++ home;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
