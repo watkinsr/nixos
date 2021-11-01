@@ -21,8 +21,9 @@
           };
           cursor = { color = "002b36 93a1a1"; };
           colors = {
-            alpha = 0.9;
-            background = "103c48";
+            alpha = 1;
+            #background = "103c48";
+            background = "002B36";
             foreground = "adbcbc";
 
             regular0 = "184956";
