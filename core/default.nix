@@ -71,10 +71,7 @@
   services = {
     avahi = { enable = true; };
     haveged.enable = true;
-    zfs = {
-      trim.enable = true;
-      autoScrub.enable = true;
-    };
+    xserver = { enable = true; };
     tailscale = {
       enable = true;
       package = pkgs.master.tailscale;
@@ -97,14 +94,11 @@
     '';
   };
 
-  users.users.pimeys = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE6vjWaa794gLjAKU7YCzqVPQ6g8cviBdddmV14Mk/Ti pimeys@kubrick"
-    ];
+  users.users.ryan = {
     description = "The primary user account";
     isNormalUser = true;
     shell = pkgs.fish;
-    uid = 1000;
+    uid = 1001;
     extraGroups = [
       "wheel"
       "video"
@@ -124,7 +118,6 @@
       grub = {
         enable = true;
         copyKernels = true;
-        zfsSupport = true;
         efiSupport = true;
         useOSProber = true;
         device = "nodev";
@@ -134,9 +127,6 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "zfs" ];
-
-    zfs.enableUnstable = true;
 
     kernelModules = [ "tcp_bbr" ];
 

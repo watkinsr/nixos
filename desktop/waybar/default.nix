@@ -1,7 +1,7 @@
 { pkgs, lib, home-manager, ... }:
 
 {
-  home-manager.users.pimeys.programs.waybar = {
+  home-manager.users.ryan.programs.waybar = {
     enable = true;
     style = "${builtins.readFile ./style.css}";
     settings = [{

@@ -201,8 +201,6 @@
     },
     "root": {
       "inputs": {
-        "agenix": "agenix",
-        "emacs": "emacs",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

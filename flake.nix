@@ -70,7 +70,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.pimeys = lib.mkMerge [ ./dotfiles ];
+            users.ryan = lib.mkMerge [ ./dotfiles ];
           };
         }
       ];
@@ -89,7 +89,7 @@
 
           nixpkgs.overlays = [
             inputs.rust-overlay.overlay
-            inputs.emacs.overlay
+            # inputs.emacs.overlay
             nur.overlay
 
             (self: super: {

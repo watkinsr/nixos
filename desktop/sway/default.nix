@@ -30,7 +30,7 @@ let
 in {
   programs.sway = { enable = true; };
 
-  home-manager.users.pimeys = {
+  home-manager.users.ryan = {
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
@@ -39,14 +39,12 @@ in {
         export SDL_VIDEODRIVER=x11;
         export QT_QPA_PLATFORM=wayland;
         export QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
-        export HASS_SERVER="http://hass.local:8123";
         export MOZ_ENABLE_WAYLAND="1";
         export MOZ_DBUS_REMOTE="1";
         export XDG_SESSION_TYPE="wayland";
         export XDG_CURRENT_DESKTOP="sway";
         export MC_SKIN=$HOME/.config/mc/selenized.ini;
         export XDG_DATA_DIRS="${gnome3.adwaita-icon-theme}/share:$XDG_DATA_DIRS";
-        source /home/pimeys/.config/secrets;
       '';
       extraConfig = ''
         exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
@@ -66,12 +64,7 @@ in {
 
         output = { "*" = { bg = "~/.config/pictures/TNEJezP.jpg fill"; }; };
 
-        input = {
-          "*" = {
-            xkb_layout = "us,fi";
-            xkb_options = "compose:ralt,ctrl:nocaps";
-          };
-        };
+        input = { "*" = { xkb_layout = "watkinsr"; }; };
 
         colors = {
           focused = {
