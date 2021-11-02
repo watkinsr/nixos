@@ -42,14 +42,12 @@
       tabular
       vim-markdown
       vim-surround
-
       {
-        plugin = nvim-treesitter;
+        plugin =
+          (nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars));
         config = ''
           lua <<EOF
-            require 'nvim-treesitter.install'.compilers = { 'clang++'}
             require('nvim-treesitter.configs').setup {
-              ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
               highlight = {
                 enable = true,              -- false will disable the whole extension
                 -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
