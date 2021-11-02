@@ -118,26 +118,6 @@
       defaultModules = [ common agenix.nixosModules.age ] ++ home;
     in {
       nixosConfigurations = {
-        # ThinkPad T25 laptop runs this branch.
-        muspus = nixpkgs.lib.nixosSystem {
-          system = system;
-          modules = [ ./hosts/muspus.nix ] ++ defaultModules;
-          specialArgs = {
-            inherit inputs;
-            inherit home-manager;
-          };
-        };
-
-        # Prisma ThinkPad X1c
-        purrpurr = nixpkgs.lib.nixosSystem {
-          system = system;
-          modules = [ ./hosts/purrpurr.nix ] ++ defaultModules;
-          specialArgs = {
-            inherit inputs;
-            inherit home-manager;
-          };
-        };
-
         # ThinkPad X230 laptop runs this branch.
         meowmeow = nixpkgs.lib.nixosSystem {
           system = system;
@@ -155,26 +135,6 @@
             common
             #wayland
           ] ++ home;
-          specialArgs = {
-            inherit inputs;
-            inherit home-manager;
-          };
-        };
-
-        # The home workstation (AMD) uses this.
-        naunau = nixpkgs.lib.nixosSystem {
-          system = system;
-          modules = [ ./hosts/naunau.nix ] ++ defaultModules;
-          specialArgs = {
-            inherit inputs;
-            inherit home-manager;
-          };
-        };
-
-        # The office workstation (AMD) uses this.
-        munchmunch = nixpkgs.lib.nixosSystem {
-          system = system;
-          modules = [ ./hosts/munchmunch.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;

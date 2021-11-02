@@ -98,7 +98,7 @@
     description = "The primary user account";
     isNormalUser = true;
     shell = pkgs.fish;
-    uid = 1001;
+    uid = 1000;
     extraGroups = [
       "wheel"
       "video"
