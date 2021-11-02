@@ -24,11 +24,6 @@
       nmap <silent> <leader>ca :CodeActions<cr>
       nmap <silent> <leader>/ :Rg<cr>
       nmap <silent> <leader><space> :GFiles<cr>
-
-      " GUI
-      if exists("g:gnvim")
-        call rpcnotify(g:gnvim_channel_id, 'Gnvim', 'EnableCursorAnimations', 0)
-      endif
     '';
     extraPackages = with pkgs; [ tree-sitter fzf ];
     plugins = with pkgs.vimPlugins; [

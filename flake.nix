@@ -18,10 +18,6 @@
       url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-gnvim = {
-      url = "github:pimeys/nixpkgs/gnvim-master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,8 +30,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nixpkgs-gnvim
-    , nur, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
+    , home-manager, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -50,7 +46,6 @@
       pkgs = mkPkgs nixpkgs [ ];
       master = mkPkgs nixpkgs-master [ ];
       tom = mkPkgs nixpkgs-tom [ ];
-      gnvim = mkPkgs nixpkgs-gnvim [ ];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -92,7 +87,6 @@
               master = master;
               my = self.packages."${system}";
               tom = tom;
-              gnvim-master = gnvim;
             })
           ];
         };
