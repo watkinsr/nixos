@@ -28,6 +28,8 @@
     ripgrep
     rust-analyzer
     rust-bin.stable.latest.default
+    nodePackages.typescript
+    nodePackages.typescript-language-server
     valgrind
     zlib
     master.nodePackages.prisma
