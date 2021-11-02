@@ -148,6 +148,19 @@
           };
         };
 
+        t14 = nixpkgs.lib.nixosSystem {
+          system = system;
+          modules = [
+            ./hosts/t14.nix
+            common
+            #wayland
+          ] ++ home;
+          specialArgs = {
+            inherit inputs;
+            inherit home-manager;
+          };
+        };
+
         # The home workstation (AMD) uses this.
         naunau = nixpkgs.lib.nixosSystem {
           system = system;
