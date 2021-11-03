@@ -17,6 +17,7 @@
   time.timeZone = "Europe/Berlin";
 
   services.sshd.enable = true;
+  services.redis.enable = true;
 
   boot = {
     initrd = {

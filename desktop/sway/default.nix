@@ -64,7 +64,13 @@ in {
 
         output = { "*" = { bg = "~/.config/pictures/TNEJezP.jpg fill"; }; };
 
-        input = { "*" = { xkb_layout = "watkinsr"; }; };
+        input = {
+          "*" = {
+            xkb_layout = "watkinsr";
+            repeat_delay = "350";
+            repeat_rate = "55";
+          };
+        };
 
         colors = {
           focused = {
