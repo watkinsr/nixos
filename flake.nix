@@ -85,7 +85,6 @@
 
             (self: super: {
               master = master;
-              my = self.packages."${system}";
               tom = tom;
             })
           ];
@@ -106,8 +105,6 @@
         };
       };
     in {
-      packages."${system}" = mapModules ./packages (p: pkgs.callPackage p { });
-
       nixosConfigurations = {
         # ThinkPad T25 laptop runs this branch.
         muspus = nixpkgs.lib.nixosSystem {

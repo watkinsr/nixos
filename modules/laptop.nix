@@ -1,6 +1,4 @@
-{ config, lib, pkgs, ... }:
-
-{
+{ config, lib, pkgs, ... }: {
   services = {
     tlp = {
       enable = true;

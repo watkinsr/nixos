@@ -1,37 +1,28 @@
 { config, lib, pkgs, modulesPath, inputs, ... }:
 
 {
-  imports =
-    [
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
-      (modulesPath + "/installer/scan/not-detected.nix")
-      ../modules/common.nix
-      ../modules/fonts.nix
-      ../modules/dev.nix
-      ../modules/multimedia.nix
-      ../modules/work.nix
-      ../modules/wayland.nix
-      ../modules/home-services.nix
-      ../modules/laptop.nix
-    ];
+  imports = [
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x230
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ../modules/minimal.nix
+    ../modules/home-services.nix
+    ../modules/laptop.nix
+    ../modules/desktop.nix
+  ];
 
   time.timeZone = "Europe/Berlin";
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ehci_pci" "ata_piix" "usb_storage" "sd_mod" "sdhci_pci" ];
+      availableKernelModules =
+        [ "xhci_pci" "ehci_pci" "ata_piix" "usb_storage" "sd_mod" "sdhci_pci" ];
       kernelModules = [ ];
     };
 
-    kernelModules = [
-      "kvm-intel"
-    ];
+    kernelModules = [ "kvm-intel" ];
 
-    kernelParams = [
-      "intel_pstate=passive"
-      "i915.enable_fbc=1"
-      "i915.enable_psr=2"
-    ];
+    kernelParams =
+      [ "intel_pstate=passive" "i915.enable_fbc=1" "i915.enable_psr=2" ];
   };
 
   swapDevices = [ ];
@@ -49,25 +40,21 @@
 
   hardware = {
     cpu.intel.updateMicrocode = true;
-    opengl.extraPackages = with pkgs; [
-      vaapiIntel
-      libvdpau-va-gl
-      vaapiVdpau
-    ];
+    opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
   };
 
-  fileSystems."/" =
-    { device = "zroot/root/nixos";
-      fsType = "zfs";
-    };
+  fileSystems."/" = {
+    device = "zroot/root/nixos";
+    fsType = "zfs";
+  };
 
-  fileSystems."/home" =
-    { device = "zroot/home";
-      fsType = "zfs";
-    };
+  fileSystems."/home" = {
+    device = "zroot/home";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3C11-720D";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/3C11-720D";
+    fsType = "vfat";
+  };
 }

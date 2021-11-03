@@ -4,13 +4,9 @@
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../modules/common.nix
-    ../modules/fonts.nix
-    ../modules/dev.nix
-    ../modules/multimedia.nix
-    ../modules/work.nix
-    ../modules/wayland.nix
+    ../modules/minimal.nix
     ../modules/laptop.nix
+    ../modules/desktop.nix
   ];
 
   time.timeZone = "Europe/Berlin";
