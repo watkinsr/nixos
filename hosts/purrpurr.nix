@@ -4,6 +4,7 @@
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../modules/minimal.nix
     ../modules/common.nix
     ../modules/fonts.nix
     ../modules/dev.nix
