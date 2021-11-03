@@ -49,18 +49,6 @@
         version = "1.38.6";
       })
       (createChromiumExtension {
-        # bitwarden
-        id = "nngceckbapebfimnlniiiahkandclblb";
-        sha256 = "sha256:0dh64lzbgki501v83fhlzvd5jnxpa6kqy386jp6xvm3607by1xpx";
-        version = "1.53.0";
-      })
-      (createChromiumExtension {
-        # ninja cookie
-        id = "jifeafcpcjjgnlcnkffmeegehmnmkefl";
-        sha256 = "sha256:0lnl6qgybznzi28vjxw6yy84gvcfafhwghlv3xs20610p3h8l8wp";
-        version = "0.7.0";
-      })
-      (createChromiumExtension {
         # decentraleyes
         id = "ldpochfccmkkmhdbclfhpagapcfdljkj";
         sha256 = "sha256:0cmkc01z06sw8rarsy9w1v6lpw2r39ad14m7b80bcgmfbxbh0ind";
@@ -77,24 +65,6 @@
         id = "lckanjgmijmafbedllaakclkaicjfmnk";
         sha256 = "sha256:004skr65b7jljm6w4znpgp7ys8h2cvbald73k5lgajrci92yz7f9";
         version = "1.21.0";
-      })
-      (createChromiumExtension {
-        # unpaywall
-        id = "iplffkdpngmdjhlpjmppncnlhomiipha";
-        sha256 = "sha256:19qrhyha3jsjw992x843b6l56psd3dvhs17haq9r3gq7wa6m2rwb";
-        version = "3.98";
-      })
-      (createChromiumExtension {
-        # old reddit redirect
-        id = "dneaehbmnbhcippjikoajpoabadpodje";
-        sha256 = "sha256:0y0g3f5zcmc5d1689znikcpp8rl4bxm0qc509xrz5abanv6h60s3";
-        version = "1.5.1";
-      })
-      (createChromiumExtension {
-        # refined github
-        id = "hlepfoohegkhhmjieoechaddaejaokhf";
-        sha256 = "sha256:0yglfyzm8fympnccndba30qm51gkp6gf5x8wi4mnd0413m8fzs7j";
-        version = "21.10.18";
       })
     ];
   };
