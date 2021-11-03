@@ -119,9 +119,9 @@
     in {
       nixosConfigurations = {
         # ThinkPad X230 laptop runs this branch.
-        meowmeow = nixpkgs.lib.nixosSystem {
+        x230 = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/meowmeow.nix ] ++ defaultModules;
+          modules = [ ./hosts/x230.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -130,11 +130,7 @@
 
         t14 = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [
-            ./hosts/t14.nix
-            common
-            #wayland
-          ] ++ home;
+          modules = [ ./hosts/t14.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
