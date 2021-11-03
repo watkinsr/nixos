@@ -1,5 +1,5 @@
 { pkgs, ... }: rec {
-  imports = [ ./home/firefox ./home/chromium ./home/kakoune ./home/nvim ];
+  imports = [ ./home/firefox ./home/kakoune ./home/nvim ];
 
   xdg = {
     configFile = {
