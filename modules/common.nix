@@ -69,7 +69,7 @@
       efi = { canTouchEfiVariables = true; };
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_5_14;
     supportedFilesystems = [ "zfs" ];
 
     zfs.enableUnstable = true;
