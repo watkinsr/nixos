@@ -1,10 +1,47 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [ ../cachix.nix ./systools ./tmux ./fish ./git ];
+  imports = [
+    ../cachix.nix
+    ./beets
+    ./databases
+    ./docker
+    ./fish
+    ./git
+    ./javascript
+    ./kakoune
+    ./nvim
+    ./rust
+    ./systools
+    ./tmux
+  ];
+
+  services.sshd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "20.09";
+
+  home-manager.users.pimeys.programs = {
+    ssh = { enable = true; };
+    direnv = {
+      enable = true;
+      enableFishIntegration = true;
+      nix-direnv = {
+        enable = true;
+        enableFlakes = true;
+      };
+    };
+    mcfly = {
+      enable = true;
+      enableFishIntegration = true;
+      enableFuzzySearch = true;
+      keyScheme = "vim";
+    };
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+  };
 
   services = {
     avahi = { enable = true; };
@@ -36,6 +73,9 @@
   };
 
   users.users.pimeys = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE6vjWaa794gLjAKU7YCzqVPQ6g8cviBdddmV14Mk/Ti pimeys@kubrick"
+    ];
     description = "The primary user account";
     isNormalUser = true;
     shell = pkgs.fish;

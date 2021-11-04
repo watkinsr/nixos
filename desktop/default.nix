@@ -2,16 +2,11 @@
   imports = [
     ./alacritty
     ./android
-    ./beets
-    ./databases
-    ./docker
     ./element
+    ./emacs
     ./firefox
     ./foot
-    ./kakoune
-    ./nvim
     ./redshift
-    ./rust
     ./spotify
     ./sway
     ./waybar

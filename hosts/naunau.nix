@@ -4,10 +4,10 @@
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../modules/minimal.nix
-    ../modules/home-services.nix
-    ../modules/gaming.nix
-    ../modules/desktop.nix
+    ../core
+    ../core/home-services.nix
+    ../desktop/gaming.nix
+    ../desktop
   ];
 
   time.timeZone = "Europe/Berlin";

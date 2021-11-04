@@ -3,14 +3,12 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../modules/minimal.nix
-    ../modules/home-services.nix
-    ../modules/desktop.nix
+    ../core
+    ../core/home-services.nix
+    ../desktop
   ];
 
   time.timeZone = "Europe/Berlin";
-
-  services.sshd.enable = true;
 
   home-manager.users.pimeys = {
     wayland.windowManager.sway = {

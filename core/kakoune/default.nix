@@ -43,12 +43,6 @@
             effect = ": dup-window<ret>";
           }
           {
-            key = "c";
-            mode = "user";
-            docstring = "go to home.nix";
-            effect = ": e ~/.config/nixpkgs/home.nix<ret>";
-          }
-          {
             key = "f";
             mode = "user";
             docstring = "fuzzy find";

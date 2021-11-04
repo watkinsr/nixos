@@ -61,7 +61,6 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.pimeys = lib.mkMerge [ ./home.nix ];
           };
         }
       ];
