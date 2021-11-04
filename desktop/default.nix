@@ -98,6 +98,8 @@
       gnome3.eog
       deadbeef
       libva-utils
+      slack
+      libreoffice
     ];
   };
 
@@ -153,8 +155,6 @@
       dejavu_fonts
       nerdfonts
       hack-font
-      slack
-      libreoffice
     ];
   };
 }

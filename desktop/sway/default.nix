@@ -52,7 +52,7 @@ in {
         export XDG_SESSION_TYPE="wayland";
         export XDG_CURRENT_DESKTOP="sway";
         export MC_SKIN=$HOME/.config/mc/selenized.ini;
-        source /etc/nixos/secret/secret;
+        source /home/pimeys/.config/secrets;
       '';
       extraConfig = ''
         exec --no-startup-id systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP

@@ -26,12 +26,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs.url = "github:nix-community/emacs-overlay";
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
-    , home-manager, ... }:
+    , home-manager, agenix, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -104,16 +108,14 @@
           nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
         };
       };
+
+      defaultModules = [ common agenix.nixosModules.age ] ++ home;
     in {
       nixosConfigurations = {
         # ThinkPad T25 laptop runs this branch.
         muspus = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [
-            ./hosts/muspus.nix
-            common
-            #wayland
-          ] ++ home;
+          modules = [ ./hosts/muspus.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -123,7 +125,7 @@
         # Prisma ThinkPad X1c
         purrpurr = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/purrpurr.nix common wayland ] ++ home;
+          modules = [ ./hosts/purrpurr.nix wayland ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -135,9 +137,8 @@
           system = system;
           modules = [
             ./hosts/meowmeow.nix
-            common
             #wayland
-          ] ++ home;
+          ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -147,7 +148,7 @@
         # The home workstation (AMD) uses this.
         naunau = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/naunau.nix common wayland ] ++ home;
+          modules = [ ./hosts/naunau.nix wayland ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -157,7 +158,7 @@
         # The office workstation (AMD) uses this.
         munchmunch = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/munchmunch.nix common wayland ] ++ home;
+          modules = [ ./hosts/munchmunch.nix wayland ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;

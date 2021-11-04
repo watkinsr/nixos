@@ -16,6 +16,16 @@
     ./tmux
   ];
 
+  age = {
+    sshKeyPaths = [ "/home/pimeys/.ssh/age" ];
+    secrets.secret1 = {
+      file = ../secrets/secret1.age;
+      name = "secret";
+      owner = "1000";
+      path = "/home/pimeys/.config/secrets";
+    };
+  };
+
   services.sshd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -157,7 +167,6 @@
     };
   };
 
-  environment.pathsToLink = [ "/libexec" "/share/fish" ];
   networking = {
     # The global useDHCP flag is deprecated, therefore explicitly set to false here.
     # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -178,16 +187,20 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    cachix
-    home-assistant-cli
-    home-manager
-    man-db
-    pciutils
-    libqrencode
-    nixfmt
-    ansible
-    gnumake
-    python3
-  ];
+  environment = {
+    pathsToLink = [ "/libexec" "/share/fish" ];
+    systemPackages = with pkgs; [
+      cachix
+      home-assistant-cli
+      home-manager
+      man-db
+      pciutils
+      libqrencode
+      nixfmt
+      ansible
+      gnumake
+      python3
+      inputs.agenix.defaultPackage.x86_64-linux
+    ];
+  };
 }
