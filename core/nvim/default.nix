@@ -28,25 +28,44 @@
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
-        vim-gitgutter
         fugitive
-        vim-nix
-        pkgs.master.vimPlugins.vim-prisma
-        fzf-lsp-nvim
+        vim-prisma
         tabular
+
+        vim-nix
+        vim-gitgutter
         vim-markdown
         vim-surround
+        vim-vsnip
 
         cmp-nvim-lsp
         cmp-vsnip
         cmp-path
         cmp-buffer
-        vim-vsnip
+
+        fzf-lsp-nvim
         popup-nvim
         plenary-nvim
         rust-tools-nvim
-        telescope-nvim
 
+        {
+          plugin = telescope-nvim;
+          config = ''
+            nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<CR>
+            nnoremap <silent> gD    <cmd>Telescope lsp_implementations<CR>
+            nnoremap <silent> gr    <cmd>Telescope lsp_references<CR>
+            nnoremap <silent> gd    <cmd>Telescope lsp_definitions<CR>
+            nnoremap <silent> ga    <cmd>Telescope lsp_code_actions<CR>
+            nnoremap <silent> ls    <cmd>Telescope lsp_document_symbols<CR>
+            nnoremap <silent> le    <cmd>Telescope lsp_document_diagnostics<CR>
+            nnoremap <silent> lw    <cmd>Telescope lsp_workspace_diagnostics<CR>
+            nnoremap <silent> gc    <cmd>Telescope git_commits<CR>
+            nnoremap <silent> gb    <cmd>Telescope git_branches<CR>
+            nnoremap <silent> gs    <cmd>Telescope git_status<CR>
+            nnoremap <silent> ch    <cmd>Telescope command_history<CR>
+            nnoremap <silent> cb    <cmd>Telescope command_builtin<CR>
+          '';
+        }
         {
           plugin = nvim-cmp;
           config = "lua require('nvim-cmp')";
@@ -119,23 +138,9 @@
             autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
             autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
-            nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<CR>
-            nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-            nnoremap <silent> gD    <cmd>Telescope lsp_implementations<CR>
-            nnoremap <silent> gr    <cmd>Telescope lsp_references<CR>
-            nnoremap <silent> gd    <cmd>Telescope lsp_definitions<CR>
-            nnoremap <silent> ga    <cmd>Telescope lsp_code_actions<CR>
             nnoremap <silent> g[    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
             nnoremap <silent> g]    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-
-            nnoremap <silent> ls  <cmd>Telescope lsp_document_symbols<CR>
-            nnoremap <silent> le  <cmd>Telescope lsp_document_diagnostics<CR>
-            nnoremap <silent> lw  <cmd>Telescope lsp_workspace_diagnostics<CR>
-            nnoremap <silent> gc  <cmd>Telescope git_commits<CR>
-            nnoremap <silent> gb  <cmd>Telescope git_branches<CR>
-            nnoremap <silent> gs  <cmd>Telescope git_status<CR>
-            nnoremap <silent> ch  <cmd>Telescope command_history<CR>
-            nnoremap <silent> cb  <cmd>Telescope command_builtin<CR>
+            nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 
             lua require('nvim-lspconfig')
           '';
