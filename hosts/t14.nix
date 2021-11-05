@@ -18,6 +18,20 @@
 
   services.sshd.enable = true;
   services.redis.enable = true;
+  services.postgresql = {
+    enable = true;
+    enableTCPIP = true;
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all trust
+      host all all ::1/128 trust
+      host all all 127.0.0.1/32 trust
+    '';
+    initialScript = pkgs.writeText "backend-initScript" ''
+      CREATE ROLE falcon WITH LOGIN PASSWORD 'falcon' CREATEDB;
+      CREATE DATABASE falcon;
+      GRANT ALL PRIVILEGES ON DATABASE falcon TO falcon;
+    '';
+  };
 
   boot = {
     initrd = {
