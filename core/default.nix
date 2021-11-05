@@ -72,10 +72,6 @@
     avahi = { enable = true; };
     haveged.enable = true;
     xserver = { enable = true; };
-    tailscale = {
-      enable = true;
-      package = pkgs.master.tailscale;
-    };
   };
 
   nix = {
@@ -180,7 +176,6 @@
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      trustedInterfaces = [ "tailscale0" ];
       allowedUDPPorts = [ 41641 ];
     };
 
