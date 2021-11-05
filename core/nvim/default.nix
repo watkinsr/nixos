@@ -28,8 +28,6 @@
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
-        deoplete-rust
-        deoplete-lsp
         vim-gitgutter
         fugitive
         vim-nix
@@ -38,6 +36,21 @@
         tabular
         vim-markdown
         vim-surround
+
+        cmp-nvim-lsp
+        cmp-vsnip
+        cmp-path
+        cmp-buffer
+        vim-vsnip
+        popup-nvim
+        plenary-nvim
+        rust-tools-nvim
+        telescope-nvim
+
+        {
+          plugin = nvim-cmp;
+          config = "lua require('nvim-cmp')";
+        }
         {
           plugin = (nvim-treesitter.withPlugins
             (plugins: pkgs.tree-sitter.allGrammars));
@@ -98,6 +111,32 @@
         {
           plugin = nvim-lspconfig;
           config = ''
+            set completeopt=menuone,noinsert,noselect
+            set shortmess+=c
+            set updatetime=300
+            set signcolumn=yes
+
+            autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+            autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+
+            nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<CR>
+            nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+            nnoremap <silent> gD    <cmd>Telescope lsp_implementations<CR>
+            nnoremap <silent> gr    <cmd>Telescope lsp_references<CR>
+            nnoremap <silent> gd    <cmd>Telescope lsp_definitions<CR>
+            nnoremap <silent> ga    <cmd>Telescope lsp_code_actions<CR>
+            nnoremap <silent> g[    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+            nnoremap <silent> g]    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+            nnoremap <silent> ls  <cmd>Telescope lsp_document_symbols<CR>
+            nnoremap <silent> le  <cmd>Telescope lsp_document_diagnostics<CR>
+            nnoremap <silent> lw  <cmd>Telescope lsp_workspace_diagnostics<CR>
+            nnoremap <silent> gc  <cmd>Telescope git_commits<CR>
+            nnoremap <silent> gb  <cmd>Telescope git_branches<CR>
+            nnoremap <silent> gs  <cmd>Telescope git_status<CR>
+            nnoremap <silent> ch  <cmd>Telescope command_history<CR>
+            nnoremap <silent> cb  <cmd>Telescope command_builtin<CR>
+
             lua require('nvim-lspconfig')
           '';
         }
