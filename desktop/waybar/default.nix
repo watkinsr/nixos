@@ -9,9 +9,6 @@
       modules-left = [ "sway/workspaces" ];
       modules-center = [ "sway/window" ];
       modules-right = [
-        "custom/weather"
-        "custom/dist"
-        "custom/glucose"
         "network"
         "cpu"
         "memory"
@@ -55,24 +52,6 @@
           tooltip = false;
         };
         "memory" = { format = "{}% "; };
-        "custom/weather" = {
-          exec = "~/.config/scripts/weather.sh";
-          on-click = "xdg-open https://hass.local/lovelace/climate";
-          format = "{} 🌡";
-          interval = 60;
-        };
-        "custom/glucose" = {
-          exec = "~/.config/scripts/glucose.sh";
-          on-click = "xdg-open https://sokeri.nauk.io";
-          format = "{} 🩸";
-          interval = 30;
-        };
-        "custom/dist" = {
-          exec = "node ~/.config/scripts/dist.js";
-          format = "{} 💕";
-          on-click = "xdg-open https://hass.local/lovelace/people";
-          interval = 15;
-        };
         "temperature" = {
           critical-threshold = 80;
           format = "{temperatureC}°C {icon}";
