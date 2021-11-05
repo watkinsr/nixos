@@ -52,7 +52,7 @@
 
   networking = {
     interfaces = {
-      enp0s25.useDHCP = true;
+      enp0s31f6.useDHCP = true;
       wlan0.useDHCP = true;
     };
 
