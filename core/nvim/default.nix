@@ -13,18 +13,21 @@
         set termguicolors
 
         " Emacs way of changing pwd to the current file
-        autocmd BufEnter * silent! lcd %:p:h
+        " autocmd BufEnter * silent! lcd %:p:h
 
         " Always use system clipboard
         set clipboard+=unnamedplus
 
         " Keybindings
         nmap <silent> gr :References<cr>
+        nmap <silent> tt :NvimTreeToggle<CR>
+        nmap <silent> tr :NvimTreeRefresh<CR>
+        nmap <silent> tn :NvimTreeFindFile<CR> 
 
         nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
         nmap <silent> <leader>ca :CodeActions<cr>
-        nmap <silent> <leader>/ :Rg<cr>
-        nmap <silent> <leader><space> :GFiles<cr>
+        nmap <silent> <leader>/ :Telescope live_grep<cr>
+        nmap <silent> <leader><space> :Telescope find_files<cr>
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
@@ -47,6 +50,14 @@
         popup-nvim
         plenary-nvim
         rust-tools-nvim
+
+        nvim-web-devicons
+        {
+          plugin = nvim-tree-lua;
+          config = ''
+            lua require'nvim-tree'.setup {}
+          '';
+        }
 
         {
           plugin = lspsaga-nvim;
