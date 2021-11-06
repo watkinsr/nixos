@@ -32,7 +32,6 @@
         sudo.fprintAuth = true;
         system-local-login.fprintAuth = true;
         su.fprintAuth = true;
-        gdm.fprintAuth = true;
       };
     };
   };

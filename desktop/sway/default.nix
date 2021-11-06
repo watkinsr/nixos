@@ -28,13 +28,6 @@ let
   default-gaps-inner = 0;
   default-gaps-outer = 0;
 in {
-  services.xserver = {
-    displayManager = {
-      defaultSession = "sway";
-      gdm.wayland = true;
-    };
-  };
-
   programs.sway = { enable = true; };
 
   home-manager.users.pimeys = {

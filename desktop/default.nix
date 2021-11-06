@@ -56,7 +56,15 @@
   };
 
   services = {
-    xserver.enable = true;
+    greetd = {
+      enable = true;
+      vt = 7;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
+        };
+      };
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
