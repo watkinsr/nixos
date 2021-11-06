@@ -2,6 +2,7 @@
   imports = [
     ./alacritty
     ./android
+    ./chromium
     ./element
     ./emacs
     ./firefox

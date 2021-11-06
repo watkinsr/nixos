@@ -125,7 +125,7 @@
         # Prisma ThinkPad X1c
         purrpurr = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/purrpurr.nix wayland ] ++ defaultModules;
+          modules = [ ./hosts/purrpurr.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -135,10 +135,7 @@
         # ThinkPad X230 laptop runs this branch.
         meowmeow = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [
-            ./hosts/meowmeow.nix
-            #wayland
-          ] ++ defaultModules;
+          modules = [ ./hosts/meowmeow.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -148,7 +145,7 @@
         # The home workstation (AMD) uses this.
         naunau = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/naunau.nix wayland ] ++ defaultModules;
+          modules = [ ./hosts/naunau.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
@@ -158,7 +155,7 @@
         # The office workstation (AMD) uses this.
         munchmunch = nixpkgs.lib.nixosSystem {
           system = system;
-          modules = [ ./hosts/munchmunch.nix wayland ] ++ defaultModules;
+          modules = [ ./hosts/munchmunch.nix ] ++ defaultModules;
           specialArgs = {
             inherit inputs;
             inherit home-manager;
