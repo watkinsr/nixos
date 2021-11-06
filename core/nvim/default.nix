@@ -49,6 +49,13 @@
         rust-tools-nvim
 
         {
+          plugin = lspsaga-nvim;
+          config = ''
+            nnoremap <silent> rn    <cmd>Lspsaga rename<CR>
+            nnoremap <silent> pd    <cmd>Lspsaga preview_definition<CR>
+          '';
+        }
+        {
           plugin = telescope-nvim;
           config = ''
             nnoremap <silent> <c-]> <cmd>Telescope lsp_definitions<CR>
