@@ -39,7 +39,6 @@
         tabular
 
         vim-nix
-        vim-gitgutter
         vim-markdown
         vim-surround
         vim-vsnip
@@ -57,7 +56,10 @@
         {
           plugin = neogit;
           config = ''
-            lua require('neogit').setup {}
+            lua <<EOF
+            require('plenary')
+            require('neogit').setup {}
+            EOF
           '';
         }
 
@@ -104,10 +106,6 @@
               }
             EOF
           '';
-        }
-        {
-          plugin = vim-gitgutter;
-          config = "let g:gitgutter_enabled = 1";
         }
         {
           plugin = vim-autoformat;

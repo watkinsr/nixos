@@ -30,16 +30,12 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     emacs.url = "github:nix-community/emacs-overlay";
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
-    , home-manager, agenix, neovim, ... }:
+    , home-manager, agenix, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -90,7 +86,6 @@
             inputs.rust-overlay.overlay
             inputs.emacs.overlay
             nur.overlay
-            neovim.overlay
 
             (self: super: {
               master = master;
