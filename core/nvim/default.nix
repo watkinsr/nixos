@@ -14,16 +14,13 @@
         set number
 
         " Emacs way of changing pwd to the current file
-        " autocmd BufEnter * silent! lcd %:p:h
+        autocmd BufEnter * silent! lcd %:p:h
 
         " Always use system clipboard
         set clipboard+=unnamedplus
 
         " Keybindings
         nmap <silent> gr :References<cr>
-        nmap <silent> tt :NvimTreeToggle<CR>
-        nmap <silent> tr :NvimTreeRefresh<CR>
-        nmap <silent> tn :NvimTreeFindFile<CR> 
 
         nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
         nmap <silent> <leader>ca :CodeActions<cr>
@@ -55,15 +52,6 @@
         popup-nvim
         plenary-nvim
         rust-tools-nvim
-
-        nvim-web-devicons
-        {
-          plugin = nvim-tree-lua;
-          config = ''
-            let g:nvim_tree_disable_window_picker = 1
-            lua require'nvim-tree'.setup {}
-          '';
-        }
 
         {
           plugin = neogit;
