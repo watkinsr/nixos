@@ -11,6 +11,7 @@
         let mapleader = " "
         set nowrap
         set termguicolors
+        set number
 
         " Emacs way of changing pwd to the current file
         " autocmd BufEnter * silent! lcd %:p:h
@@ -26,8 +27,12 @@
 
         nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
         nmap <silent> <leader>ca :CodeActions<cr>
-        nmap <silent> <leader>/ :Telescope live_grep<cr>
-        nmap <silent> <leader><space> :Telescope find_files<cr>
+        nmap <silent> <leader>/ :Rg<cr>
+        nmap <silent> <leader><space> :GFiles<cr>
+
+        nmap <silent> <leader>ls    :Telescope lsp_document_symbols<CR>
+        nmap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
+        nmap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
@@ -55,6 +60,7 @@
         {
           plugin = nvim-tree-lua;
           config = ''
+            let g:nvim_tree_disable_window_picker = 0
             lua require'nvim-tree'.setup {}
           '';
         }
@@ -74,9 +80,6 @@
             nnoremap <silent> gr    <cmd>Telescope lsp_references<CR>
             nnoremap <silent> gd    <cmd>Telescope lsp_definitions<CR>
             nnoremap <silent> ga    <cmd>Telescope lsp_code_actions<CR>
-            nnoremap <silent> ls    <cmd>Telescope lsp_document_symbols<CR>
-            nnoremap <silent> le    <cmd>Telescope lsp_document_diagnostics<CR>
-            nnoremap <silent> lw    <cmd>Telescope lsp_workspace_diagnostics<CR>
             nnoremap <silent> gc    <cmd>Telescope git_commits<CR>
             nnoremap <silent> gb    <cmd>Telescope git_branches<CR>
             nnoremap <silent> gs    <cmd>Telescope git_status<CR>
@@ -92,18 +95,7 @@
           plugin = (nvim-treesitter.withPlugins
             (plugins: pkgs.tree-sitter.allGrammars));
           config = ''
-            lua <<EOF
-              require('nvim-treesitter.configs').setup {
-                highlight = {
-                  enable = true,              -- false will disable the whole extension
-                  -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                  -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-                  -- Using this option may slow down your editor, and you may see some duplicate highlights.
-                  -- Instead of true it can also be a list of languages
-                  additional_vim_regex_highlighting = false,
-                },
-              }
-            EOF
+            lua require('nvim-treesitter')
           '';
         }
         {
@@ -150,7 +142,7 @@
           config = ''
             set completeopt=menuone,noinsert,noselect
             set shortmess+=c
-            set updatetime=300
+            set updatetime=1000
             set signcolumn=yes
 
             autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
