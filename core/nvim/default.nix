@@ -30,10 +30,11 @@
         nmap <silent> <leader>ls    :Telescope lsp_document_symbols<CR>
         nmap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
         nmap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
+
+        nmap <silent> <leader>gg    :Neogit<CR>
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
-        fugitive
         vim-prisma
         tabular
 
