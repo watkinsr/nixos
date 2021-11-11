@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home-manager.users.pimeys = {
+  home-manager.users.ryan = {
     xdg.desktopEntries.firefox = {
       name = "Firefox";
       genericName = "Web Browser";

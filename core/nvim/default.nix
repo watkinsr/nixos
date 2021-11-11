@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home-manager.users.pimeys = {
+  home-manager.users.ryan = {
     xdg.configFile = { "nvim/lua".source = ./lua; };
 
     programs.neovim = {
@@ -20,30 +20,20 @@
         set clipboard+=unnamedplus
 
         " Keybindings
-        nnoremap <silent> gr :References<CR>
-        nnoremap <silent> <leader>n :e ~/.config/nixpkgs/<CR>
-        nnoremap <silent> <leader>ca :RustCodeAction<CR>
-        nnoremap <silent> <leader>cc :RustOpenCargo<CR>
-        nnoremap <silent> <leader>cw :RustReloadWorkspace<CR>
-        nnoremap <silent> <C-j> :RustMoveItemDown<CR>
-        nnoremap <silent> <C-k> :RustMoveItemUp<CR>
-        nnoremap <silent> <leader>/ :Rg<CR>
-        nnoremap <silent> <leader><space> :GFiles<CR>
-        nnoremap <silent> <leader>ls    :Telescope lsp_document_symbols<CR>
-        nnoremap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
-        nnoremap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
-        nnoremap <silent> <leader>gg    :Neogit<CR>
-        nnoremap <silent> <F2> :RustHoverActions<cr>
-        nnoremap <silent> <F3> :RustExpandMacro<cr>
-        nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
-        nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
-        nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
-        nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
-        nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
-        nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-        nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-        nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
-        nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
+        nmap <silent> gr :References<cr>
+
+        nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
+        nmap <silent> <leader>ca :CodeActions<cr>
+        nmap <silent> <leader>/ :Rg<cr>
+        nmap <silent> <leader><space> :GFiles<cr>
+
+        nmap <silent> <leader>ls    :Telescope lsp_document_symbols<CR>
+        nmap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
+        nmap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
+
+        nmap <silent> <leader>gg    :Neogit<CR>
+
+        set mouse=a
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [

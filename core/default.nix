@@ -3,7 +3,6 @@
 {
   imports = [
     ../cachix.nix
-    ./beets
     ./databases
     ./docker
     ./fish
@@ -14,24 +13,6 @@
     ./systools
     ./tmux
   ];
-
-  age = {
-    identityPaths = [ "/home/pimeys/.ssh/age" ];
-    secrets.secret1 = {
-      file = ../secrets/secret1.age;
-      name = "secret";
-      owner = "1000";
-      path = "/home/pimeys/.config/secrets";
-      symlink = false;
-    };
-    secrets.secret2 = {
-      file = ../secrets/secret2.age;
-      name = "secret";
-      owner = "1000";
-      path = "/home/pimeys/.authinfo";
-      symlink = false;
-    };
-  };
 
   services.sshd.enable = true;
 
@@ -49,7 +30,7 @@
     '';
   };
 
-  home-manager.users.pimeys.programs = {
+  home-manager.users.ryan.programs = {
     ssh = { enable = true; };
     direnv = {
       enable = true;
@@ -94,7 +75,7 @@
     description = "The primary user account";
     isNormalUser = true;
     shell = pkgs.fish;
-    uid = 1001;
+    uid = 1000;
     extraGroups = [
       "wheel"
       "video"
@@ -189,11 +170,11 @@
       nvd
       rnix-lsp
       cachix
-      home-assistant-cli
       home-manager
       man-db
       pciutils
       libqrencode
+      any-nix-shell
       nixfmt
       ansible
       gnumake

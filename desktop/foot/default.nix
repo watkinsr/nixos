@@ -1,5 +1,5 @@
 { pkgs, home-manager, ... }: {
-  home-manager.users.pimeys.programs.foot = {
+  home-manager.users.ryan.programs.foot = {
     enable = true;
     server.enable = true;
     settings = {

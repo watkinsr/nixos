@@ -1,5 +1,5 @@
 { lib, home-manager, pkgs, ... }: {
-  home-manager.users.pimeys.programs.tmux = {
+  home-manager.users.ryan.programs.tmux = {
     enable = true;
     clock24 = true;
     extraConfig = ''

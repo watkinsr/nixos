@@ -1,18 +1,14 @@
 { config, lib, pkgs, modulesPath, inputs, ... }:
 
 {
-  imports =
-    [
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
-      (modulesPath + "/installer/scan/not-detected.nix")
-      ../modules/common.nix
-      ../modules/fonts.nix
-      ../modules/dev.nix
-      ../modules/multimedia.nix
-      ../modules/work.nix
-      ../modules/wayland.nix
-      ../modules/laptop.nix
-    ];
+  imports = [
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ../core
+    ../core/home-services.nix
+    ../desktop/laptop.nix
+    ../desktop
+  ];
 
   time.timeZone = "Europe/Berlin";
 
@@ -35,19 +31,15 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+      availableKernelModules =
+        [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
       kernelModules = [ ];
     };
 
-    kernelModules = [
-      "kvm-intel"
-    ];
+    kernelModules = [ "kvm-intel" ];
 
-    kernelParams = [
-      "intel_pstate=passive"
-      "i915.enable_fbc=1"
-      "i915.enable_psr=2"
-    ];
+    kernelParams =
+      [ "intel_pstate=passive" "i915.enable_fbc=1" "i915.enable_psr=2" ];
   };
 
   networking = {
@@ -62,22 +54,18 @@
 
   hardware = {
     cpu.intel.updateMicrocode = true;
-    opengl.extraPackages = with pkgs; [
-      vaapiIntel
-      libvdpau-va-gl
-      vaapiVdpau
-    ];
+    opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/58c6dfcb-1176-4084-b229-b5262c1ce74b";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/58c6dfcb-1176-4084-b229-b5262c1ce74b";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B0FA-1759";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/B0FA-1759";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 }

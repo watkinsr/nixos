@@ -3,8 +3,6 @@
     ./alacritty
     ./android
     ./chromium
-    ./element
-    ./emacs
     ./firefox
     ./foot
     ./greetd
@@ -17,7 +15,7 @@
     ./waybar
   ];
 
-  home-manager.users.pimeys = {
+  home-manager.users.ryan = {
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
@@ -58,6 +56,58 @@
     };
   };
 
+<<<<<<< HEAD
+=======
+  services = {
+    greetd = {
+      enable = true;
+      vt = 7;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
+        };
+      };
+    };
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+  };
+
+  environment = {
+    pathsToLink = [ "/libexec" ];
+    systemPackages = with pkgs; [
+      polkit_gnome
+      brillo
+      xwayland
+      swaylock-effects
+      swayidle
+      wl-clipboard
+      wofi
+      kanshi
+      i3blocks-gaps
+      i3status
+      wev
+      wf-recorder
+      linuxPackages.v4l2loopback
+      slurp
+      wlogout
+      grim
+      ncmpcpp
+      youtube-dl
+      yle-dl
+      ffmpeg
+      flac
+      mpv
+      evince
+      gnome3.eog
+      libva-utils
+      slack
+      libreoffice
+    ];
+  };
+
+>>>>>>> 76735e5 (rebase on pimeys branch)
   systemd.services.lock-before-sleeping = {
     restartIfChanged = false;
     unitConfig = {
@@ -67,7 +117,7 @@
       ExecStart =
         "${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2";
       Type = "simple";
-      User = "pimeys";
+      User = "ryan";
     };
     before = [ "pre-sleep.service" ];
     wantedBy = [ "pre-sleep.service" ];

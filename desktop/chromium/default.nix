@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home-manager.users.pimeys = {
+  home-manager.users.ryan = {
     programs.chromium = {
       enable = true;
       package = (pkgs.ungoogled-chromium.override {

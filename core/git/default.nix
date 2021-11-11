@@ -1,5 +1,5 @@
 { lib, home-manager, pkgs, ... }: {
-  home-manager.users.pimeys.programs.git = {
+  home-manager.users.ryan.programs.git = {
     enable = true;
     delta = {
       enable = true;

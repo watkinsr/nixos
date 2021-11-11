@@ -1,5 +1,5 @@
 { pkgs, home-manager, ... }: {
-  home-manager.users.pimeys.programs.alacritty = {
+  home-manager.users.ryan.programs.alacritty = {
     enable = true;
     settings = {
       env = { TERM = "xterm-256color"; };

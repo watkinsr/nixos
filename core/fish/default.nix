@@ -1,5 +1,5 @@
 { lib, home-manager, pkgs, ... }: {
-  home-manager.users.pimeys.programs.fish = {
+  home-manager.users.ryan.programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set PATH ~/.cargo/bin ~/.local/bin $PATH

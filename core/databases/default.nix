@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs; [
     mysql-client
     postgresql_12
-    jetbrains.datagrip
     sqlite-interactive
   ];
 }
