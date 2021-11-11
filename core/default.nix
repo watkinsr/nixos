@@ -174,10 +174,6 @@
     # replicates the default behaviour.
     useDHCP = false;
     networkmanager.enable = true;
-    firewall = {
-      enable = true;
-      allowedUDPPorts = [ 41641 ];
-    };
 
     timeServers = [
       "0.de.pool.ntp.org"
