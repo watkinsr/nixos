@@ -10,34 +10,19 @@
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixpkgs-julius = {
-      url = "github:pimeys/nixpkgs/emacs-tree-sitter/link-grammars";
-    };
-    nixpkgs-lsp = {
-      url = "github:pimeys/nixpkgs/prisma-language-server-3.7.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "git+https://git.marvid.fr/eeva/home-manager.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware.url = "git+https://git.marvid.fr/eeva/nixos-hardware.git";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nur
-    , home-manager, nixpkgs-julius, nixpkgs-lsp, agenix, ... }:
+    , home-manager, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -52,8 +37,6 @@
 
       pkgs = mkPkgs nixpkgs [ ];
       master = mkPkgs nixpkgs-master [ ];
-      julius = mkPkgs nixpkgs-julius [ ];
-      lsp = mkPkgs nixpkgs-lsp [ ];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -87,14 +70,11 @@
           };
 
           nixpkgs.overlays = [
-            inputs.rust-overlay.overlay
             # inputs.emacs.overlay
             nur.overlay
 
             (self: super: {
               master = master;
-              julius = julius;
-              lsp = lsp;
             })
           ];
         };
@@ -114,7 +94,7 @@
         };
       };
 
-      defaultModules = [ common agenix.nixosModules.age ] ++ home;
+      defaultModules = [ common ] ++ home;
     in {
       nixosConfigurations = {
         # ThinkPad X230 laptop runs this branch.

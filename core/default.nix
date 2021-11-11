@@ -35,7 +35,9 @@
     direnv = {
       enable = true;
       enableFishIntegration = true;
-      nix-direnv = { enable = true; };
+      nix-direnv = {
+        enable = true;
+      };
     };
     mcfly = {
       enable = true;
@@ -58,19 +60,18 @@
         description = "us-watkinsr";
         languages = [ "eng" ];
         symbolsFile = /root/us-watkinsr;
-
       };
       displayManager = {
         #sessionPackages = [
         #  (pkgs.plasma-workspace.overrideAttrs
         #    (old: { passthru.providedSessions = [ "plasmawayland" ]; }))
         #  ];
-        #sddm.enable = true;
-        gdm.enable = true;
+        sddm.enable = true;
+        #gdm.enable = true;
       };
       desktopManager = {
-        #plasma5.enable = true;
-        gnome.enable = true;
+        plasma5.enable = true;
+        #gnome.enable = true;
       };
     };
     teamviewer = { enable = true; };
@@ -204,11 +205,6 @@
       ansible
       gnumake
       python3
-      inputs.agenix.defaultPackage.x86_64-linux
-      lm_sensors
-      unixtools.xxd
-      fzf
-      signal-desktop
     ];
   };
 }
