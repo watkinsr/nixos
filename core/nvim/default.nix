@@ -37,11 +37,13 @@
       plugins = with pkgs.vimPlugins; [
         vim-prisma
         tabular
+        nerdcommenter
 
         vim-nix
         vim-markdown
         vim-surround
         vim-vsnip
+        vim-gitgutter
 
         cmp-nvim-lsp
         cmp-vsnip

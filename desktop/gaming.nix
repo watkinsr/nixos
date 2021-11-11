@@ -1,13 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    lutris
-  ];
+  environment.systemPackages = with pkgs; [ lutris ];
 
-  programs = {
-    steam.enable = true;
-  };
+  programs = { steam.enable = true; };
 
   hardware = {
     opengl = {
