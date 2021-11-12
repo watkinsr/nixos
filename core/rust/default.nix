@@ -9,5 +9,7 @@
     evcxr
     rust-analyzer
     rust-bin.stable.latest.default
+    lldb
+    vscode-extensions.vadimcn.vscode-lldb
   ];
 }

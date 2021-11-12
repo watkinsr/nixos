@@ -20,24 +20,31 @@
         set clipboard+=unnamedplus
 
         " Keybindings
-        nmap <silent> gr :References<cr>
-
-        nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
-        nmap <silent> <leader>ca :RustCodeAction<cr>
-        nmap <silent> <leader>cr :RustRunnables<cr>
-        nmap <silent> <leader>cc :RustOpenCargo<cr>
-        nmap <silent> <leader>cw :RustReloadWorkspace<cr>
-        nmap <silent> <C-j> :RustMoveItemDown<cr>
-        nmap <silent> <C-k> :RustMoveItemUp<cr>
-        nmap <silent> <leader>
-        nmap <silent> <leader>/ :Rg<cr>
-        nmap <silent> <leader><space> :GFiles<cr>
-
-        nmap <silent> <leader>ls    :Telescope lsp_document_symbols<CR>
-        nmap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
-        nmap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
-
-        nmap <silent> <leader>gg    :Neogit<CR>
+        nnoremap <silent> gr :References<cr>
+        nnoremap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
+        nnoremap <silent> <leader>ca :RustCodeAction<cr>
+        nnoremap <silent> <leader>cr :RustRunnables<cr>
+        nnoremap <silent> <leader>cd :RustDebuggables<cr>
+        nnoremap <silent> <leader>cc :RustOpenCargo<cr>
+        nnoremap <silent> <leader>cw :RustReloadWorkspace<cr>
+        nnoremap <silent> <C-j> :RustMoveItemDown<cr>
+        nnoremap <silent> <C-k> :RustMoveItemUp<cr>
+        nnoremap <silent> <leader>
+        nnoremap <silent> <leader>/ :Rg<cr>
+        nnoremap <silent> <leader><space> :GFiles<cr>
+        nnoremap <silent> <leader>ls    :Telescope lsp_document_symbols<CR>
+        nnoremap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
+        nnoremap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
+        nnoremap <silent> <leader>gg    :Neogit<CR>
+        nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+        nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+        nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+        nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+        nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+        nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+        nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+        nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+        nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
       '';
       extraPackages = with pkgs; [ tree-sitter fzf ];
       plugins = with pkgs.vimPlugins; [
@@ -59,6 +66,7 @@
         popup-nvim
         plenary-nvim
         rust-tools-nvim
+        nvim-dap
 
         {
           plugin = neogit;
