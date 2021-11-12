@@ -4,11 +4,28 @@ local opts = {
     tools = { -- rust-tools options
         autoSetHints = true,
         hover_with_actions = true,
+	runnables = {
+	    use_telescope = true,
+	},
+	debuggables = {
+	    use_telescope = true,
+	},
         inlay_hints = {
+	    only_current_line = false,
             show_parameter_hints = false,
+	    max_len_align = false,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
         },
+	hover_actions = {
+	    border = {
+                {"╭", "FloatBorder"}, {"─", "FloatBorder"},
+                {"╮", "FloatBorder"}, {"│", "FloatBorder"},
+                {"╯", "FloatBorder"}, {"─", "FloatBorder"},
+                {"╰", "FloatBorder"}, {"│", "FloatBorder"}
+            },
+            auto_focus = false,
+	},
     },
 
     -- all the opts to send to nvim-lspconfig

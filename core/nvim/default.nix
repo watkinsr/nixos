@@ -23,7 +23,13 @@
         nmap <silent> gr :References<cr>
 
         nmap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
-        nmap <silent> <leader>ca :CodeActions<cr>
+        nmap <silent> <leader>ca :RustCodeAction<cr>
+        nmap <silent> <leader>cr :RustRunnables<cr>
+        nmap <silent> <leader>cc :RustOpenCargo<cr>
+        nmap <silent> <leader>cw :RustReloadWorkspace<cr>
+        nmap <silent> <C-j> :RustMoveItemDown<cr>
+        nmap <silent> <C-k> :RustMoveItemUp<cr>
+        nmap <silent> <leader>
         nmap <silent> <leader>/ :Rg<cr>
         nmap <silent> <leader><space> :GFiles<cr>
 
@@ -37,7 +43,6 @@
       plugins = with pkgs.vimPlugins; [
         vim-prisma
         tabular
-        nerdcommenter
 
         vim-nix
         vim-markdown
@@ -64,7 +69,6 @@
             EOF
           '';
         }
-
         {
           plugin = lspsaga-nvim;
           config = ''
