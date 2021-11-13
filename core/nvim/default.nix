@@ -23,8 +23,6 @@
         nnoremap <silent> gr :References<cr>
         nnoremap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
         nnoremap <silent> <leader>ca :RustCodeAction<cr>
-        nnoremap <silent> <leader>cr :RustRunnables<cr>
-        nnoremap <silent> <leader>cd :RustDebuggables<cr>
         nnoremap <silent> <leader>cc :RustOpenCargo<cr>
         nnoremap <silent> <leader>cw :RustReloadWorkspace<cr>
         nnoremap <silent> <C-j> :RustMoveItemDown<cr>
@@ -36,6 +34,8 @@
         nnoremap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
         nnoremap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
         nnoremap <silent> <leader>gg    :Neogit<CR>
+        nnoremap <silent> <F2> :RustHoverActions<cr>
+        nnoremap <silent> <F3> :RustExpandMacro<cr>
         nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
         nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
         nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>

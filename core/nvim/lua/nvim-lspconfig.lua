@@ -24,7 +24,7 @@ local opts = {
                 {"╯", "FloatBorder"}, {"─", "FloatBorder"},
                 {"╰", "FloatBorder"}, {"│", "FloatBorder"}
             },
-            auto_focus = false,
+            auto_focus = true,
 	},
     },
 
