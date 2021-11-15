@@ -156,6 +156,8 @@
     useDHCP = false;
     networkmanager.enable = true;
 
+    firewall.checkReversePath = "loose";
+
     timeServers = [
       "0.de.pool.ntp.org"
       "1.de.pool.ntp.org"
