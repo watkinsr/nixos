@@ -16,7 +16,7 @@
     wayland.windowManager.sway = {
       config = {
         output = {
-          "DP-1" = {
+          "DP-3" = {
             bg = "~/.config/pictures/85kpazrfhbv61.png fill";
             pos = "0 0 res 5120x1440";
             adaptive_sync = "off";
@@ -44,7 +44,9 @@
 
   services.sshd.enable = true;
 
-  hardware = { cpu.amd.updateMicrocode = true; };
+  hardware = {
+    cpu.amd.updateMicrocode = true;
+  };
 
   nix.maxJobs = 32;
   powerManagement.cpuFreqGovernor = "performance";

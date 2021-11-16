@@ -124,7 +124,7 @@
         {
           plugin = vim-autoformat;
           config = ''
-            autocmd BufWrite * :Autoformat
+            autocmd BufWrite *.rs :Autoformat
             autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
             let g:autoformat_autoindent = 0
             let g:autoformat_retab = 0
