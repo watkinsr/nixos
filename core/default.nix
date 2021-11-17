@@ -52,7 +52,28 @@
   services = {
     avahi = { enable = true; };
     haveged.enable = true;
-    xserver = { enable = true; };
+    xserver = { 
+      enable = true; 
+      extraLayouts.us-watkinsr = {
+        description = "us-watkinsr";
+        languages = [ "eng" ];
+        symbolsFile = /root/us-watkinsr;
+
+      };
+      displayManager = {
+        #sessionPackages = [
+        #  (pkgs.plasma-workspace.overrideAttrs
+        #    (old: { passthru.providedSessions = [ "plasmawayland" ]; }))
+        #  ];
+        # sddm.enable = true;
+        gdm.enable = true;
+      };
+      desktopManager = {
+        # plasma5.enable = true;
+        gnome.enable = true;
+      };
+    };
+    teamviewer = { enable = true; };
   };
 
   nix = {

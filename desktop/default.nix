@@ -27,7 +27,7 @@
 
   programs = {
     light.enable = true;
-    qt5ct.enable = true;
+    #qt5ct.enable = true;
   };
 
   xdg = {
@@ -35,7 +35,7 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
+        #xdg-desktop-portal-gtk
       ];
       gtkUsePortal = true;
     };
@@ -70,7 +70,7 @@
     };
     pipewire = {
       enable = true;
-      pulse.enable = true;
+      pulse.enable = false;
     };
   };
 
