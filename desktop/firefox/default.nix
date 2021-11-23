@@ -25,6 +25,7 @@
         old-reddit-redirect
         unpaywall
         zoom-redirector
+        h264ify
       ];
       profiles = {
         default = {
