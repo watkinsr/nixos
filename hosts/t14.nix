@@ -10,7 +10,7 @@
     ../desktop
   ];
 
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/London";
 
   services.sshd.enable = true;
   services.redis.enable = true;

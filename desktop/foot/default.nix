@@ -5,7 +5,7 @@
     settings = {
       main = {
         term = "xterm-256color";
-        font = "Inconsolata:size=14";
+        font = "Inconsolata:size=10";
       };
       cursor = { color = "002b36 93a1a1"; };
       colors = {

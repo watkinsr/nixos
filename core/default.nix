@@ -65,11 +65,11 @@
         #  (pkgs.plasma-workspace.overrideAttrs
         #    (old: { passthru.providedSessions = [ "plasmawayland" ]; }))
         #  ];
-        # sddm.enable = true;
+        #sddm.enable = true;
         gdm.enable = true;
       };
       desktopManager = {
-        # plasma5.enable = true;
+        #plasma5.enable = true;
         gnome.enable = true;
       };
     };
