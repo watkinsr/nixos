@@ -20,16 +20,15 @@
         set clipboard+=unnamedplus
 
         " Keybindings
-        nnoremap <silent> gr :References<cr>
-        nnoremap <silent> <leader>n :e ~/.config/nixpkgs/<cr>
-        nnoremap <silent> <leader>ca :RustCodeAction<cr>
-        nnoremap <silent> <leader>cc :RustOpenCargo<cr>
-        nnoremap <silent> <leader>cw :RustReloadWorkspace<cr>
-        nnoremap <silent> <C-j> :RustMoveItemDown<cr>
-        nnoremap <silent> <C-k> :RustMoveItemUp<cr>
-        nnoremap <silent> <leader>
-        nnoremap <silent> <leader>/ :Rg<cr>
-        nnoremap <silent> <leader><space> :GFiles<cr>
+        nnoremap <silent> gr :References<CR>
+        nnoremap <silent> <leader>n :e ~/.config/nixpkgs/<CR>
+        nnoremap <silent> <leader>ca :RustCodeAction<CR>
+        nnoremap <silent> <leader>cc :RustOpenCargo<CR>
+        nnoremap <silent> <leader>cw :RustReloadWorkspace<CR>
+        nnoremap <silent> <C-j> :RustMoveItemDown<CR>
+        nnoremap <silent> <C-k> :RustMoveItemUp<CR>
+        nnoremap <silent> <leader>/ :Rg<CR>
+        nnoremap <silent> <leader><space> :GFiles<CR>
         nnoremap <silent> <leader>ls    :Telescope lsp_document_symbols<CR>
         nnoremap <silent> <leader>le    :Telescope lsp_document_diagnostics<CR>
         nnoremap <silent> <leader>lw    :Telescope lsp_workspace_diagnostics<CR>
@@ -65,15 +64,26 @@
         fzf-lsp-nvim
         popup-nvim
         plenary-nvim
-        rust-tools-nvim
         nvim-dap
 
+        {
+          plugin = nvim-lsp-ts-utils;
+          config = ''
+            lua require('lsp-ts-utils')
+          '';
+        }
+        {
+          plugin = rust-tools-nvim;
+          config = ''
+            lua require('rust-tools-nvim')
+          '';
+        }
         {
           plugin = neogit;
           config = ''
             lua <<EOF
-            require('plenary')
-            require('neogit').setup {}
+              require('plenary')
+              require('neogit').setup {}
             EOF
           '';
         }
@@ -170,8 +180,6 @@
             nnoremap <silent> g[    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
             nnoremap <silent> g]    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
             nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-
-            lua require('nvim-lspconfig')
           '';
         }
         {
