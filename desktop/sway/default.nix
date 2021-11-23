@@ -123,13 +123,6 @@ in {
             "Shift+Up" = "resize shrink height 20 px or 5 ppt";
             "Shift+Right" = "resize grow width 20 px or 5 ppt";
           };
-          chat = {
-            Escape = "mode default";
-            e = ''
-              exec --no-startup-id "element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland"'';
-            s = ''
-              exec --no-startup-id "slack --enable-features=UseOzonePlatform --ozone-platform=wayland"'';
-          };
         };
 
         keybindings = lib.mkOptionDefault {

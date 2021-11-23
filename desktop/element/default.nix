@@ -3,10 +3,9 @@
 {
   home-manager.users.pimeys = {
     xdg.desktopEntries.element = {
-      name = "Element";
+      name = "Element Wayland";
       genericName = "Chat";
-      exec =
-        "element-desktop --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      exec = "element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland";
       terminal = false;
       categories = [ "Application" "Chat" ];
     };

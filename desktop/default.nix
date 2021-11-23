@@ -10,6 +10,7 @@
     ./redshift
     ./spotify
     ./sway
+    ./slack
     ./waybar
   ];
 
@@ -107,8 +108,9 @@
       gnome3.eog
       deadbeef
       libva-utils
-      slack
       libreoffice
+      psensor
+      lagrange
     ];
   };
 
