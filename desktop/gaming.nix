@@ -2,7 +2,13 @@
 
 {
   environment = {
-    systemPackages = with pkgs; [ lutris vulkan-tools ];
+    systemPackages = with pkgs; [
+      lutris 
+      vulkan-tools 
+      wineWowPackages.stable 
+      mesa-demos
+      phoronix-test-suite
+    ];
     variables.RADV_PERFTEST = "nggc";
   };
 
