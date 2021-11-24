@@ -81,6 +81,7 @@
   environment = {
     pathsToLink = [ "/libexec" ];
     systemPackages = with pkgs; [
+      zoom-us
       polkit_gnome
       brillo
       xwayland
