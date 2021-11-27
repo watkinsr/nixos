@@ -23,6 +23,7 @@
       name = "secret";
       owner = "1000";
       path = "/home/pimeys/.config/secrets";
+      symlink = false;
     };
   };
 
