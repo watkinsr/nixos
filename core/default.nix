@@ -28,7 +28,11 @@
 
   services.sshd.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
+  };
+
   system.stateVersion = "20.09";
 
   home-manager.users.pimeys.programs = {
@@ -115,7 +119,7 @@
       efi = { canTouchEfiVariables = true; };
     };
 
-    kernelPackages = pkgs.linuxPackages_5_14;
+    kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = [ "zfs" ];
 
     zfs.enableUnstable = true;
