@@ -198,6 +198,8 @@
       pciutils
       libqrencode
       any-nix-shell
+      fzy
+      fzf
       nixfmt
       ansible
       gnumake
