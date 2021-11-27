@@ -56,13 +56,19 @@
     };
   };
 
+  environment.etc = {
+    "greetd/environments".text = ''
+      sway
+    '';
+  };
+
   services = {
     greetd = {
       enable = true;
       vt = 7;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
+          command = "${pkgs.cage}/bin/cage ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
         };
       };
     };
