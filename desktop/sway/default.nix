@@ -139,6 +139,7 @@ in {
             exec grim -t png -g "$(slurp)" ~/Downloads/$(date +%Y-%m-%d_%H-%m-%s).png'';
           "${modifier}+i" = "exec brillo -U 10";
           "${modifier}+o" = "exec brillo -A 10";
+          "${modifier}+z" = "exec emacsclient -nc ~/.config/nixpkgs";
 
           "Mod1+Control+l" = "exec --no-startup-id wlogout";
         };
