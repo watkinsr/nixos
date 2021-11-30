@@ -1,4 +1,4 @@
-{ lib, home-manager, ... }:
+{ lib, home-manager, pkgs, ... }:
 
 let
   modifier = "Mod4";
@@ -34,7 +34,7 @@ in {
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
-      extraSessionCommands = ''
+      extraSessionCommands = with pkgs; ''
         export _JAVA_AWT_WM_NONREPARENTING=1;
         export SDL_VIDEODRIVER=x11;
         export QT_QPA_PLATFORM=wayland;
@@ -45,6 +45,7 @@ in {
         export XDG_SESSION_TYPE="wayland";
         export XDG_CURRENT_DESKTOP="sway";
         export MC_SKIN=$HOME/.config/mc/selenized.ini;
+        export XDG_DATA_DIRS="${gnome3.adwaita-icon-theme}/share:$XDG_DATA_DIRS";
         source /home/pimeys/.config/secrets;
       '';
       extraConfig = ''

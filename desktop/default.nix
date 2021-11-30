@@ -18,6 +18,7 @@
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
+      XDG_DATA_DIRS = with pkgs; "${pkgs.gnome3.adwaita-icon-theme}/share:$XDG_DATA_DIRS";
     };
 
     programs = { mako.enable = true; };
