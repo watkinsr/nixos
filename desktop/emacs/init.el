@@ -159,6 +159,9 @@
   :prefix "C-c g"
   "g" 'magit-status)
 
+(general-emacs-define-key 'normal
+  "gr" 'lsp-find-references)
+
 ; rust
 (setq rustic-format-trigger 'on-save)
 (setq lsp-rust-analyzer-cargo-watch-command "clippy")
