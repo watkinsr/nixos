@@ -169,6 +169,7 @@
 
 ; lsp
 (add-hook 'rustic-mode-hook #'lsp-deferred)
+(add-hook 'prisma-mode-hook #'lsp-deferred)
 
 ; helpful
 (setq counsel-describe-function-function #'helpful-callable)
@@ -205,3 +206,10 @@
 
 ; git gutter
 (global-git-gutter-mode +1)
+
+; prisma
+(load "/home/pimeys/.emacs.d/prisma-mode.el")
+(require 'prisma-mode)
+
+(setq auto-mode-alist
+      (cons '("\\.prisma$" . prisma-mode) auto-mode-alist))

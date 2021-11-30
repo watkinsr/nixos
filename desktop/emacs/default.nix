@@ -20,6 +20,14 @@ in {
         source = ./init.el;
         recursive = true;
       };
+      ".emacs.d/prisma-mode.el" = {
+        source = ./prisma-mode/prisma-mode.el;
+        recursive = true;
+      };
+      ".emacs.d/lsp-prisma.el" = {
+        source = ./prisma-mode/lsp-prisma.el;
+        recursive = true;
+      };
     };
   };
 }

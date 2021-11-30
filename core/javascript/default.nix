@@ -7,5 +7,6 @@
     nodePackages.typescript
     nodePackages.typescript-language-server
     master.nodePackages.prisma
+    lsp.nodePackages."@prisma/language-server"
   ];
 }

@@ -189,6 +189,7 @@
             nnoremap <silent> g[    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
             nnoremap <silent> g]    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
             nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+            lua require'lspconfig'.prismals.setup{}
           '';
         }
         {

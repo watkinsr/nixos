@@ -23,3 +23,4 @@
 (use-package nix-mode)
 (use-package yaml-mode)
 (use-package git-gutter)
+(use-package js2-mode)

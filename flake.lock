@@ -116,6 +116,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-lsp": {
+      "locked": {
+        "lastModified": 1638294270,
+        "narHash": "sha256-O/0F+lEL34SM4Ztorl8cYb1XmKai91tDq/bcqp72OnY=",
+        "owner": "pimeys",
+        "repo": "nixpkgs",
+        "rev": "59202b7bde50ad4889d498a87e3acf0cde82e089",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pimeys",
+        "ref": "prisma-language-server",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-master": {
       "locked": {
         "lastModified": 1638001932,
@@ -190,6 +206,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-lsp": "nixpkgs-lsp",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-tom": "nixpkgs-tom",
         "nixpkgs-wayland": "nixpkgs-wayland",

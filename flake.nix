@@ -18,6 +18,10 @@
       url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-lsp = {
+      url = "github:pimeys/nixpkgs/prisma-language-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +39,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
-    , home-manager, agenix, ... }:
+    , home-manager, nixpkgs-lsp, agenix, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -47,9 +51,11 @@
           config.allowUnfree = true; # forgive me Stallman senpai
           overlays = extraOverlays;
         };
+
       pkgs = mkPkgs nixpkgs [ ];
       master = mkPkgs nixpkgs-master [ ];
       tom = mkPkgs nixpkgs-tom [ ];
+      lsp = mkPkgs nixpkgs-lsp [ ];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -90,6 +96,7 @@
             (self: super: {
               master = master;
               tom = tom;
+              lsp = lsp;
             })
           ];
         };
