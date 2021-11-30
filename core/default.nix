@@ -205,6 +205,7 @@
       inputs.agenix.defaultPackage.x86_64-linux
       lm_sensors
       unixtools.xxd
+      fzf
     ];
   };
 }
