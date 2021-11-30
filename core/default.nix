@@ -62,15 +62,16 @@
         symbolsFile = /root/us-watkinsr;
       };
       displayManager = {
-        #sessionPackages = [
-        #  (pkgs.plasma-workspace.overrideAttrs
-        #    (old: { passthru.providedSessions = [ "plasmawayland" ]; }))
-        #  ];
+        sessionPackages = [
+          (pkgs.plasma-workspace.overrideAttrs
+            (old: { passthru.providedSessions = [ "plasmawayland" ]; }))
+          ];
         sddm.enable = true;
         #gdm.enable = true;
       };
       desktopManager = {
         plasma5.enable = true;
+	plasma5.runUsingSystemd = true;
         #gnome.enable = true;
       };
     };
