@@ -147,6 +147,7 @@
 (naunau/leader-keys
   "ts" '(hydra-text-scale/body :which-key "scale text")
   "ca" 'lsp-execute-code-action
+  "rn" 'lsp-rename
   "h"  'lsp-describe-thing-at-point
   "gg" 'magit-status)
 
@@ -160,6 +161,8 @@
   "g" 'magit-status)
 
 (general-emacs-define-key 'normal
+  "g[" 'flycheck-previous-error
+  "g]" 'flycheck-next-error
   "gr" 'lsp-find-references)
 
 ; rust
