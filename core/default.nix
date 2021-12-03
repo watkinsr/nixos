@@ -206,6 +206,16 @@
       ansible
       gnumake
       python3
+      xclip
+      gitui
+      pyright
+      pavucontrol
+      google-chrome
+      gnome.gnome-clocks
+      git-standup
+      gnvim
+      qutebrowser
+      python38Packages.pytest
     ];
   };
 }
