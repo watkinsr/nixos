@@ -7,6 +7,7 @@
     ./emacs
     ./firefox
     ./foot
+    ./obs-studio
     ./redshift
     ./spotify
     ./sway
@@ -57,12 +58,6 @@
     };
   };
 
-  environment.etc = {
-    "greetd/environments".text = ''
-      sway
-    '';
-  };
-
   services = {
     greetd = {
       enable = true;
@@ -86,6 +81,11 @@
   };
 
   environment = {
+    etc = {
+      "greetd/environments".text = ''
+        sway
+      '';
+    };
     pathsToLink = [ "/libexec" ];
     systemPackages = with pkgs; [
       zoom-us

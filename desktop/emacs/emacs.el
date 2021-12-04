@@ -11,6 +11,7 @@
 (use-package evil-collection)
 (use-package hydra)
 (use-package lsp-mode)
+(use-package lsp-ivy)
 (use-package company)
 (use-package flycheck)
 (use-package rustic)
@@ -24,3 +25,5 @@
 (use-package yaml-mode)
 (use-package git-gutter)
 (use-package js2-mode)
+(use-package tide)
+(use-package typescript-mode)

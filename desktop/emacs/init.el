@@ -153,6 +153,8 @@
 
 (general-emacs-define-key 'global
   :prefix "C-c f"
+  "g" 'lsp-ivy-global-workspace-symbol
+  "s" 'lsp-ivy-workspace-symbol
   "r" 'counsel-rg
   "e" 'counsel-flycheck)
 
@@ -216,3 +218,26 @@
 
 (setq auto-mode-alist
       (cons '("\\.prisma$" . prisma-mode) auto-mode-alist))
+
+; typescript tide
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+(add-hook 'before-save-hook
+	  #'(lambda () (when (eq major-mode 'tide-mode)
+			 'tide-format-before-save)))
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+; Markdown
+(add-hook 'markdown-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
