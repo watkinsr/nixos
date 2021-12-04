@@ -147,6 +147,7 @@
 (naunau/leader-keys
   "ts" '(hydra-text-scale/body :which-key "scale text")
   "ca" 'lsp-execute-code-action
+  "ch" 'lsp-rust-analyzer-inlay-hints-mode
   "rn" 'lsp-rename
   "h"  'lsp-describe-thing-at-point
   "gg" 'magit-status)
@@ -167,14 +168,24 @@
   "g]" 'flycheck-next-error
   "gr" 'lsp-find-references)
 
+(general-emacs-define-key 'normal
+  "C-a" 'avy-goto-char)
+
 ; rust
 (setq rustic-format-trigger 'on-save)
-(setq lsp-rust-analyzer-cargo-watch-command "clippy")
 (push 'rustic-clippy flycheck-checkers)
 
 ; lsp
-(add-hook 'rustic-mode-hook #'lsp-deferred)
-(add-hook 'prisma-mode-hook #'lsp-deferred)
+(use-package lsp-mode
+  :custom
+  ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  (lsp-rust-analyzer-server-display-inlay-hints t)
+  :config
+  (add-hook 'rustic-mode-hook #'lsp-deferred)
+  (add-hook 'prisma-mode-hook #'lsp-deferred))
 
 ; helpful
 (setq counsel-describe-function-function #'helpful-callable)
@@ -241,3 +252,38 @@
 ; Markdown
 (add-hook 'markdown-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
+
+; Shackle
+(defun rk/open-compilation-buffer (&optional buffer-or-name shackle-alist shackle-plist)
+  "Helper for selecting window for opening *compilation* buffers."
+  ;; find existing compilation window left of the current window or left-most window
+  (let ((win (or (loop for win = (if win (window-left win) (get-buffer-window))
+                       when (or (not (window-left win))
+                                (string-prefix-p "*compilation" (buffer-name (window-buffer win))))
+                       return win)
+                 (get-buffer-window))))
+    ;; if the window is dedicated to a non-compilation buffer, use the current one instead
+    (when (window-dedicated-p win)
+      (let ((buf-name (buffer-name (window-buffer win))))
+        (unless (string-prefix-p "*compilation" buf-name)
+          (setq win (get-buffer-window)))))
+    (set-window-buffer win (get-buffer buffer-or-name))
+    (set-frame-selected-window (window-frame win) win)))
+
+
+(use-package shackle
+  :custom
+  (shackle-rules '((compilation-mode :custom rk/open-compilation-buffer :select t)
+		   ("\\*Apropos\\|Help\\|Occur\\|tide-references\\*" :regexp t :same t :select t :inhibit-window-quit t)
+		   ("\\*magit" :regexp t :same t :select t)
+		   ("\\*shell.*" :regexp t :same t :select t)
+		   ("\\*Cargo.*" :regexp t :other t :select nil)
+		   ("*Messages*" :select nil :other t)
+		   ("*go-guru-output*" :select t :same t)
+		   ("*Proced*" :select t :same t)
+		   ("*Buffer List*" :select t :same t)
+		   ("\\*Pp Eval" :regexp t :same nil :select t :other t)
+		   ("*Messages*" :same nil :other t :select t :inhibit-window-quit t)))
+  (shackle-default-rule nil))
+
+(shackle-mode)

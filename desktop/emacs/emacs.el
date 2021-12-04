@@ -27,3 +27,5 @@
 (use-package js2-mode)
 (use-package tide)
 (use-package typescript-mode)
+(use-package avy)
+(use-package shackle)
