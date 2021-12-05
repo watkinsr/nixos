@@ -34,7 +34,6 @@
     };
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ "amdgpu.freesync_video=1" "amd_iommu=on" "pcie_aspm=off" ];
-    extraModulePackages = with pkgs; [ ];
   };
 
   networking = {

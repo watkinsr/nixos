@@ -7,7 +7,7 @@
     ./emacs
     ./firefox
     ./foot
-    ./obs-studio
+    ./video-streaming
     ./redshift
     ./spotify
     ./sway
@@ -88,7 +88,7 @@
     };
     pathsToLink = [ "/libexec" ];
     systemPackages = with pkgs; [
-      zoom-us
+      libnotify
       polkit_gnome
       brillo
       xwayland
@@ -109,7 +109,6 @@
       ncmpcpp
       youtube-dl
       yle-dl
-      ffmpeg
       flac
       mpv
       evince
