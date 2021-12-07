@@ -224,8 +224,9 @@
 (global-git-gutter-mode +1)
 
 ; prisma
-(load "/home/pimeys/.emacs.d/prisma-mode.el")
-(require 'prisma-mode)
+(add-hook 'before-save-hook
+	  #'(lambda () (when (eq major-mode 'prisma-mode)
+			 (lsp-format-buffer))))
 
 (setq auto-mode-alist
       (cons '("\\.prisma$" . prisma-mode) auto-mode-alist))

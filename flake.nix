@@ -18,6 +18,10 @@
       url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-julius = {
+      url = "github:pimeys/nixpkgs/emacs-prisma-mode";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +39,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
-    , home-manager, agenix, ... }:
+    , home-manager, agenix, nixpkgs-julius, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -51,6 +55,7 @@
       pkgs = mkPkgs nixpkgs [ ];
       master = mkPkgs nixpkgs-master [ ];
       tom = mkPkgs nixpkgs-tom [ ];
+      julius = mkPkgs nixpkgs-julius [ ];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -91,6 +96,7 @@
             (self: super: {
               master = master;
               tom = tom;
+              julius = julius;
             })
           ];
         };
