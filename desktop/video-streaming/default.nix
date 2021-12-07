@@ -16,8 +16,12 @@
   };
 
   environment.systemPackages = with pkgs; [
+    pulseaudio
+    pavucontrol
     zoom-us
     ffmpeg-full
     v4l-utils
+    qjackctl
+    helvum
   ];
 }
