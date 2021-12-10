@@ -109,6 +109,7 @@
       "kvm"
       "input"
       "adbusers"
+      "wireshark"
     ];
   };
 
@@ -216,6 +217,11 @@
       gnvim
       qutebrowser
       python38Packages.pytest
+      kubectl
+      awscli2
+      wireshark
+      openvpn
+      zathura
     ];
   };
 }

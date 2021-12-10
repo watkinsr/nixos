@@ -23,6 +23,7 @@
         kristofferhagen-nord-theme
         ninja-cookie
         old-reddit-redirect
+	tridactyl
         unpaywall
         h264ify
       ];
