@@ -17,7 +17,7 @@
   ];
 
   age = {
-    sshKeyPaths = [ "/home/pimeys/.ssh/age" ];
+    identityPaths = [ "/home/pimeys/.ssh/age" ];
     secrets.secret1 = {
       file = ../secrets/secret1.age;
       name = "secret";

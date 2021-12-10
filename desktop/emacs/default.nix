@@ -7,7 +7,8 @@ let
     alwaysEnsure = true;
     extraEmacsPackages = epkgs: [
       epkgs.use-package
-      pkgs.julius.emacsPackages.prisma-mode
+      epkgs.prisma-mode
+      epkgs.vterm
     ];
   };
 in {
