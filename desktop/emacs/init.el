@@ -288,3 +288,8 @@
   (shackle-default-rule nil))
 
 (shackle-mode)
+
+; tree-sitter
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+(global-tree-sitter-mode)

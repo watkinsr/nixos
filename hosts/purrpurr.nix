@@ -5,6 +5,7 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
     (modulesPath + "/installer/scan/not-detected.nix")
     ../core
+    ../core/home-services.nix
     ../desktop/laptop.nix
     ../desktop
   ];
