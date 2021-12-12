@@ -9,6 +9,7 @@ let
       epkgs.use-package
       epkgs.prisma-mode
       epkgs.vterm
+      epkgs.undo-tree
       pkgs.julius.emacsPackages.tree-sitter
       pkgs.julius.emacsPackages.tree-sitter-langs
     ];
