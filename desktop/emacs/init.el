@@ -185,6 +185,7 @@
   (lsp-rust-analyzer-server-display-inlay-hints t)
   :config
   (add-hook 'rustic-mode-hook #'lsp-deferred)
+  (add-hook 'nix-mode-hook #'lsp-deferred)
   (add-hook 'prisma-mode-hook #'lsp-deferred))
 
 ; helpful

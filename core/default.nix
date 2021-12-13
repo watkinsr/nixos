@@ -34,7 +34,14 @@
     allowBroken = true;
   };
 
-  system.stateVersion = "20.09";
+  system = {
+    stateVersion = "20.09";
+    activationScripts.diff = ''
+      ${pkgs.nixUnstable}/bin/nix store \
+        --experimental-features 'nix-command' \
+        diff-closures /run/current-system "$systemConfig"
+    '';
+  };
 
   home-manager.users.pimeys.programs = {
     ssh = { enable = true; };
@@ -192,6 +199,8 @@
   environment = {
     pathsToLink = [ "/libexec" "/share/fish" ];
     systemPackages = with pkgs; [
+      nvd
+      rnix-lsp
       cachix
       home-assistant-cli
       home-manager
