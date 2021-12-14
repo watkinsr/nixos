@@ -82,6 +82,14 @@
       options = "--delete-older-than-7d";
     };
 
+    binaryCaches = [
+      "http://munchmunch"
+    ];
+
+    binaryCachePublicKeys = [
+      "munchmunch:e1IdNOrQPDTOJLOtusurwj8NiO5hZJOHX2zcxERsrbQ="
+    ];
+
     sandboxPaths = [ "/bin/sh=${pkgs.bash}/bin/sh" ];
     package = pkgs.nixFlakes;
     extraOptions = ''
