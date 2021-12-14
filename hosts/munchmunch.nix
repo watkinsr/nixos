@@ -16,6 +16,29 @@
     };
   };
 
+  services = {
+    nginx = {
+      enable = true;
+      virtualHosts = {
+        # ... existing hosts config etc. ...
+        "munchmunch" = {
+          serverAliases = [ "munchmunch" ];
+          locations."/".extraConfig = ''
+          proxy_pass http://localhost:${toString config.services.nix-serve.port};
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          '';
+        };
+      };
+    };
+
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
+    };
+  };
+
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "nvme" "usb_storage" "uas" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
