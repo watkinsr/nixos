@@ -52,7 +52,10 @@
   };
 
   services = {
-    avahi = { enable = true; };
+    avahi = { 
+      enable = true; 
+      nssmdns = true;
+    };
     haveged.enable = true;
     xserver = { 
       enable = true; 
