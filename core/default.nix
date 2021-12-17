@@ -212,7 +212,6 @@
       python3
       xclip
       gitui
-      pyright
       pavucontrol
       google-chrome
       gnome.gnome-clocks
@@ -225,6 +224,8 @@
       wireshark
       openvpn
       zathura
+      python39Packages.python-lsp-server
+      pyright
     ];
   };
 }
