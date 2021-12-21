@@ -18,6 +18,7 @@
       url = "git+https://git.marvid.fr/eeva/home-manager.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs.url = "github:nix-community/emacs-overlay";
     nixos-hardware.url = "git+https://git.marvid.fr/eeva/nixos-hardware.git";
   };
 
@@ -70,8 +71,8 @@
           };
 
           nixpkgs.overlays = [
-            # inputs.emacs.overlay
             nur.overlay
+            inputs.emacs.overlay
 
             (self: super: {
               master = master;

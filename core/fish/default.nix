@@ -4,6 +4,7 @@
     interactiveShellInit = ''
       set PATH ~/.cargo/bin ~/.local/bin $PATH
       set EDITOR nvim
+      set GOPATH ~/Source/golang
     '';
     functions = {
       flakify = ''

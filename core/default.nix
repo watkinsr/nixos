@@ -229,6 +229,8 @@
       zathura
       python39Packages.python-lsp-server
       pyright
+      libsForQt5.kate
+      sshfs
     ];
   };
 }

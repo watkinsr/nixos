@@ -3,6 +3,7 @@
     ./alacritty
     ./android
     ./chromium
+    ./emacs
     ./firefox
     ./foot
     ./greetd
@@ -141,9 +142,9 @@
       corefonts
       inconsolata
       ubuntu_font_family
-      #noto-fonts
-      #noto-fonts-cjk
-      #noto-fonts-emoji
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
       liberation_ttf
       fira-code
       fira-code-symbols
@@ -152,7 +153,7 @@
       proggyfonts
       awesome
       dejavu_fonts
-      #nerdfonts
+      nerdfonts
       hack-font
       cantarell-fonts
     ];
