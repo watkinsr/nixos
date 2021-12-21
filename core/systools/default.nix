@@ -7,6 +7,7 @@
     bind
     exa
     fd
+    btop
     htop
     jq
     mc
