@@ -147,6 +147,8 @@
 (naunau/leader-keys
   "ts" '(hydra-text-scale/body :which-key "scale text")
   "ca" 'lsp-execute-code-action
+  "cd" 'lsp-rust-analyzer-open-external-docs
+  "cc" 'lsp-rust-analyzer-open-cargo-toml
   "ch" 'lsp-rust-analyzer-inlay-hints-mode
   "rn" 'lsp-rename
   "h"  'lsp-describe-thing-at-point
