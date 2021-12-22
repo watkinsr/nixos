@@ -150,6 +150,7 @@
   "cd" 'lsp-rust-analyzer-open-external-docs
   "cc" 'lsp-rust-analyzer-open-cargo-toml
   "ch" 'lsp-rust-analyzer-inlay-hints-mode
+  "cq" 'lsp-workspace-restart
   "rn" 'lsp-rename
   "h"  'lsp-describe-thing-at-point
   "gg" 'magit-status)
