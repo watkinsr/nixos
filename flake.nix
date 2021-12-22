@@ -21,6 +21,14 @@
     nixpkgs-julius = {
       url = "github:pimeys/nixpkgs/emacs-tree-sitter/link-grammars";
     };
+    nixpkgs-prisma = {
+      url = "github:pimeys/nixpkgs/prisma-3.7.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs-lsp = {
+      url = "github:pimeys/nixpkgs/prisma-language-server-3.7.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +46,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
-    , home-manager, nixpkgs-julius, agenix, ... }:
+    , home-manager, nixpkgs-julius, nixpkgs-prisma, nixpkgs-lsp, agenix, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
 
@@ -55,6 +63,8 @@
       master = mkPkgs nixpkgs-master [ ];
       tom = mkPkgs nixpkgs-tom [ ];
       julius = mkPkgs nixpkgs-julius [ ];
+      prisma37 = mkPkgs nixpkgs-prisma [ ];
+      lsp = mkPkgs nixpkgs-lsp [ ];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -96,6 +106,8 @@
               master = master;
               tom = tom;
               julius = julius;
+              lsp = lsp;
+              prisma37 = prisma37;
             })
           ];
         };
