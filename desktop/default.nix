@@ -58,39 +58,6 @@
     };
   };
 
-  environment = {
-    pathsToLink = [ "/libexec" ];
-    systemPackages = with pkgs; [
-      libnotify
-      polkit_gnome
-      brillo
-      xwayland
-      swaylock-effects
-      swayidle
-      wl-clipboard
-      wofi
-      kanshi
-      wev
-      wf-recorder
-      linuxPackages.v4l2loopback
-      slurp
-      wlogout
-      grim
-      ncmpcpp
-      youtube-dl
-      yle-dl
-      flac
-      mpv
-      evince
-      gnome3.eog
-      deadbeef
-      libva-utils
-      libreoffice
-      psensor
-      lagrange
-    ];
-  };
-
   systemd.services.lock-before-sleeping = {
     restartIfChanged = false;
     unitConfig = {
@@ -119,14 +86,6 @@
       defaultFonts = { monospace = [ "Inconsolata" ]; };
     };
     fonts = with pkgs; [
-      feh
-      dmidecode
-      lm_sensors
-      polkit_gnome
-      speedcrunch
-      linux-pam
-      qt5.qtwayland
-      brightnessctl
       corefonts
       inconsolata
       ubuntu_font_family
@@ -143,6 +102,47 @@
       dejavu_fonts
       nerdfonts
       hack-font
+    ];
+  };
+
+  environment = {
+    pathsToLink = [ "/libexec" ];
+    systemPackages = with pkgs; [
+      speedcrunch
+      libnotify
+      polkit_gnome
+      brillo
+      xwayland
+      swaylock-effects
+      swayidle
+      wl-clipboard
+      wofi
+      kanshi
+      wev
+      wf-recorder
+      linuxPackages.v4l2loopback
+      slurp
+      wlogout
+      grim
+      ncmpcpp
+      youtube-dl
+      yle-dl
+      flac
+      mpv
+      evince
+      gnome3.eog
+      deadbeef
+      libva-utils
+      libreoffice
+      psensor
+      lagrange
+      feh
+      dmidecode
+      lm_sensors
+      polkit_gnome
+      linux-pam
+      qt5.qtwayland
+      brightnessctl
     ];
   };
 }
