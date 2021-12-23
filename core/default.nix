@@ -8,7 +8,7 @@
     ./fish
     ./git
     ./javascript
-    ./nvim
+    #./nvim
     ./rust
     ./systools
     ./tmux
@@ -232,6 +232,7 @@
       libsForQt5.kate
       sshfs
       shutter
+      neovim
     ];
   };
 }
