@@ -77,7 +77,8 @@
       desktopManager = {
         #plasma5.enable = true;
 	#plasma5.runUsingSystemd = true;
-	cinnamon.enable = true;
+	#cinnamon.enable = true;
+	mate.enable = true;
         #gnome.enable = true;
       };
     };
@@ -216,7 +217,6 @@
       xclip
       gitui
       pavucontrol
-      google-chrome
       gnome.gnome-clocks
       git-standup
       gnvim
@@ -231,6 +231,7 @@
       pyright
       libsForQt5.kate
       sshfs
+      shutter
     ];
   };
 }

@@ -5,15 +5,10 @@
     ./chromium
     ./emacs
     ./firefox
-    ./foot
-    ./greetd
-    ./video-streaming
-    ./pipewire
-    ./redshift
+    #./foot
     ./spotify
-    ./sway
-    ./slack
-    ./waybar
+    #./sway
+    #./waybar
   ];
 
   home-manager.users.ryan = {
@@ -57,60 +52,6 @@
     };
   };
 
-<<<<<<< HEAD
-=======
-  services = {
-    greetd = {
-      enable = true;
-      vt = 7;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
-        };
-      };
-    };
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-    };
-  };
-
-  environment = {
-    pathsToLink = [ "/libexec" ];
-    systemPackages = with pkgs; [
-      polkit_gnome
-      brillo
-      xwayland
-      swaylock-effects
-      swayidle
-      wl-clipboard
-      wofi
-      kanshi
-      i3blocks-gaps
-      i3status
-      wev
-      wf-recorder
-      linuxPackages.v4l2loopback
-      slurp
-      wlogout
-      grim
-      ncmpcpp
-      youtube-dl
-      yle-dl
-      ffmpeg
-      flac
-      mpv
-      evince
-      gnome3.eog
-      libva-utils
-      slack
-      libreoffice
-    ];
-  };
-
->>>>>>> 76735e5 (rebase on pimeys branch)
   systemd.services.lock-before-sleeping = {
     restartIfChanged = false;
     unitConfig = {
@@ -126,7 +67,7 @@
     wantedBy = [ "pre-sleep.service" ];
     environment = {
       DISPLAY = ":1";
-      WAYLAND_DISPLAY = "wayland-1";
+      #WAYLAND_DISPLAY = "wayland-1";
       XDG_RUNTIME_DIR = "/run/user/1000";
     };
   };
@@ -139,6 +80,17 @@
       defaultFonts = { monospace = [ "Inconsolata" ]; };
     };
     fonts = with pkgs; [
+<<<<<<< HEAD
+=======
+      feh
+      dmidecode
+      lm_sensors
+      polkit_gnome
+      speedcrunch
+      linux-pam
+      #qt5.qtwayland
+      brightnessctl
+>>>>>>> 0f9bb74 (move to mate and drop wayland)
       corefonts
       inconsolata
       ubuntu_font_family

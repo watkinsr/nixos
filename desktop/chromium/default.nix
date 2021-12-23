@@ -4,10 +4,10 @@
   home-manager.users.ryan = {
     programs.chromium = {
       enable = true;
-      package = (pkgs.ungoogled-chromium.override {
+      package = (pkgs.chromium.override {
         commandLineArgs = [
           "--enable-features=UseOzonePlatform,VaapiVideoDecoder"
-          "--ozone-platform=wayland"
+          #"--ozone-platform=wayland"
           "--ignore-gpu-blocklist"
           "--enable-gpu-rasterization"
           "--disable-gpu-driver-bug-workarounds"
