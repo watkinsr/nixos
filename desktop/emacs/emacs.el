@@ -29,3 +29,4 @@
 (use-package typescript-mode)
 (use-package avy)
 (use-package shackle)
+(use-package forge)

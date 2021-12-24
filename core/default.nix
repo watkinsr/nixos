@@ -25,6 +25,13 @@
       path = "/home/pimeys/.config/secrets";
       symlink = false;
     };
+    secrets.secret2 = {
+      file = ../secrets/secret2.age;
+      name = "secret";
+      owner = "1000";
+      path = "/home/pimeys/.authinfo";
+      symlink = false;
+    };
   };
 
   services.sshd.enable = true;
