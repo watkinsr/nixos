@@ -163,22 +163,6 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-tom": {
-      "locked": {
-        "lastModified": 1634535234,
-        "narHash": "sha256-5gsnAvw1bcqB4/sgA73fg/xXvS6ys54RKGBDzus3Ifk=",
-        "owner": "tomhoule",
-        "repo": "nixpkgs",
-        "rev": "995cc4b6a399b85b6802ff00cef99b80b3fac4da",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tomhoule",
-        "ref": "upgrade/kak-lsp",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-wayland": {
       "inputs": {
         "cachix": "cachix",
@@ -225,7 +209,6 @@
         "nixpkgs-julius": "nixpkgs-julius",
         "nixpkgs-lsp": "nixpkgs-lsp",
         "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-tom": "nixpkgs-tom",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur",
         "rust-overlay": "rust-overlay"

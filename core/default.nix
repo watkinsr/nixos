@@ -9,7 +9,6 @@
     ./fish
     ./git
     ./javascript
-    ./kakoune
     ./nvim
     ./rust
     ./systools

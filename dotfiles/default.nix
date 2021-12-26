@@ -13,7 +13,6 @@
       "scripts/wifi.sh".source = ./scripts/wifi.sh;
       "scripts/dist.js".source = ./scripts/dist.js;
       "mc/selenized.ini".source = ./mc/selenized.ini;
-      "kak-lsp/kak-lsp.toml".source = ./kak-lsp/kak-lsp.toml;
     };
   };
 }

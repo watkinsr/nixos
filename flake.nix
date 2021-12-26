@@ -14,10 +14,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-tom = {
-      url = "github:tomhoule/nixpkgs/upgrade/kak-lsp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs-julius = {
       url = "github:pimeys/nixpkgs/emacs-tree-sitter/link-grammars";
     };
@@ -41,7 +37,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nixpkgs-tom, nur
+  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nur
     , home-manager, nixpkgs-julius, nixpkgs-lsp, agenix, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
@@ -57,7 +53,6 @@
 
       pkgs = mkPkgs nixpkgs [ ];
       master = mkPkgs nixpkgs-master [ ];
-      tom = mkPkgs nixpkgs-tom [ ];
       julius = mkPkgs nixpkgs-julius [ ];
       lsp = mkPkgs nixpkgs-lsp [ ];
 
@@ -99,7 +94,6 @@
 
             (self: super: {
               master = master;
-              tom = tom;
               julius = julius;
               lsp = lsp;
             })
