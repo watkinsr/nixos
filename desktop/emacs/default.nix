@@ -2,7 +2,7 @@
 
 let
   config = {
-    config = ./emacs.el;
+    config = ./config.org;
     package = pkgs.emacsPgtkGcc;
     alwaysEnsure = true;
     extraEmacsPackages = epkgs: [
@@ -23,6 +23,10 @@ in {
     home.file = {
       ".emacs.d/init.el" = {
         source = ./init.el;
+        recursive = true;
+      };
+      ".emacs.d/config.org" = {
+        source = ./config.org;
         recursive = true;
       };
     };

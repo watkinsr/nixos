@@ -1,0 +1,524 @@
+* My Emacs Configuration
+
+The Emacs configuration is done using Nix together with [[https://orgmode.org/manual/Extracting-Source-Code.html][Org Babel tangle]] to compile the final elisp file on Emacs startup. The starting point for this setup can be found from the [[default.nix]] file, which points to the [[config.org]] file and parses all [[https://www.emacswiki.org/emacs/UsePackage][use-package]] calls. Nix then fetches and builds these packages from [[https://github.com/nixos/nixpkgs][nixpkgs]] in a reproducible way.
+
+After fetching the packages, it copies the [[config.org]] and [[init.el]] files to ~$HOME/.emacs.d/~. When starting Emacs, the code in [[init.el]] gets all tangle blocks from the configuration, loading and compiling them.
+
+The Emacs distribution in use is the current Emacs master build with the [[https://git.savannah.gnu.org/cgit/emacs.git/log/?h=feature/pgtk][feature/pgtk]] patches that enables us to compile all elisp code to a native binary and rendering everything using [[https://docs.gtk.org/gtk3/][Gtk 3]] and works natively on [[https://wayland.freedesktop.org/][Wayland]].
+
+Updating packages can be done with ~nix flake update && sudo nixos-rebuild switch~, getting the latest commit from Emacs and the latest versions of the elisp libraries. Doing so might require a full recompilation if the caches are not warm yet, which is one of the downsides of the setup until native compilation and pgtk features land to a stable Emacs.
+
+* Generic UI
+Defines the general UI settings to remove the stupid menu and toolbars, and sets line numbers to all other files except when they're too much of a bother.
+
+#+begin_src emacs-lisp :tangle yes
+(setq inhibit-startup-screen t)
+(setq inhibit-startup-message t)
+(setq visible-bell t)
+(setq make-backup-files nil)
+
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(set-fringe-mode 10)
+(tooltip-mode -1)
+
+(column-number-mode)
+(global-display-line-numbers-mode t)
+
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                vterm-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+(use-package all-the-icons)
+#+end_src
+
+* Garbage Collector
+General garbage collector settings to make Emacs snappier. Taken from the [[https://github.com/hlissner/doom-emacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly][Doom Emacs FAQ]].
+
+#+begin_src emacs-lisp :tangle yes
+(defun hm/reduce-gc ()
+  "Reduce the frequency of garbage collection."
+  (setq gc-cons-threshold most-positive-fixnum
+        gc-cons-percentage 0.6))
+
+(defun hm/restore-gc ()
+  "Restore the frequency of garbage collection."
+  (setq gc-cons-threshold 16777216
+        gc-cons-percentage 0.1))
+
+;; Make GC more rare during init, while minibuffer is active, and
+;; when shutting down. In the latter two cases we try doing the
+;; reduction early in the hook.
+(hm/reduce-gc)
+
+(add-hook 'minibuffer-setup-hook #'hm/reduce-gc -50)
+(add-hook 'kill-emacs-hook #'hm/reduce-gc -50)
+
+;; But make it more regular after startup and after closing minibuffer.
+(add-hook 'emacs-startup-hook #'hm/restore-gc)
+(add-hook 'minibuffer-exit-hook #'hm/restore-gc)
+
+;; Avoid unnecessary regexp matching while loading .el files.
+(defvar hm/file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+(defun hm/restore-file-name-handler-alist ()
+  "Restores the file-name-handler-alist variable."
+  (setq file-name-handler-alist hm/file-name-handler-alist)
+  (makunbound 'hm/file-name-handler-alist))
+(add-hook 'emacs-startup-hook #'hm/restore-file-name-handler-alist)
+#+end_src
+
+* Fonts
+[[https://www.levien.com/type/myfonts/inconsolata.html][Inconsolata]] for monospace, [[https://fonts.google.com/specimen/Cantarell][Cantarell]] for everything else.
+
+#+begin_src emacs-lisp :tangle yes
+(set-face-attribute 'default nil :font "Inconsolata" :height 140)
+(set-face-attribute 'fixed-pitch nil :font "Inconsolata" :height 140)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 140)
+#+end_src
+
+* Which-key
+[[https://github.com/justbur/emacs-which-key][Which-key]] enables the nice help panel describing the available commands, when not finishing a key combination completely.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package which-key)
+
+(which-key-mode)
+(setq which-key-idle-delay 0.3)
+#+end_src
+
+* Company
+[[https://company-mode.github.io/][Company mode]] provides a completion framework, which is nice together with the lsp-mode.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package company)
+(add-hook 'after-init-hook 'global-company-mode)
+#+end_src
+
+* Ivy
+[[https://oremacs.com/swiper/][Ivy]] provides completion in non-code context, such as menus.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+
+(use-package ivy-rich)
+(ivy-rich-mode 1)
+#+end_src
+
+* Counsel
+More completion goodies with [[https://oremacs.com/2015/04/09/counsel-completion/][Counsel]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history)))
+#+end_src
+
+* Evil
+[[https://github.com/emacs-evil/evil][Evil mode]] adds a perfect editor to the Emacs operating system.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+#+end_src
+
+* Flycheck
+All that red and yellow squiggly line comes from [[https://www.flycheck.org/en/latest/][Flycheck]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package flycheck)
+
+(global-flycheck-mode)
+#+end_src
+
+* Doom Modeline and themes
+Make Emacs to look like it's from the current century with [[https://seagle0128.github.io/doom-modeline/][Doom modeline]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package doom-themes)
+(load-theme 'doom-solarized-dark-high-contrast t)
+
+(use-package doom-modeline)
+(doom-modeline-mode 1)
+(setq doom-modeline-height 15)
+#+end_src
+
+* Hydra
+Sticky Emacs bindings with [[https://github.com/abo-abo/hydra][Hydra]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package hydra)
+
+(defhydra hydra-text-scale (:timeout 4)
+  "scale text"
+  ("j" text-scale-increase "in")
+  ("k" text-scale-decrease "out")
+  ("f" nil "finished" :exit t))
+#+end_src
+
+* General Keyboard Shortcuts
+All custom keyboard shortcuts are defined here, together with the helpful [[https://github.com/noctuid/general.el][General framework]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package general
+  :config
+  (general-create-definer naunau/leader-keys
+    :keymaps '(normal insert visual emacs)
+    :prefix "SPC"
+    :global-prefix "C-SPC")
+
+  (naunau/leader-keys
+    "SPC" 'projectile-find-file
+    "t"  '(:ignore t :which-key "toggles")
+    "tt" '(counsel-load-theme :which-key "choose theme"))
+
+  (naunau/leader-keys
+    "ts" '(hydra-text-scale/body :which-key "scale text")
+    "ca" 'lsp-execute-code-action
+    "cd" 'lsp-rust-analyzer-open-external-docs
+    "cc" 'lsp-rust-analyzer-open-cargo-toml
+    "ch" 'lsp-rust-analyzer-inlay-hints-mode
+    "cq" 'lsp-workspace-restart
+    "rn" 'lsp-rename
+    "h"  'lsp-describe-thing-at-point
+    "gg" 'magit-status)
+
+  (general-emacs-define-key 'global
+    :prefix "C-c f"
+    "g" 'lsp-ivy-global-workspace-symbol
+    "s" 'lsp-ivy-workspace-symbol
+    "r" 'counsel-rg
+    "e" 'counsel-flycheck)
+
+  (general-emacs-define-key 'global
+    :prefix "C-c g"
+    "g" 'magit-status)
+
+  (general-emacs-define-key 'normal
+    "g[" 'flycheck-previous-error
+    "g]" 'flycheck-next-error
+    "gr" 'lsp-find-references)
+
+  (general-emacs-define-key 'normal
+    "C-a" 'avy-goto-char))
+#+end_src
+
+* Rust
+Writing Rust for living with [[https://github.com/brotzeit/rustic][Rustic]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package rustic)
+
+(setq rustic-format-trigger 'on-save)
+(push 'rustic-clippy flycheck-checkers)
+#+end_src
+
+* LSP
+The Emacs Language Server Protocol is done with [[https://emacs-lsp.github.io/lsp-mode/][Lsp Mode]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package lsp-mode
+  :custom
+  ;; what to use when checking on-save. "check" is default, I prefer clippy
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all nil)
+  (lsp-idle-delay 0.6)
+  (lsp-rust-analyzer-server-display-inlay-hints t)
+  :config
+  (add-hook 'rustic-mode-hook #'lsp-deferred)
+  (add-hook 'nix-mode-hook #'lsp-deferred)
+  (add-hook 'prisma-mode-hook #'lsp-deferred))
+
+(use-package lsp-ivy)
+#+end_src
+
+* Projectile
+Project navigation, and detecting what is a project (by using the git folder) to make searching and completions to work better. Done with [[https://projectile.mx/][Projectile]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/code")
+    (setq projectile-project-search-path '("~/code")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+#+end_src
+
+* Prisma
+Our own [[https://github.com/pimeys/emacs-prisma-mode][Prisma mode]] for Prisma Schema Language syntax hilight and Language Server support.
+
+#+begin_src emacs-lisp :tangle yes
+(add-hook 'before-save-hook
+          #'(lambda () (when (eq major-mode 'prisma-mode)
+                         (lsp-format-buffer))))
+
+(setq auto-mode-alist
+      (cons '("\\.prisma$" . prisma-mode) auto-mode-alist))
+#+end_src
+
+* Typescript
+TypeScript is sometimes needed, therefore using [[https://github.com/ananthakumaran/tide][Tide]] for syntax hilight and LSP. [[https://www.emacswiki.org/emacs/Js2Mode][Js2 mode]] adds the JavaScript goodies.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package js2-mode)
+(use-package tide)
+(use-package typescript-mode)
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+
+(add-hook 'before-save-hook
+          #'(lambda () (when (eq major-mode 'tide-mode)
+                         'tide-format-before-save)))
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+#+end_src
+
+* Shackle
+Better rules for popup windows with [[https://depp.brause.cc/shackle/][Shackle]].
+
+#+begin_src emacs-lisp :tangle yes
+(defun rk/open-compilation-buffer (&optional buffer-or-name shackle-alist shackle-plist)
+  "Helper for selecting window for opening *compilation* buffers."
+  ;; find existing compilation window left of the current window or left-most window
+  (let ((win (or (loop for win = (if win (window-left win) (get-buffer-window))
+                       when (or (not (window-left win))
+                                (string-prefix-p "*compilation" (buffer-name (window-buffer win))))
+                       return win)
+                 (get-buffer-window))))
+    ;; if the window is dedicated to a non-compilation buffer, use the current one instead
+    (when (window-dedicated-p win)
+      (let ((buf-name (buffer-name (window-buffer win))))
+        (unless (string-prefix-p "*compilation" buf-name)
+          (setq win (get-buffer-window)))))
+    (set-window-buffer win (get-buffer buffer-or-name))
+    (set-frame-selected-window (window-frame win) win)))
+
+(use-package shackle
+  :custom
+  (shackle-rules '((compilation-mode :custom rk/open-compilation-buffer :select t)
+                   ("\\*Apropos\\|Help\\|Occur\\|tide-references\\*" :regexp t :same t :select t :inhibit-window-quit t)
+                   ("\\*magit" :regexp t :same t :select t)
+                   ("\\*shell.*" :regexp t :same t :select t)
+                   ("\\*Cargo.*" :regexp t :other t :select nil)
+                   ("*Messages*" :select nil :other t)
+                   ("*go-guru-output*" :select t :same t)
+                   ("*Proced*" :select t :same t)
+                   ("*Buffer List*" :select t :same t)
+                   ("\\*Pp Eval" :regexp t :same nil :select t :other t)
+                   ("*Messages*" :same nil :other t :select t :inhibit-window-quit t)))
+  (shackle-default-rule nil))
+
+(shackle-mode)
+
+#+end_src
+
+* Tree-sitter
+[[https://emacs-tree-sitter.github.io/][Tree-sitter mode]] replaces the regexp parser for syntax hilighting in supported languages.
+
+#+begin_src emacs-lisp :tangle yes
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+#+end_src
+
+* Org
+Goodies for writing things and managing your life with the brilliant [[https://orgmode.org/][Org mode]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package org
+  :config
+  (setq org-ellipsis " ▾")
+  (setq evil-auto-indent nil)
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-src-preserve-indentation t)
+  (setq org-directory "~/code/org")
+  (setq org-agenda-files '("birthdays.org" "tasks.org")))
+
+(use-package org-bullets)
+(use-package org-tempo)
+
+(add-hook 'org-mode-hook (lambda ()
+                           (org-indent-mode)
+                           (auto-fill-mode 0)
+                           (visual-line-mode 1)
+                           (org-bullets-mode 1)
+                           (variable-pitch-mode 1)))
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(dolist (face '((org-level-1 . 1.2)
+                (org-level-2 . 1.1)
+                (org-level-3 . 1.05)
+                (org-level-4 . 1.0)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
+
+(set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-table nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-table-header nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("ru" . "src rust"))
+(add-to-list 'org-structure-template-alist '("pr" . "src prisma"))
+(add-to-list 'org-structure-template-alist '("ts" . "src typescript"))
+(add-to-list 'org-structure-template-alist '("sq" . "src sql"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+#+end_src
+
+* Helpful
+When finding help for functions or symbols, [[https://github.com/Wilfred/helpful][Helpful]] makes everything prettier and easier to read.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package helpful)
+
+(setq counsel-describe-function-function #'helpful-callable)
+(setq counsel-describe-variable-function #'helpful-variable)
+#+end_src
+
+* Rainbow Delimiters
+Hilight matching delimiters with [[https://www.emacswiki.org/emacs/RainbowDelimiters][Rainbow Delimiters]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package rainbow-delimiters)
+
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+#+end_src
+
+* Direnv
+[[https://github.com/wbolster/emacs-direnv][Direnv]] is the Emacs file manager.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package direnv)
+
+(direnv-mode)
+#+end_src
+
+* Nix
+[[https://github.com/NixOS/nix-mode][Nix mode]] for syntax hilight and LSP for Nix files.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package nix-mode
+  :mode "\\.nix\\'")
+#+end_src
+
+* Yaml
+[[https://www.emacswiki.org/emacs/YamlMode][Yaml mode]] for Yaml config file syntax hilighting.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package yaml-mode)
+(require 'yaml-mode)
+
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+#+end_src
+
+* Git Gutter
+[[https://github.com/emacsorphanage/git-gutter][Git Gutter]] gives the green + and red - to the sidebar for added and deleted lines.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package git-gutter)
+
+(global-git-gutter-mode +1)
+#+end_src
+
+* Markdown
+Syntax hilighting to markdown files with [[https://www.emacswiki.org/emacs/MarkdownMode][Markdown mode]].
+
+#+begin_src emacs-lisp :tangle yes
+(use-package markdown-mode)
+
+(add-hook 'markdown-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
+#+end_src
+
+* Undo-tree
+Undo and redo as a tree with the [[https://www.emacswiki.org/emacs/UndoTree][Undo tree]].
+
+#+begin_src emacs-lisp :tangle yes
+(global-undo-tree-mode)
+#+end_src
+
+* Magit
+Together with the Org mode [[https://magit.vc/][Magit]] is one of the best reasons to use Emacs. [[https://github.com/magit/forge][Forge]] makes it possible to fetch pull requests, issues and all that from GitHub/GitLab et.al.
+
+#+begin_src emacs-lisp :tangle yes
+(use-package magit
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package forge
+  :after magit)
+
+(setq auth-sources '("~/.authinfo"))
+#+end_src
