@@ -102,6 +102,7 @@
       dejavu_fonts
       nerdfonts
       hack-font
+      cantarell-fonts
     ];
   };
 

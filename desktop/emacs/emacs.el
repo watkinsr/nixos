@@ -30,3 +30,6 @@
 (use-package avy)
 (use-package shackle)
 (use-package forge)
+(use-package org)
+(use-package org-bullets)
+(use-package visual-fill-mode)

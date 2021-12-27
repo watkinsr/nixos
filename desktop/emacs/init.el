@@ -45,6 +45,9 @@
 
 ; font + theme
 (set-face-attribute 'default nil :font "Inconsolata" :height 140)
+(set-face-attribute 'fixed-pitch nil :font "Inconsolata" :height 140)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 140)
+
 (load-theme 'doom-solarized-dark-high-contrast t)
 
 ; line/column numbers
@@ -315,3 +318,51 @@
   :after magit)
 
 (setq auth-sources '("~/.authinfo"))
+
+; org
+(use-package org
+  :config
+  (setq org-ellipsis " ▾")
+  (setq evil-auto-indent nil)
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-directory "~/code/org")
+  (setq org-agenda-files '("birthdays.org" "tasks.org")))
+
+(add-hook 'org-mode-hook (lambda ()
+			   (org-indent-mode)
+			   (auto-fill-mode 0)
+                           (visual-line-mode)
+                           (org-bullets-mode 1)
+                           (variable-pitch-mode 1)))
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(dolist (face '((org-level-1 . 1.2)
+                (org-level-2 . 1.1)
+                (org-level-3 . 1.05)
+                (org-level-4 . 1.0)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
+
+(set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-table nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-table-header nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+
+(use-package visual-fill-mode
+  :defer t
+  :hook (org-mode (lambda ()
+                    (setq visual-fill-column-width 100
+                          visual-fill-column-center-text t)
+                    (visual-fill-column-mode 1))))
