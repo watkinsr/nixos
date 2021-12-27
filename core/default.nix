@@ -221,6 +221,7 @@
       lm_sensors
       unixtools.xxd
       fzf
+      signal-desktop
     ];
   };
 }
