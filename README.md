@@ -10,7 +10,7 @@ Configuration for home directory and a complete NixOS system. Machine configurat
 
 ## Notable files for reading
 
-If looking for help and examples how to do things in Nix, or having any questions or suggestions, please file an issue and I can try to help when having some time. This setup has been my learning process for the Nix language and ecosystem, and is still changing when I find how to do things better.
+If looking for help and examples how to do things in Nix, or having any questions or suggestions, please file an issue and I can try to help when having some time. This setup has been my learning process for the Nix language and ecosystem, and is still changing when I find out how to do things better.
 
 There are a few things here that I would've found interesting and helpful when jumping in to Nix:
 
