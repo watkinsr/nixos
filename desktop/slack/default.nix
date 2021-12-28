@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home-manager.users.pimeys = {
+  home-manager.users.ryan = {
     xdg.desktopEntries.slack = {
       name = "Slack Wayland";
       genericName = "Instant Messenger";

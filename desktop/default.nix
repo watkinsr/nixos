@@ -1,13 +1,19 @@
 { pkgs, ... }: {
   imports = [
-    ./alacritty
-    ./android
-    ./chromium
+    #./alacritty
+    #./android
+    #./chromium
+    #./element
     ./emacs
     ./firefox
-    #./foot
+    ./foot
+    #./greetd
+    #./video-streaming
+    ./pipewire
+    #./redshift
     ./spotify
     #./sway
+    ./slack
     #./waybar
   ];
 
@@ -67,7 +73,7 @@
     wantedBy = [ "pre-sleep.service" ];
     environment = {
       DISPLAY = ":1";
-      #WAYLAND_DISPLAY = "wayland-1";
+      WAYLAND_DISPLAY = "wayland-1";
       XDG_RUNTIME_DIR = "/run/user/1000";
     };
   };
@@ -80,17 +86,6 @@
       defaultFonts = { monospace = [ "Inconsolata" ]; };
     };
     fonts = with pkgs; [
-<<<<<<< HEAD
-=======
-      feh
-      dmidecode
-      lm_sensors
-      polkit_gnome
-      speedcrunch
-      linux-pam
-      #qt5.qtwayland
-      brightnessctl
->>>>>>> 0f9bb74 (move to mate and drop wayland)
       corefonts
       inconsolata
       ubuntu_font_family

@@ -71,15 +71,15 @@
         #  (pkgs.plasma-workspace.overrideAttrs
         #    (old: { passthru.providedSessions = [ "plasmawayland" ]; }))
         #  ];
-        sddm.enable = true;
-        #gdm.enable = true;
+        #sddm.enable = true;
+        gdm.enable = true;
       };
       desktopManager = {
         #plasma5.enable = true;
 	#plasma5.runUsingSystemd = true;
 	#cinnamon.enable = true;
-	mate.enable = true;
-        #gnome.enable = true;
+	#mate.enable = true;
+        gnome.enable = true;
       };
     };
     teamviewer = { enable = true; };
@@ -215,24 +215,25 @@
       gnumake
       python3
       xclip
+      firefox
       gitui
       pavucontrol
       gnome.gnome-clocks
       git-standup
       gnvim
       qutebrowser
-      python38Packages.pytest
       kubectl
       awscli2
       wireshark
       openvpn
       zathura
-      python39Packages.python-lsp-server
-      pyright
       libsForQt5.kate
+      python38Packages.jedi-language-server
       sshfs
       shutter
       neovim
+      rofi
+      sxhkd
     ];
   };
 }
