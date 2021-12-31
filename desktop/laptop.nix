@@ -33,7 +33,7 @@
     wireless.iwd.enable = true;
     networkmanager = {
       wifi.backend = "iwd";
-      wifi.powersave = true;
+      #wifi.powersave = true;
     };
   };
 }
