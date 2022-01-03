@@ -3,9 +3,9 @@
 {
   home-manager.users.ryan = {
     xdg.desktopEntries.slack = {
-      name = "Slack Wayland";
+      name = "Slack";
       genericName = "Instant Messenger";
-      exec = "slack --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      exec = "slack";
       terminal = false;
       categories = [ "Application" "Chat" ];
     };

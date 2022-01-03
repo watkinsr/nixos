@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [
@@ -7,14 +7,20 @@
     ./docker
     ./fish
     ./git
-    #./javascript
-    #./nvim
-    #./rust
     ./systools
-    ./tmux
   ];
 
   services.sshd.enable = true;
+
+  programs.steam.enable = true;
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-runtime"
+  ];
+
+  security.sudo.wheelNeedsPassword = false;
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -211,7 +217,6 @@
       nixfmt
       ansible
       gnumake
-      python3
       xclip
       firefox
       gitui
@@ -226,7 +231,6 @@
       openvpn
       zathura
       libsForQt5.kate
-      python38Packages.jedi-language-server
       sshfs
       shutter
       neovim
@@ -236,6 +240,8 @@
       angelfish
       libsForQt5.kclock
       libsForQt5.kirigami-addons
+      thunderbird
+      python38Packages.python-lsp-server
     ];
   };
 }
