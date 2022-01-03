@@ -7,9 +7,9 @@
     ./docker
     ./fish
     ./git
-    ./javascript
+    #./javascript
     #./nvim
-    ./rust
+    #./rust
     ./systools
     ./tmux
   ];
@@ -29,8 +29,6 @@
         diff-closures /run/current-system "$systemConfig"
     '';
   };
-
-  hardware.pulseaudio.enable = false;
 
   home-manager.users.ryan.programs = {
     ssh = { enable = true; };
@@ -71,15 +69,15 @@
         #  (pkgs.plasma-workspace.overrideAttrs
         #    (old: { passthru.providedSessions = [ "plasmawayland" ]; }))
         #  ];
-        #sddm.enable = true;
-        gdm.enable = true;
+        sddm.enable = true;
+        #gdm.enable = true;
       };
       desktopManager = {
-        #plasma5.enable = true;
-	#plasma5.runUsingSystemd = true;
+        plasma5.enable = true;
+	plasma5.runUsingSystemd = true;
 	#cinnamon.enable = true;
 	#mate.enable = true;
-        gnome.enable = true;
+        #gnome.enable = true;
       };
     };
     teamviewer = { enable = true; };
@@ -234,6 +232,10 @@
       neovim
       rofi
       sxhkd
+      google-chrome
+      angelfish
+      libsForQt5.kclock
+      libsForQt5.kirigami-addons
     ];
   };
 }

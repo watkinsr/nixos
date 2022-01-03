@@ -38,32 +38,32 @@
         ]
       },
       "locked": {
-        "lastModified": 1637915295,
-        "narHash": "sha256-jWW2Q83O4O/TV3PDsZkEo0bhKzlLBhJ5CGqQFMM05lE=",
-        "ref": "master",
-        "rev": "a28cf79a78040b4e6d8d50a39760a296d5e95dd6",
-        "revCount": 1817,
-        "type": "git",
-        "url": "https://git.marvid.fr/eeva/home-manager.git"
+        "lastModified": 1641108812,
+        "narHash": "sha256-r3XYdYP6Cmt5vmrAyz+iyaNwSXNpAV/GcMn4kD1Gv6A=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "adaea605db26e3b6499e7226f931a36f951e95e8",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.marvid.fr/eeva/home-manager.git"
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
       }
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1637831601,
-        "narHash": "sha256-axRY9AehHGXfU52RK3oqDNXd9F92Tm65vEBQir3tRLI=",
-        "ref": "master",
-        "rev": "aad66afc1cac4a654223f6ba326899c731e57441",
-        "revCount": 672,
-        "type": "git",
-        "url": "https://git.marvid.fr/eeva/nixos-hardware.git"
+        "lastModified": 1640686209,
+        "narHash": "sha256-6glXUlKRDhEhNuYx6r3fXU6KH2/Vq9mJZjB9oUpwrmc=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "46df95ca81e7e4cf3458cdb4b7d1714b5fce9da5",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.marvid.fr/eeva/nixos-hardware.git"
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "type": "github"
       }
     },
     "nixpkgs": {
@@ -78,53 +78,6 @@
       "original": {
         "id": "nixpkgs",
         "ref": "nixos-unstable",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs-julius": {
-      "locked": {
-        "lastModified": 1639382586,
-        "narHash": "sha256-ig8hg3QR4Kb0ViluvIgfEzLTuZRc3pZ66DoiaSmXzTI=",
-        "owner": "pimeys",
-        "repo": "nixpkgs",
-        "rev": "cf50c54442f0b838e000814b24d7a058d22d66c1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pimeys",
-        "ref": "emacs-tree-sitter/link-grammars",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-lsp": {
-      "locked": {
-        "lastModified": 1640106614,
-        "narHash": "sha256-pyFOmsQCvxUSkdsrWrIdrPl41am9wc3UZCqHUZH+WLY=",
-        "owner": "pimeys",
-        "repo": "nixpkgs",
-        "rev": "c75af0683fefc46dadf955028c05e2e4a2763cf9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pimeys",
-        "ref": "prisma-language-server-3.7.0",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1640429852,
-        "narHash": "sha256-U0YNYtrkQPYPMx/TruUA7U/U22ufsb4Dz58siyvTDRo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "a69c671526751aa1fd377dd0d626b74bd9da0a78",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "master",
         "type": "indirect"
       }
     },
@@ -170,9 +123,6 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-julius": "nixpkgs-julius",
-        "nixpkgs-lsp": "nixpkgs-lsp",
-        "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur": "nur"
       }

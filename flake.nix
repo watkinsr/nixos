@@ -5,7 +5,6 @@
   inputs = {
     # Main NixOS monorepo. We follow the rolling release.
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "nixpkgs/master";
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,14 +14,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "git+https://git.marvid.fr/eeva/home-manager.git";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs.url = "github:nix-community/emacs-overlay";
-    nixos-hardware.url = "git+https://git.marvid.fr/eeva/nixos-hardware.git";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-master, nur
+  outputs = inputs@{ self, nixpkgs, nur
     , home-manager, ... }:
     let
       inherit (lib.my) mapModules mapModulesRec mapHosts;
@@ -37,7 +36,6 @@
         };
 
       pkgs = mkPkgs nixpkgs [ ];
-      master = mkPkgs nixpkgs-master [ ];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -73,10 +71,6 @@
           nixpkgs.overlays = [
             nur.overlay
             inputs.emacs.overlay
-
-            (self: super: {
-              master = master;
-            })
           ];
         };
       };
